@@ -41,7 +41,7 @@ class Create_Dotfile_Symlinks:
 
     def set_environment_variables(self):
         argc = len(sys.argv)
-        self.sourcedir = sys.argv[1] if argc >= 2 else '~/.dot-files'
+        self.sourcedir = sys.argv[1] if argc >= 2 else os.getcwd() 
         self.targetdir = sys.argv[2] if argc >= 3 else '~'
         self.sourcedir = os.path.abspath(os.path.expanduser(self.sourcedir))
         self.targetdir = os.path.abspath(os.path.expanduser(self.targetdir))
