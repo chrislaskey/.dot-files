@@ -2,7 +2,7 @@ About
 ================================================================================
 
 My collection of dot files, including configurations for bash shell, tmux, 
-and vim. Includes latest version of buzz, my custom vim theme.
+and vim.
 
 create-dotfile-symlinks.py
 --------------------------------------------------------------------------------
