@@ -1,0 +1,68 @@
+#!/bin/bash
+
+# A simple command wrapper to try to catch potentially danagerous rm arguments.
+# This is NOT a true safety net, and it's the admins fault if they shoot
+# themselves in the foot with rm. Always pause and review any rm command
+# before pressing enter.
+#
+# @author Chris Laskey
+# @link http://chrislaskey.com
+# @version v0.2.0
+# @updated 12/04/2011
+
+# Verify command exists
+if [[ ! -f "/bin/rm" ]]; then
+	echo "Command wrapper failed to locate /bin/rm"
+	exit 37
+fi
+
+debug () {
+	echo "working"
+	echo "$@"
+	echo "$#"
+	echo "$1"
+}
+
+warning () {
+	echo "*** WARNING ***"
+	echo "Passed arguments contain generally potentially "\
+		 "highly destructive arguments"
+	echo "To bypass this warning execute rm directly via /bin/rm. "\
+		 "Specific error below:"
+}
+
+# Test arguments for potentially dangerous settings.
+# No reason for extra overhead to parse out flags.
+# Check everything, flags will pass.
+for ARG in "$@"; do
+	case "$ARG" in
+		"*"*)
+			warning
+			echo "Argument '${ARG}' starts with *. Did you mean './*'?"
+			exit 38
+			;;
+		"/*")
+			warning
+			echo "Argument is '${ARG}'. Did you mean './*'?"
+			exit 38
+			;;
+		"ab")
+			warning
+			echo "Argument is '${ARG}', did you mean to remove current directory?"
+			exit 38
+			;;
+		".")
+			warning
+			echo "Argument is '${ARG}', did you mean to remove current directory?"
+			exit 38
+			;;
+		*)
+			continue
+			;;
+	esac
+done
+
+# If arguments pass, execute actual command
+set +f
+/bin/rm $@
+exit 0

@@ -1,0 +1,78 @@
+; User specific options
+
+[user]
+	name = Chris Laskey
+	email = contact@chrislaskey.com
+
+; General behavior options
+; Note: git default configuration options are fantastic. Unless there's a compelling reason (or personal preference) let sleeping dogs lie.
+
+[core]
+	excludesfile = *.DS_Store
+
+[alias]
+	; To remove all deleted files from the repository use $ git add -u; Note a separate $ git add .; is required after if not already called. See -u flag for details.
+	; To execute shell commands, prefix a bang (!) to the beginning of the alias command. E.g.
+	; del = !git ls-files --deleted | xargs git rm ; An alternative way to remove deleted files
+	; Note: all shell commands are executed from repository root, even if called via alias in a subdirectory
+	; 
+	merge-theirs = merge -s recursive -X theirs
+	; Log one line
+	lg = log --color --oneline --abbrev-commit --pretty=format:'%C(yellow)%h%C(reset)%C(red)%d%C(reset) %s %C(green)%an%C(reset) %C(cyan)%cr%C(reset)'
+	; Log list files
+	loglist = log --color --oneline --pretty=format:'%C(yellow)%h%C(reset)%C(red)%d%C(reset) %s %C(green)%an%C(reset) %C(cyan)%cr%C(reset)' --name-status
+	; Log diff word (instead of ++, -- and << marks)
+	logdiff = log --oneline --pretty=format:'%C(yellow)%h%C(reset)%C(red)%d%C(reset) %s %C(green)%an%C(reset) %C(cyan)%cr%C(reset)' -p --word-diff
+	; Word diff (instead of ++, -- and << marks)
+	diffword = diff --word-diff 
+
+
+[color]
+	status = true ; Displays color only when $ git status; is invoked from a terminal. This is overwritten by the ui command below.
+	ui = true ; Turns on color only when invoked from a terminal
+    branch = auto
+    diff = auto
+    interactive = auto
+
+[color "diff"]
+    frag = magenta
+    meta = white
+    new = green
+    old = red
+
+[grep]
+	lineNumber = true ; If set to true, enable -n option by default.
+
+[log]
+	decorate = full ; I pass this flag more often than not as I use tags and like to see them and the refs
+
+[pretty]
+	customname = %H %s ; Create custom values for --pretty=<customname> flag arguments
+	; oneline is a default --pretty=<name> value. Replace the "pretty = <customname>" line below to use a custom defined format.
+	; See http://book.git-scm.com/3_reviewing_history_-_git_log.html for more ideas.
+
+[format]
+	pretty = short ; default
+	;pretty = oneline 
+	;pretty = customname 
+
+[branch]
+	; When merging branches (including remote pull requests), the default behavior is to record a commit.
+	; Git can be set up to rebase instead of commit, keeping the commit log clean(er)
+	; Manually this can be achieved using: $ git pull --rebase;
+	; Further, this can be set per branch by using: $ git config branch.master.rebase true;
+	; Finally, this specific option is whether to auto-execute the above branch-specific line everytime a new branch is created
+	; See http://mislav.uniqpath.com/2010/07/git-tips/
+	;
+	; The options are never (default), local (local branch merges only), always (including remote pull requests)
+	autosetuprebase = never
+
+; Usage notes
+;
+; Many of these are from http://mislav.uniqpath.com/2010/07/git-tips/
+;
+; $ git name-rev <rev>; will display the next tag to be applied after the given revision. Helpful in finding what version a commit belongs to.
+;
+; $ git branch --contains <rev>; will tell which branches a commit belongs to. Don't forget -a flag to include remote branches!
+; 
+; $ git remote show <name>; will list all available branches. Helpful when git fetch <remote> is not updating remote branch names.
