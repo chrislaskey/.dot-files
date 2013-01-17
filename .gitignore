@@ -6,6 +6,6 @@
 .vim/backup/*~*
 .vim/bundle/python-mode/doc/tags*
 .vim/bundle/vim-fugitive/doc/tags*
-.vim/history/*
+.vim/history/*hist*
 .vim/swap/*sw*
 .vim/undo/*~*
