@@ -3,9 +3,9 @@
 *.pyc
 *.swp
 .bash/scripts/z/z.db*
-.vim/backup/*
+.vim/backup/*~*
 .vim/bundle/python-mode/doc/tags*
 .vim/bundle/vim-fugitive/doc/tags*
 .vim/history/*
-.vim/swap/*
-.vim/undo/*
+.vim/swap/*sw*
+.vim/undo/*~*
