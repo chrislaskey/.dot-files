@@ -166,7 +166,7 @@ if [[ -d ~/.bash/scripts/sshuttle/ ]]; then
 fi
 
 # Custom scripts set to aliases
-alias internet='sudo ~/.dot-files/scripts/internet/internet.py'
+alias internet='sudo ~/.dot-files/.bash/scripts/internet.py/internet.py'
 
 # Debugging puppet calls
 alias puppetprofile='puppet agent --{summarize,test,debug,evaltrace} | perl -pe "s/^/localtime().\": \"/e"'
