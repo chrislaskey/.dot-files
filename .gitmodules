@@ -1,3 +1,4 @@
 [submodule ".bash/scripts/internet.py"]
 	path = .bash/scripts/internet.py
 	url = git://github.com/chrislaskey/internet.py.git
+	ignore = dirty
