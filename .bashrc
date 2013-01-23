@@ -16,6 +16,11 @@ if [[ -n `which vim 2>/dev/null` ]]; then
 	export EDITOR=`which vim | head -1`
 fi
 
+# Turn off ._ copy files when using tar in Mac OS X
+case "$UNAME" in
+	Darwin) export COPYFILE_DISABLE=true;;
+esac
+
 # Turn autocompletion on when using sudo
 complete -cf sudo
 
