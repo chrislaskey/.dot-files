@@ -341,6 +341,9 @@ endif
 imap <C-[> <Esc>
 vmap <C-[> <Esc>
 
+" No man page lookup
+inoremap K k
+
 " Faster Esc
 inoremap jk <Esc>
 
