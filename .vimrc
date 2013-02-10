@@ -442,10 +442,10 @@ nnoremap <leader>Pf  P'[v']=
 " Markdown helpers
 nnoremap <leader>1 yypVr=
 nnoremap <leader>2 yypVr-
-nnoremap <leader>3 I# <Esc>A #<Esc>
-nnoremap <leader>4 I## <Esc> ##<Esc>
-nnoremap <leader>5 I### <Esc>A ###<Esc>
-nnoremap <leader>6 I#### <Esc>A ####<Esc>
+nnoremap <leader>3 I### <Esc>A ###<Esc>
+nnoremap <leader>4 I#### <Esc> ####<Esc>
+nnoremap <leader>5 I##### <Esc>A #####<Esc>
+nnoremap <leader>6 I###### <Esc>A ######<Esc>
 
 " CD to directory of current file
 nnoremap <leader>cd :lcd %:p:h<cr>:pwd<cr>
