@@ -612,3 +612,4 @@ map <leader>vc <C-c>v
 " Usage tips
 " :verbose set autoindent?		Determine where a settings value was last set. Great for debugging what file overwrote .vimrc setting!
 " :w !sudo tee %				Save with sudo (http://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work)
+" gq							Highlight a selection and use `gq` to autocorrect length of the paragraph
