@@ -324,7 +324,7 @@ if has('autocmd')
 	au BufNewFile,BufRead /etc/nginx/conf/* set filetype=nginx
 	au BufNewFile,BufRead *.json set filetype=javascript
 	au BufNewFile,BufRead *.proto set filetype=proto
-	" au BufNewFile,BufRead *.notes set filetype=mkd
+	au BufNewFile,BufRead *.notes set filetype=mkd
 	au BufNewFile,BufRead *.pp set filetype=sh " Puppet files
 	au BufNewFile,BufRead *.pp set tabstop=4 " Puppet files
 	au BufNewFile,BufRead *.pp set noexpandtab " Puppet files
@@ -592,21 +592,6 @@ endif
 " Todo list plugin
 " ------------------------------------------------------------------------------
 let g:tlTokenList=['//*', 'future', 'todo']
-
-
-" vim-conque terminal plugin
-" " Disabled
-" ------------------------------------------------------------------------------
-" let g:ConqueTerm_CWInsert = 1
-" let g:ConqueTerm_ExecFileKey = '<F11>'
-" let g:ConqueTerm_SendFileKey = '<F10>'
-" let g:ConqueTerm_SendVisKey = '<F9>'
-" map <leader>tt <Esc>:ConqueTermTab bash
-" map <leader>ts <Esc>:ConqueTermSplit bash
-" map <leader>tv <Esc>:ConqueTermVSplit bash
-" map <leader>ef <F11>
-" " map <leader>eb <F10> Disabled due to crashes
-" map <leader>ev <F9>
 
 
 " vim-slime plugin
