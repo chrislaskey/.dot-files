@@ -76,3 +76,5 @@
 ; $ git branch --contains <rev>; will tell which branches a commit belongs to. Don't forget -a flag to include remote branches!
 ; 
 ; $ git remote show <name>; will list all available branches. Helpful when git fetch <remote> is not updating remote branch names.
+[push]
+	default = simple

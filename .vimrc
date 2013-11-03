@@ -316,6 +316,8 @@ if has('autocmd')
 	let php_sql_query=1
 	" Highlight embedded HTML in strings
 	let php_htmlInStrings=1
+	" Add command line linting
+	autocmd BufWritePost *.php !php -l %
 endif
 
 " Set missing filetypes
