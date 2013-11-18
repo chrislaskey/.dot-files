@@ -327,7 +327,7 @@ if has('autocmd')
 	au BufNewFile,BufRead *.json set filetype=javascript
 	au BufNewFile,BufRead *.proto set filetype=proto
 	au BufNewFile,BufRead *.notes set filetype=mkd
-	au BufNewFile,BufRead *.pp set filetype=sh " Puppet files
+	au BufNewFile,BufRead *.pp set filetype=puppet " Puppet files
 	au BufNewFile,BufRead *.pp set tabstop=4 " Puppet files
 	au BufNewFile,BufRead *.pp set noexpandtab " Puppet files
 endif
