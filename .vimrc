@@ -203,8 +203,8 @@ if has("gui_running")
 	set guifont=monaco:h12
 else
 	colorscheme buzz
- 	"Colorscheme does not load correctly.
- 	"Force reload on enter until I can debug this.
+	"Colorscheme does not load correctly.
+	"Force reload on enter until I can debug this.
 	" autocmd VimEnter * colorscheme buzz
 endif
 syntax on " make sure this is turned on after filetype on.
@@ -327,9 +327,15 @@ if has('autocmd')
 	au BufNewFile,BufRead *.json set filetype=javascript
 	au BufNewFile,BufRead *.proto set filetype=proto
 	au BufNewFile,BufRead *.notes set filetype=mkd
-	au BufNewFile,BufRead *.pp set filetype=puppet " Puppet files
-	au BufNewFile,BufRead *.pp set tabstop=4 " Puppet files
-	au BufNewFile,BufRead *.pp set noexpandtab " Puppet files
+endif
+
+if has('autocmd')
+	" Puppet files
+	au BufNewFile,BufRead *.pp set filetype=puppet
+	au BufNewFile,BufRead *.pp set tabstop=2
+	au BufNewFile,BufRead *.pp set expandtab
+	au BufNewFile,BufRead *.pp set nocompatible
+	au BufNewFile,BufRead *.pp filetype indent plugin on
 endif
 
 " Key bindings
@@ -454,6 +460,9 @@ nnoremap <leader>cd :lcd %:p:h<cr>:pwd<cr>
 
 " Build off '[I' to create a more advanced find word under cursor
 nnoremap <leader>fi [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>]"
+
+" Tabular plugin alignment
+nnoremap <leader>f :Tabular block<cr>
 
 " Whitespace functions and bindings
 
