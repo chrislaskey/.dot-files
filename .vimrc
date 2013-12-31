@@ -317,7 +317,8 @@ if has('autocmd')
 	" Highlight embedded HTML in strings
 	let php_htmlInStrings=1
 	" Add command line linting
-	autocmd BufWritePost *.php !php -l %
+	" Disabled, handled by vim module instead
+	" autocmd BufWritePost *.php !php -l %
 endif
 
 " Set missing filetypes
