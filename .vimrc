@@ -316,6 +316,11 @@ if has('autocmd')
 	let php_sql_query=1
 	" Highlight embedded HTML in strings
 	let php_htmlInStrings=1
+	" Use spaces instead of tabs
+	au BufNewFile,BufRead *.php set tabstop=4
+	au BufNewFile,BufRead *.php set expandtab
+	au BufNewFile,BufRead *.php set nocompatible
+	au BufNewFile,BufRead *.php filetype indent plugin on
 	" Add command line linting
 	" Disabled, handled by vim module instead
 	" autocmd BufWritePost *.php !php -l %
