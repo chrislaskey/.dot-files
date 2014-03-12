@@ -25,6 +25,8 @@
 	logdiff = log --oneline --pretty=format:'%C(yellow)%h%C(reset)%C(red)%d%C(reset) %s %C(green)%an%C(reset) %C(cyan)%cr%C(reset)' -p --word-diff
 	; Word diff (instead of ++, -- and << marks)
 	diffword = diff --word-diff 
+	;
+	up = '!git remote update -p; git merge --ff-only @{u}'
 
 
 [color]
