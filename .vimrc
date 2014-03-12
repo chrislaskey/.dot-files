@@ -534,7 +534,7 @@ nmap <leader>co <Plug>Colorizer
 if has('autocmd')
 	autocmd FileType php setlocal commentstring=\/\/\ %s
 	autocmd FileType js setlocal commentstring=\/\/\ %s
-	autocmd FileType pp setlocal commentstring=#\ %s
+	autocmd FileType puppet setlocal commentstring=#\ %s
 	autocmd FileType htmldjango setlocal commentstring={#\ %s\ #}
 endif
 
