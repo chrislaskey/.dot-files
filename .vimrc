@@ -259,7 +259,7 @@ set shiftwidth=4
 set smartindent
 set smarttab
 set tabstop=4 " Sets the width of a tab character
-set noexpandtab " Expandtab translates tabs to spaces. No prefix turns this off
+set expandtab " Expandtab translates tabs to spaces. No prefix turns this off
 " softabstop fine tunes the amount of whitespace to be inserted.
 " The default (0) turns this off
 
