@@ -11,7 +11,7 @@ set directory=~/.vim/swap
 set viminfo='1000,n~/.vim/history/viminfo.history
 
 if has('undodir')
-	set undodir=~/.vim/undo
+    set undodir=~/.vim/undo
 endif
 
 set encoding=utf-8
@@ -24,7 +24,7 @@ set modeline " Allow in-line VIM overrides within a file.
 " Disabled as it causes exponentially increasing file write times
 " in MacVim 7.3.
 if has('autocmd')
-	" autocmd bufwritepost .vimrc source $MYVIMRC
+    " autocmd bufwritepost .vimrc source $MYVIMRC
 endif
 
 " Pathogen (package manager for vim plugins by Tim Pope)
@@ -58,11 +58,11 @@ set timeoutlen=500
 set noerrorbells
 set visualbell
 if has('autocmd')
-	autocmd VimEnter * set vb t_vb=
+    autocmd VimEnter * set vb t_vb=
 endif
 
 " Disable GUI interface elements
-"	Also add these lines to .gvimrc to turn it off in gvim/macvim
+"   Also add these lines to .gvimrc to turn it off in gvim/macvim
 set guioptions-=m " Disable menubar
 set guioptions-=T " Disable toolbar
 set guioptions-=r " Disable right scroll-bar
@@ -74,47 +74,47 @@ set guioptions-=L " Disable left scroll-bar
 " Path settings
 " ------------------------------------------------------------------------------
 if has('autochdir')
-	set autochdir " Automatically set pwd/cwd to file's parent directory
+    set autochdir " Automatically set pwd/cwd to file's parent directory
 endif
 
 " If current path is part of a git or mercurial repository it will
 " change the directory root to the repository root
 function! s:set_working_directory_for_project()
-	let wd = expand("%:p:h")
-	silent exe "cd " . wd
+    let wd = expand("%:p:h")
+    silent exe "cd " . wd
 
-	let git_root = s:git_root()
-	if git_root != ""
-		silent exe "cd " . git_root
-		return
-	endif
+    let git_root = s:git_root()
+    if git_root != ""
+        silent exe "cd " . git_root
+        return
+    endif
 
-	let hg_root = s:mercurial_root()
-	if hg_root != ""
-		silent exe "cd " . hg_root
-		return
-	endif
+    let hg_root = s:mercurial_root()
+    if hg_root != ""
+        silent exe "cd " . hg_root
+        return
+    endif
 endfunction
 
 " mercurial_root() returns the repository root if the current path is
 " within a mercurial repository.
 function! s:mercurial_root()
-	let mercurial_root = system('hg root')
+    let mercurial_root = system('hg root')
 
-	if v:shell_error != 0
-		return ""
-	endif
-	return mercurial_root
+    if v:shell_error != 0
+        return ""
+    endif
+    return mercurial_root
 endfunction
 
 " git_root() returns the repository root if the current path is
 " within a git repository.
 function! s:git_root()
-	let git_root = system('git rev-parse --show-toplevel')
-	if v:shell_error != 0
-		return ""
-	endif
-	return git_root
+    let git_root = system('git rev-parse --show-toplevel')
+    if v:shell_error != 0
+        return ""
+    endif
+    return git_root
 endfunction
 
 " Check for mercurial/git repository everytime a buffer is opened
@@ -146,12 +146,12 @@ set sidescrolloff=4 " Minimum number of horizontal characters while scrolling ho
 
 " Relative line numbers on normal mode, regular numbers on insert.
 if has('autocmd')
-	set rnu
-	au InsertEnter * :set nu
-	au InsertLeave * :set rnu
-	au FocusLost * :set nu
-	au FocusGained * :set rnu
-	set numberwidth=5
+    set rnu
+    au InsertEnter * :set nu
+    au InsertLeave * :set rnu
+    au FocusLost * :set nu
+    au FocusGained * :set rnu
+    set numberwidth=5
 endif
 
 " Run mkview on buffer leave, and reload on buffer enter.
@@ -160,14 +160,14 @@ endif
 " au BufWinEnter * silent loadview
 
 if exists('+colorcolumn')
-	" Vim 7.3+ includes colorcolumn option, which highlights columns over the defined width
-	" set colorcolumn=80
+    " Vim 7.3+ includes colorcolumn option, which highlights columns over the defined width
+    " set colorcolumn=80
 
-	" Alternatively can be set relative to textwidth:
-	" set colorcolumn=+1
+    " Alternatively can be set relative to textwidth:
+    " set colorcolumn=+1
 else
-	" If support doesn't exist add ErrorMsg syntax highlighting
-	" au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+    " If support doesn't exist add ErrorMsg syntax highlighting
+    " au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
 
 
@@ -199,22 +199,22 @@ set statusline +=%1*%4c\ %*             "column number
 " ------------------------------------------------------------------------------
 set background=dark
 if has("gui_running")
-	colorscheme buzz
-	set guifont=monaco:h12
+    colorscheme buzz
+    set guifont=monaco:h12
 else
-	colorscheme buzz
-	"Colorscheme does not load correctly.
-	"Force reload on enter until I can debug this.
-	" autocmd VimEnter * colorscheme buzz
+    colorscheme buzz
+    "Colorscheme does not load correctly.
+    "Force reload on enter until I can debug this.
+    " autocmd VimEnter * colorscheme buzz
 endif
 syntax on " make sure this is turned on after filetype on.
 
 " Returns the syntax grammar of the item below the cursor
 function! <SID>SynStack()
-	if !exists("*synstack")
-		return
-	endif
-	echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+    if !exists("*synstack")
+        return
+    endif
+    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 nmap <leader>sy :call <SID>SynStack()<CR>
 
@@ -275,7 +275,7 @@ set softtabstop=4
 
 " Lisp
 if has('autocmd')
-	autocmd filetype lisp,scheme setlocal lisp
+    autocmd filetype lisp,scheme setlocal lisp
 endif
 
 " Search
@@ -299,50 +299,53 @@ set smartcase " Turns on case sensitivity if search contains a capital letter
 " Also don't do it when the mark is in the first line, that is the default
 " position when opening a file.
 if has('autocmd')
-	autocmd BufReadPost *
-		\ if line("'\"") > 1 && line("'\"") <= line("$") |
-		\   exe "normal! g`\"" |
-		\ endif
+    autocmd BufReadPost *
+        \ if line("'\"") > 1 && line("'\"") <= line("$") |
+        \   exe "normal! g`\"" |
+        \ endif
 endif
 
 " Enable soft-wrapping for text files
 if has('autocmd')
-	autocmd filetype text,markdown,html setlocal wrap linebreak nolist
-endif
-
-" Set php commands
-if has('autocmd')
-	" Highlight embedded SQL Syntax
-	let php_sql_query=1
-	" Highlight embedded HTML in strings
-	let php_htmlInStrings=1
-	" Use spaces instead of tabs
-	au BufNewFile,BufRead *.php set tabstop=4
-	au BufNewFile,BufRead *.php set expandtab
-	au BufNewFile,BufRead *.php set nocompatible
-	au BufNewFile,BufRead *.php filetype indent plugin on
-	" Add command line linting
-	" Disabled, handled by vim module instead
-	" autocmd BufWritePost *.php !php -l %
-endif
-
-" Set missing filetypes
-if has('autocmd')
-	au BufNewFile,BufRead *.less set filetype=less
-	au BufNewFile,BufRead /etc/nginx/conf/* set filetype=nginx
-	au BufNewFile,BufRead *.json set filetype=javascript
-	au BufNewFile,BufRead *.proto set filetype=proto
-	au BufNewFile,BufRead *.notes set filetype=mkd
+    autocmd filetype text,markdown,html setlocal wrap linebreak nolist
 endif
 
 if has('autocmd')
-	" Puppet files
-	au BufNewFile,BufRead *.pp set filetype=puppet
-	au BufNewFile,BufRead *.pp set tabstop=2
-	au BufNewFile,BufRead *.pp set expandtab
-	au BufNewFile,BufRead *.pp set nocompatible
-	au BufNewFile,BufRead *.pp filetype indent plugin on
+    " Set missing filetypes
+    au BufNewFile,BufRead *.less set filetype=less
+    au BufNewFile,BufRead /etc/nginx/conf/* set filetype=nginx
+    au BufNewFile,BufRead *.json set filetype=javascript
+    au BufNewFile,BufRead *.proto set filetype=proto
+    au BufNewFile,BufRead *.notes set filetype=mkd
+
+    " Set php commands
+    let php_sql_query=1 " Highlight embedded SQL Syntax
+    let php_htmlInStrings=1 " Highlight embedded HTML in strings
+    au BufNewFile,BufRead *.php set tabstop=4 " Use spaces instead of tabs
+    au BufNewFile,BufRead *.php set expandtab
+    au BufNewFile,BufRead *.php set nocompatible
+    au BufNewFile,BufRead *.php filetype indent plugin on
+    
+    " Puppet files
+    au BufNewFile,BufRead *.pp set filetype=puppet
+    au BufNewFile,BufRead *.pp set tabstop=2
+    au BufNewFile,BufRead *.pp set expandtab
+    au BufNewFile,BufRead *.pp set nocompatible
+    au BufNewFile,BufRead *.pp filetype indent plugin on
+    
+    " Ruby files
+    au BufNewFile,BufRead *.rb set tabstop=2
+    au BufNewFile,BufRead *.rb set expandtab
+    au BufNewFile,BufRead *.rb set nocompatible
+    au BufNewFile,BufRead *.rb filetype indent plugin on
+    
+    " Ruby ERB files
+    au BufNewFile,BufRead *.erb set tabstop=2
+    au BufNewFile,BufRead *.erb set expandtab
+    au BufNewFile,BufRead *.erb set nocompatible
+    au BufNewFile,BufRead *.erb filetype indent plugin on
 endif
+
 
 " Key bindings
 " ==============================================================================
@@ -378,8 +381,8 @@ map <C-L> <C-W>l
 
 " Faster split resizing (+,-)
 if bufwinnr(1)
-	map + <C-W>+
-	map - <C-W>-
+    map + <C-W>+
+    map - <C-W>-
 endif
 
 " Insert spaces with enter in normal mode
@@ -417,7 +420,7 @@ vnoremap > >gv
 
 " piece-wise copying of the line above the current one
 imap <C-L> @@@<ESC>hhkywjl?@@@<CR>P/@@@<CR>3s
-"
+
 " Makes searches use sane regexes
 " Good to know, but I like dumb simple string search as the default
 " (http://stevelosh.com/blog/2010/09/coming-home-to-vim/)
@@ -457,7 +460,7 @@ nnoremap <leader>Pf  P'[v']=
 nnoremap <leader>1 yypVr=
 nnoremap <leader>2 yypVr-
 nnoremap <leader>3 I### <Esc>A ###<Esc>
-nnoremap <leader>4 I#### <Esc> ####<Esc>
+nnoremap <leader>4 I#### <Esc>A ####<Esc>
 nnoremap <leader>5 I##### <Esc>A #####<Esc>
 nnoremap <leader>6 I###### <Esc>A ######<Esc>
 
@@ -482,14 +485,14 @@ nnoremap <leader>f :Tabular block<cr>
 
 " Preparation: save last search, and cursor position.
 function! Preserve(command)
-	let _s=@/
-	let l = line(".")
-	let c = col(".")
-	" Do the business:
-	execute a:command
-	" Clean up: restore previous search history, and cursor position
-	let @/=_s
-	call cursor(l, c)
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    execute a:command
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
 endfunction
 
 " Remove trailing whitespace on command
@@ -515,12 +518,12 @@ let g:ctrlp_working_path_mode = 2
 
 " Optimize file searching
 if has("unix")
-	let g:ctrlp_user_command = {
-		\   'types': {
-		\       1: ['.git/', 'cd %s && git ls-files']
-		\   },
-		\   'fallback': 'find %s -type f | head -' . g:ctrlp_max_files
-		\ }
+    let g:ctrlp_user_command = {
+        \   'types': {
+        \       1: ['.git/', 'cd %s && git ls-files']
+        \   },
+        \   'fallback': 'find %s -type f | head -' . g:ctrlp_max_files
+        \ }
 endif
 
 
@@ -532,16 +535,16 @@ nmap <leader>co <Plug>Colorizer
 " Commentary plugin
 " ------------------------------------------------------------------------------
 if has('autocmd')
-	autocmd FileType php setlocal commentstring=\/\/\ %s
-	autocmd FileType js setlocal commentstring=\/\/\ %s
-	autocmd FileType puppet setlocal commentstring=#\ %s
-	autocmd FileType htmldjango setlocal commentstring={#\ %s\ #}
+    autocmd FileType php setlocal commentstring=\/\/\ %s
+    autocmd FileType js setlocal commentstring=\/\/\ %s
+    autocmd FileType puppet setlocal commentstring=#\ %s
+    autocmd FileType htmldjango setlocal commentstring={#\ %s\ #}
 endif
 
 
 " Easy Motion plugin
 " ------------------------------------------------------------------------------
-"	Keep it from conflicting with other modules
+"   Keep it from conflicting with other modules
 let g:EasyMotion_leader_key = '<Leader>m'
 
 
@@ -559,7 +562,7 @@ let g:EasyMotion_leader_key = '<Leader>m'
 
 " HTML Auto Close Tag
 " ------------------------------------------------------------------------------
-"	Add additional filetypes
+"   Add additional filetypes
 if has('autocmd')
   autocmd FileType xhtml,xml,php runtime ftplugin/html/html_autoclosetag.vim
 endif
@@ -567,7 +570,7 @@ endif
 
 " Indent Guides plugin
 " ------------------------------------------------------------------------------
-"	Plugin binds toggle on/off to <leader>ig by default
+"   Plugin binds toggle on/off to <leader>ig by default
 let g:indent_guides_enable_on_vim_startup=0
 
 
@@ -601,9 +604,9 @@ let g:snips_author = 'Chris Laskey'
 
 " Surround plugin
 " ------------------------------------------------------------------------------
-"	Map ascii 45 (-) in PHP files to the following mapping:
+"   Map ascii 45 (-) in PHP files to the following mapping:
 if has('autocmd')
-	autocmd FileType php let b:surround_45 = "<?php \r ?>"
+    autocmd FileType php let b:surround_45 = "<?php \r ?>"
 endif
 
 
@@ -628,6 +631,6 @@ map <leader>vc <C-c>v
 
 
 " Usage tips
-" :verbose set autoindent?		Determine where a settings value was last set. Great for debugging what file overwrote .vimrc setting!
-" :w !sudo tee %				Save with sudo (http://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work)
-" gq							Highlight a selection and use `gq` to autocorrect length of the paragraph
+" :verbose set autoindent?      Determine where a settings value was last set. Great for debugging what file overwrote .vimrc setting!
+" :w !sudo tee %                Save with sudo (http://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work)
+" gq                            Highlight a selection and use `gq` to autocorrect length of the paragraph
