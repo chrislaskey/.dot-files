@@ -305,9 +305,10 @@ if has('autocmd')
         \ endif
 endif
 
-" Enable soft-wrapping for text files
 if has('autocmd')
-    autocmd filetype text,markdown,html setlocal wrap linebreak nolist
+    " Filetype specific settings
+    autocmd filetype text,markdown,html setlocal wrap linebreak nolist " Enable soft-wrapping for text files
+    autocmd filetype ruby,eruby setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 endif
 
 if has('autocmd')
@@ -332,18 +333,6 @@ if has('autocmd')
     au BufNewFile,BufRead *.pp set expandtab
     au BufNewFile,BufRead *.pp set nocompatible
     au BufNewFile,BufRead *.pp filetype indent plugin on
-    
-    " Ruby files
-    au BufNewFile,BufRead *.rb set tabstop=2
-    au BufNewFile,BufRead *.rb set expandtab
-    au BufNewFile,BufRead *.rb set nocompatible
-    au BufNewFile,BufRead *.rb filetype indent plugin on
-    
-    " Ruby ERB files
-    au BufNewFile,BufRead *.erb set tabstop=2
-    au BufNewFile,BufRead *.erb set expandtab
-    au BufNewFile,BufRead *.erb set nocompatible
-    au BufNewFile,BufRead *.erb filetype indent plugin on
 endif
 
 
