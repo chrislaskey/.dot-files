@@ -436,6 +436,9 @@ nmap <leader>pa :set invpaste paste?<CR>
 " Remove search highlighting
 nmap <leader>[ :noh<Return><Esc>
 
+" Run git blame on highlighted section
+vmap <Leader>b :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
+
 " Use ,d (or ,dd or ,dj or 20,dd) to delete a line without adding it to the
 " yanked stack (also, in visual mode)
 nmap <silent> <leader>d "_d
