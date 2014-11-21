@@ -388,7 +388,7 @@ if [[ "$COLOR_PROMPT" = yes || "$FORCE_COLOR_PROMPT" = yes ]]; then
 	# as seen below
 	#
 	# The prompt below is the same as this:
-	# PS1='${MAGENTA}\u ${D}at ${ORANGE}\h ${D}in ${GREEN}\w ${D}on ${GREEN}$(git_branch_clean) ${ORANGE}$(git_branch_stage_dirty) ${RED}$(git_branch_working_tree_dirty) ${D}\$ '
+	# PS1='${MAGENTA}\u ${D}at ${CYAN}\h ${D}in ${GREEN}\w ${D}on ${GREEN}$(git_branch_clean) ${ORANGE}$(git_branch_stage_dirty) ${RED}$(git_branch_working_tree_dirty) ${D}\$ '
 
 	# Add last command exit code if non-zero to prompt
 	# Note: disabled due to display errors in Mac OS X 10.6 on errors.
@@ -396,7 +396,7 @@ if [[ "$COLOR_PROMPT" = yes || "$FORCE_COLOR_PROMPT" = yes ]]; then
 	PS1=''
 
 	# Add the rest of prompt elements
-	PS1=$PS1'\[\e[35;40m\]\u \[\e[37;40m\]at \[\e[33;40m\]\h \[\e[37;40m\]in \[\e[32;40m\]\w\[\e[37;40m\]$(git_branch_on)\[\e[32;40m\]$(git_branch_clean)\[\e[33;40m\]$(git_branch_stage_dirty)\[\e[31;40m\]$(git_branch_working_tree_dirty)\[\e[37;40m\]\$ '
+	PS1=$PS1'\[\e[35;40m\]\u \[\e[37;40m\]at \[\e[36;40m\]\h \[\e[37;40m\]in \[\e[32;40m\]\w\[\e[37;40m\]$(git_branch_on)\[\e[32;40m\]$(git_branch_clean)\[\e[33;40m\]$(git_branch_stage_dirty)\[\e[31;40m\]$(git_branch_working_tree_dirty)\[\e[37;40m\]\$ '
 
 	if [[ "$UNAME" == Darwin ]]; then
 
