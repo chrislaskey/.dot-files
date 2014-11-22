@@ -399,7 +399,7 @@ if [[ "$COLOR_PROMPT" = yes || "$FORCE_COLOR_PROMPT" = yes ]]; then
 	PS1=''
 
 	# Add the rest of prompt elements
-	PS1=$PS1'\[\e[38;05;198m\]\u \[\e[37;40m\]at \[\e[38;05;208m\]\h \[\e[37;40m\]in \[\e[38;05;154m\]\w\[\e[37;40m\]$(git_branch_on)\[\e[32;40m\]$(git_branch_clean)\[\e[33;40m\]$(git_branch_stage_dirty)\[\e[31;40m\]$(git_branch_working_tree_dirty)\[\e[37;40m\]\$ '
+	PS1=$PS1'\[\e[38;05;198m\]\u \[\e[37;40m\]at \[\e[38;05;208m\]\h \[\e[37;40m\]in \[\e[38;05;154m\]\w\[\e[37;40m\]$(git_branch_on)\[\e[32;40m\]$(git_branch_clean)\[\e[38;05;226m\]$(git_branch_stage_dirty)\[\e[31;40m\]$(git_branch_working_tree_dirty)\[\e[37;40m\]\$ '
 
 	if [[ "$UNAME" == Darwin ]]; then
 
@@ -485,9 +485,9 @@ alias drma='docker rm $(docker ps -a -q)'
 # boot2docker shell variables for MacBook Pro 2011
 export DOCKER_TLS_VERIFY=1
 export DOCKER_HOST=tcp://192.168.59.103:2376
-export DOCKER_CERT_PATH=/Users/laskey/.boot2docker/certs/boot2docker-vm
+export DOCKER_CERT_PATH=/Users/claskey/.boot2docker/certs/boot2docker-vm
 
-# === Path ===
+# === MacPorts Python Path ===
 
 # MacPorts Python binary folder
 MACPORT_PY27_BIN="/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin"
@@ -495,9 +495,18 @@ if [[ -d "${MACPORT_PY27_BIN}" ]]; then
 	PATH="/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
 fi
 
+# === Ruby RVM ===
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+PATH="${PATH}:${HOME}/.rvm/bin" # Add RVM to PATH for scripting
+
 # === Ruby rbenv ===
 
 eval "$(rbenv init -)"
+
+# === Local bash settings ==
+
+[[ -s "$HOME/.bashrc.local" ]] && source "$HOME/.bashrc.local"
 
 # === Final Setup===
 

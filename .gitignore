@@ -2,6 +2,7 @@
 *.netrwhist
 *.pyc
 *.swp
+*.bashrc.local
 .bash/scripts/z/z.db*
 .vim/backup/*~*
 .vim/bundle/python-mode/doc/tags*
