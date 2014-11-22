@@ -382,13 +382,16 @@ if [[ "$COLOR_PROMPT" = yes || "$FORCE_COLOR_PROMPT" = yes ]]; then
 	# RED=$'\e[31;40m'
 	# BLUE=$'\e[34;40m'
 	#
+	# Note: 256 Colors use: \e[38;05;<NUMBER>m\]
+	# Table: https://upload.wikimedia.org/wikipedia/en/1/15/Xterm_256color_chart.svg
+	#
 	# Unfortunately color codes do not work correctly when used in variables.
 	# They appear to work at first, but subtle linebreak problems will pop up.
 	# Develop new prompts with them, but convert to actual values before using,
 	# as seen below
 	#
 	# The prompt below is the same as this:
-	# PS1='${MAGENTA}\u ${D}at ${CYAN}\h ${D}in ${GREEN}\w ${D}on ${GREEN}$(git_branch_clean) ${ORANGE}$(git_branch_stage_dirty) ${RED}$(git_branch_working_tree_dirty) ${D}\$ '
+	# PS1='${MAGENTA}\u ${D}at ${ORANGE}\h ${D}in ${GREEN}\w ${D}on ${GREEN}$(git_branch_clean) ${ORANGE}$(git_branch_stage_dirty) ${RED}$(git_branch_working_tree_dirty) ${D}\$ '
 
 	# Add last command exit code if non-zero to prompt
 	# Note: disabled due to display errors in Mac OS X 10.6 on errors.
@@ -396,7 +399,7 @@ if [[ "$COLOR_PROMPT" = yes || "$FORCE_COLOR_PROMPT" = yes ]]; then
 	PS1=''
 
 	# Add the rest of prompt elements
-	PS1=$PS1'\[\e[35;40m\]\u \[\e[37;40m\]at \[\e[36;40m\]\h \[\e[37;40m\]in \[\e[32;40m\]\w\[\e[37;40m\]$(git_branch_on)\[\e[32;40m\]$(git_branch_clean)\[\e[33;40m\]$(git_branch_stage_dirty)\[\e[31;40m\]$(git_branch_working_tree_dirty)\[\e[37;40m\]\$ '
+	PS1=$PS1'\[\e[38;05;198m\]\u \[\e[37;40m\]at \[\e[38;05;208m\]\h \[\e[37;40m\]in \[\e[38;05;154m\]\w\[\e[37;40m\]$(git_branch_on)\[\e[32;40m\]$(git_branch_clean)\[\e[33;40m\]$(git_branch_stage_dirty)\[\e[31;40m\]$(git_branch_working_tree_dirty)\[\e[37;40m\]\$ '
 
 	if [[ "$UNAME" == Darwin ]]; then
 
@@ -487,10 +490,16 @@ export DOCKER_CERT_PATH=/Users/laskey/.boot2docker/certs/boot2docker-vm
 # === Path ===
 
 # MacPorts Python binary folder
-MACPORT_PY27_BIN="/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/"
+MACPORT_PY27_BIN="/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin"
 if [[ -d "${MACPORT_PY27_BIN}" ]]; then
-	PATH="/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/:${PATH}"
+	PATH="/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
 fi
+
+# === Ruby rbenv ===
+
+eval "$(rbenv init -)"
+
+# === Final Setup===
 
 # General additional bin paths
 PATH="/opt/local/bin:/opt/local/sbin:${HOME}:${PATH}"
