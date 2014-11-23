@@ -285,6 +285,9 @@ set ignorecase " Ignores case in searches by default
 set incsearch " Searches as you type
 set smartcase " Turns on case sensitivity if search contains a capital letter
 
+" Tags
+set tags+=gems.tags
+
 " Allow switching away from a current buffer with unsaved changes to another
 " buffer without throwing a warning. Still prompts before quitting with warning.
 " set hidden

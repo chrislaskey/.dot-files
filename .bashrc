@@ -504,6 +504,11 @@ PATH="${PATH}:${HOME}/.rvm/bin" # Add RVM to PATH for scripting
 
 eval "$(rbenv init -)"
 
+# === Ruby ===
+
+alias tag='ctags -R --languages=ruby --exclude=.git --exclude=log .'
+alias gtag='ctags -R --languages=ruby --exclude=.git --exclude=log . $(bundle list --paths)'
+
 # === Local bash settings ==
 
 [[ -s "$HOME/.bashrc.local" ]] && source "$HOME/.bashrc.local"
