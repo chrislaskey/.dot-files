@@ -10,7 +10,7 @@
 ; Note: git default configuration options are fantastic. Unless there's a compelling reason (or personal preference) let sleeping dogs lie.
 
 [core]
-	excludesfile = *.DS_Store
+	excludesfile = ~/.gitignore.global
 
 [alias]
 	; To remove all deleted files from the repository use $ git add -u; Note a separate $ git add .; is required after if not already called. See -u flag for details.
