@@ -509,6 +509,10 @@ eval "$(rbenv init -)"
 alias tag='ctags -R --languages=ruby --exclude=.git --exclude=log .'
 alias gtag='ctags -R --languages=ruby --exclude=.git --exclude=log . $(bundle list --paths)'
 
+# === NodeJS ===
+
+PATH="${PATH}:/usr/local/share/npm/bin"
+
 # === Local bash settings ==
 
 [[ -s "$HOME/.bashrc.local" ]] && source "$HOME/.bashrc.local"
