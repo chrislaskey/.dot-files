@@ -30,6 +30,8 @@
 	;
 	up = '!git remote update -p; git merge --ff-only @{u}'
 
+[merge]
+	tool = kdiff3
 
 [color]
 	status = true ; Displays color only when $ git status; is invoked from a terminal. This is overwritten by the ui command below.
