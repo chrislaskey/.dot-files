@@ -481,6 +481,7 @@ man() {
 
 alias d='docker'
 alias drma='docker rm $(docker ps -a -q)'
+dsh(){ docker exec -i -t "${1}_${1}_1" /bin/bash; }
 
 # boot2docker shell variables for MacBook Pro 2011
 export DOCKER_TLS_VERIFY=1
@@ -508,6 +509,7 @@ eval "$(rbenv init -)"
 
 alias tag='ctags -R --languages=ruby --exclude=.git --exclude=log .'
 alias gtag='ctags -R --languages=ruby --exclude=.git --exclude=log . $(bundle list --paths)'
+alias be='bundle exec'
 
 # === NodeJS ===
 
