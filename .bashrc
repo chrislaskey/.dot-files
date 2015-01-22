@@ -82,9 +82,6 @@ alias df='df -kTh'
 # Slightly more informative than a which call
 alias whicht='type -a'
 
-# Normalize ack call, Debian systems use ack-grep package name
-alias ack='ack-grep'
-
 # Alias tmux commands
 alias tmuxn='tmux new-session -s'
 alias tmuxa='tmux attach-session -t'
@@ -481,6 +478,7 @@ man() {
 
 alias d='docker'
 alias drma='docker rm $(docker ps -a -q)'
+alias authcode="docker exec auth_auth_1 awk '/access code/ {print \$5}' log/development.log | tail -n 1 | pbcopy"
 dsh(){ docker exec -i -t "${1}_${1}_1" /bin/bash; }
 
 # boot2docker shell variables for MacBook Pro 2011
