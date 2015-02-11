@@ -1,0 +1,4 @@
+---
+:table_width: 1000
+:output_files:
+- brakeman.report
