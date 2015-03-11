@@ -513,6 +513,10 @@ alias be='bundle exec'
 
 PATH="${PATH}:/usr/local/share/npm/bin"
 
+# === Git ===
+
+alias gb='git bisect'
+
 # === Local bash settings ==
 
 [[ -s "$HOME/.bashrc.local" ]] && source "$HOME/.bashrc.local"
