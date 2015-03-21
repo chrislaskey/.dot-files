@@ -516,6 +516,7 @@ PATH="${PATH}:/usr/local/share/npm/bin"
 # === Git ===
 
 alias gb='git bisect'
+alias gs='git status'
 
 # === Local bash settings ==
 
