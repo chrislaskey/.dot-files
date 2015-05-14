@@ -49,6 +49,8 @@ alias .....='cd ../../../..'
 
 alias h='history'
 
+alias ll='ls -lha'
+
 # Weather
 alias weather='telnet rainmaker.wunderground.com'
 

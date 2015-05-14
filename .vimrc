@@ -311,7 +311,7 @@ endif
 if has('autocmd')
     " Filetype specific settings
     autocmd filetype text,markdown,html setlocal wrap linebreak nolist " Enable soft-wrapping for text files
-    autocmd filetype ruby,eruby setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+    autocmd filetype ruby,eruby,scss,javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 endif
 
 if has('autocmd')
