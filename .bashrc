@@ -486,7 +486,7 @@ dsh(){ docker exec -i -t "${1}_${1}_1" /bin/bash; }
 # boot2docker shell variables for MacBook Pro 2011
 export DOCKER_TLS_VERIFY=1
 export DOCKER_HOST=tcp://192.168.59.103:2376
-export DOCKER_CERT_PATH=/Users/claskey/.boot2docker/certs/boot2docker-vm
+export DOCKER_CERT_PATH=$HOME/.boot2docker/certs/boot2docker-vm
 
 # === MacPorts Python Path ===
 
@@ -519,6 +519,11 @@ PATH="${PATH}:/usr/local/share/npm/bin"
 
 alias gb='git bisect'
 alias gs='git status'
+alias co='git checkout'
+
+# === BBSH ===
+# Note: must have installed yama_rsa
+bbsh='ssh -t -p 26943 -i ~/.ssh/yama_rsa claskey@yama.blueboxgrid.com /usr/local/bin/bbsh $1'
 
 # === Local bash settings ==
 

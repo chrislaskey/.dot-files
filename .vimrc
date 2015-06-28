@@ -311,11 +311,12 @@ endif
 if has('autocmd')
     " Filetype specific settings
     autocmd filetype text,markdown,html setlocal wrap linebreak nolist " Enable soft-wrapping for text files
-    autocmd filetype ruby,eruby,scss,javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+    autocmd filetype ruby,eruby,scss,javascript,html,css,yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 endif
 
 if has('autocmd')
     " Set missing filetypes
+    au BufNewFile,BufRead *.es6 set filetype=javascript
     au BufNewFile,BufRead *.less set filetype=less
     au BufNewFile,BufRead /etc/nginx/conf/* set filetype=nginx
     au BufNewFile,BufRead *.json set filetype=javascript
