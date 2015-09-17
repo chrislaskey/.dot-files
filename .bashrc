@@ -84,12 +84,6 @@ alias df='df -kTh'
 # Slightly more informative than a which call
 alias whicht='type -a'
 
-# Alias tmux commands
-alias tmuxn='tmux new-session -s'
-alias tmuxa='tmux attach-session -t'
-alias tmuxl='tmux list-sessions'
-alias tmuxk='tmux kill-session -t'
-
 # Flush directory service cache
 if [[ "$UNAME" == Darwin ]]; then
 	alias flush="dscacheutil -flushcache"
@@ -475,6 +469,18 @@ man() {
 		LESS_TERMCAP_us=$(printf "\e[1;32m") \
 			man "$@"
 }
+
+# === Tmux ===
+
+if [[ -f ~/.bin/tmuxinator.bash ]]; then
+	source ~/.bin/tmuxinator.bash
+fi
+
+# Alias tmux commands
+alias tmuxn='tmux new-session -s'
+alias tmuxa='tmux attach-session -t'
+alias tmuxl='tmux list-sessions'
+alias tmuxk='tmux kill-session -t'
 
 # === Docker ===
 

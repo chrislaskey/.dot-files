@@ -4,9 +4,12 @@
 *.swp
 *.bashrc.local
 .bash/scripts/z/z.db*
+.tmux/resurrect/*
 .vim/backup/*~*
 .vim/bundle/python-mode/doc/tags*
 .vim/bundle/vim-fugitive/doc/tags*
 .vim/history/*hist*
 .vim/swap/*sw*
 .vim/undo/*~*
+tmux-client-*.log
+tmux-server-*.log
