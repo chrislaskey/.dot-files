@@ -527,6 +527,10 @@ alias gb='git bisect'
 alias gs='git status'
 alias co='git checkout'
 
+# === RabbitMQ ===
+
+PATH="${PATH}:/usr/local/sbin"
+
 # === BBSH ===
 # Note: must have installed yama_rsa
 bbsh='ssh -t -p 26943 -i ~/.ssh/yama_rsa claskey@yama.blueboxgrid.com /usr/local/bin/bbsh $1'

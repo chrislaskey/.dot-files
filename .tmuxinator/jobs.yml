@@ -1,0 +1,14 @@
+name: jobs
+root: ~/BlueBox/jobs
+socket_name: jobs
+
+windows:
+  - editor:
+      layout: main-horizontal
+      panes:
+        - vim
+        - # bash
+  - server: iex -S mix phoenix.server
+  - postgresql: postgres -D /usr/local/var/postgres
+  - rabbit: rabbitmq-server
+  - bpw: sleep 5 && bpworker -d -c config/bpworker.json
