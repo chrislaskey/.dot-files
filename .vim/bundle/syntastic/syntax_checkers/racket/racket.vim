@@ -11,15 +11,13 @@
 "
 "============================================================================
 
-if exists("g:loaded_syntastic_racket_racket_checker")
+if exists('g:loaded_syntastic_racket_racket_checker')
     finish
 endif
 let g:loaded_syntastic_racket_racket_checker=1
 
 let s:save_cpo = &cpo
 set cpo&vim
-
-" at some point put in the GetHightlightRegex(item) callback
 
 function! SyntaxCheckers_racket_racket_GetLocList() dict
     let makeprg = self.makeprgBuild({})
@@ -48,3 +46,5 @@ call g:SyntasticRegistry.CreateAndRegisterChecker({
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
+
+" vim: set sw=4 sts=4 et fdm=marker:

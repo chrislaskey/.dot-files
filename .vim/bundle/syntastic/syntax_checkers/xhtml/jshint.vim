@@ -1,7 +1,7 @@
 "============================================================================
-"File:        ycm.vim
-"Description: Syntax checking plugin for syntastic.vim
-"Maintainer:  Val Markovic <val at markovic dot io>
+"File:        jshint.vim
+"Description: Javascript syntax checker for xHTML - using jshint
+"Maintainer:  LCD 47 <lcd047 at gmail dot com>
 "License:     This program is free software. It comes without any warranty,
 "             to the extent permitted by applicable law. You can redistribute
 "             it and/or modify it under the terms of the Do What The Fuck You
@@ -10,23 +10,16 @@
 "
 "============================================================================
 
-if exists("g:loaded_syntastic_c_ycm_checker")
+if exists('g:loaded_syntastic_xhtml_jshint_checker')
     finish
 endif
-let g:loaded_syntastic_c_ycm_checker = 1
+let g:loaded_syntastic_xhtml_jshint_checker = 1
 
-function! SyntaxCheckers_c_ycm_IsAvailable() dict
-    return exists('g:loaded_youcompleteme')
-endfunction
-
-if !exists('g:loaded_youcompleteme')
-    finish
-endif
-
-function! SyntaxCheckers_c_ycm_GetLocList() dict
-    return youcompleteme#CurrentFileDiagnostics()
-endfunction
+runtime! syntax_checkers/html/*.vim
 
 call g:SyntasticRegistry.CreateAndRegisterChecker({
-    \ 'filetype': 'c',
-    \ 'name': 'ycm'})
+    \ 'filetype': 'xhtml',
+    \ 'name': 'jshint',
+    \ 'redirect': 'html/jshint'})
+
+" vim: set sw=4 sts=4 et fdm=marker:

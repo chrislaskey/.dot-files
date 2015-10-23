@@ -3,13 +3,16 @@
 "Description: Shell script syntax/style checking plugin for syntastic.vim
 "============================================================================
 
-if exists("g:loaded_syntastic_sh_shellcheck_checker")
+if exists('g:loaded_syntastic_sh_shellcheck_checker')
     finish
 endif
 let g:loaded_syntastic_sh_shellcheck_checker = 1
 
+let s:save_cpo = &cpo
+set cpo&vim
+
 function! SyntaxCheckers_sh_shellcheck_GetLocList() dict
-    let makeprg = self.makeprgBuild({ 'args': '-f gcc' })
+    let makeprg = self.makeprgBuild({ 'args_after': '-f gcc' })
 
     let errorformat =
         \ '%f:%l:%c: %trror: %m,' .
@@ -34,3 +37,8 @@ endfunction
 call g:SyntasticRegistry.CreateAndRegisterChecker({
     \ 'filetype': 'sh',
     \ 'name': 'shellcheck' })
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
+
+" vim: set sw=4 sts=4 et fdm=marker:
