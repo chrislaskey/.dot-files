@@ -1,0 +1,11 @@
+name: ansible-jobs
+root: ~/BlueBox/ansible-jobs
+socket_name: ansible-jobs
+
+windows:
+  - editor:
+      layout: main-horizontal
+      panes:
+        - vim
+        - # bash
+  - bash: # Bash

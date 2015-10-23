@@ -1,0 +1,12 @@
+name: hello_phoenix
+root: ~/BlueBox/hello_phoenix
+socket_name: hello_phoenix
+
+windows:
+  - editor:
+      layout: main-horizontal
+      panes:
+        - vim
+        - # bash
+  - server: iex -S mix phoenix.server
+  - postgresql: postgres -D /usr/local/var/postgres
