@@ -489,17 +489,8 @@ alias drma='docker rm $(docker ps -a -q)'
 alias authcode="docker exec auth_auth_1 awk '/access code/ {print \$5}' log/development.log | tail -n 1 | pbcopy"
 dsh(){ docker exec -i -t "${1}_${1}_1" /bin/bash; }
 
-# boot2docker shell variables for MacBook Pro 2011
-export DOCKER_TLS_VERIFY=1
-export DOCKER_HOST=tcp://192.168.59.103:2376
-export DOCKER_CERT_PATH=$HOME/.boot2docker/certs/boot2docker-vm
-
-# === MacPorts Python Path ===
-
-# MacPorts Python binary folder
-MACPORT_PY27_BIN="/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin"
-if [[ -d "${MACPORT_PY27_BIN}" ]]; then
-	PATH="/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
+if [[ `docker-machine status default` == "Running" ]]; then
+    eval $(docker-machine env default)
 fi
 
 # === Ruby RVM ===
