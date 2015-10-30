@@ -500,7 +500,9 @@ PATH="${PATH}:${HOME}/.rvm/bin" # Add RVM to PATH for scripting
 
 # === Ruby rbenv ===
 
-eval "$(rbenv init -)"
+if [[ `which rbenv` ]]; then
+    eval "$(rbenv init -)"
+fi
 
 # === Ruby ===
 
@@ -524,16 +526,21 @@ PATH="${PATH}:/usr/local/sbin"
 
 # === BBSH ===
 # Note: must have installed yama_rsa
+
 bbsh='ssh -t -p 26943 -i ~/.ssh/yama_rsa claskey@yama.blueboxgrid.com /usr/local/bin/bbsh $1'
 
-# === Local bash settings ==
+# === direnv ===
+
+if [[ `which direnv` ]]; then
+    eval "$(direnv hook bash)"
+fi
+
+# === Local bash settings ===
 
 [[ -s "$HOME/.bashrc.local" ]] && source "$HOME/.bashrc.local"
 
-# === Final Setup===
+# === Path ===
 
-# General additional bin paths
 PATH="/opt/local/bin:/opt/local/sbin:${HOME}:${PATH}"
 
-# Export PATH
 export PATH
