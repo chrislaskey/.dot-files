@@ -22,33 +22,33 @@ let colors_name = "buzz"
 if version >= 700
   hi CursorLine    guibg=#212121 gui=none ctermbg=234
   hi CursorColumn  guibg=#212121 ctermbg=234
-  hi MatchParen    guifg=#f92672 guibg=NONE gui=none ctermfg=127 ctermbg=232 cterm=underline
+  hi MatchParen    guifg=#f92672 guibg=NONE gui=none ctermfg=127 ctermbg=16 cterm=underline
   hi Pmenu 		   guifg=#ffffff guibg=#181818 ctermfg=255 ctermbg=238
   hi PmenuSel 	   guifg=#000000 guibg=#b1d631 ctermfg=0 ctermbg=148
 endif
 
 " General colors
 hi Cursor 		   guifg=NONE    guibg=#626262 gui=none ctermbg=236
-hi Normal		   guifg=#f6f3e8 guibg=#181818 gui=none ctermfg=253 ctermbg=232
-hi NonText 		   guifg=#303030 guibg=#181818 gui=none ctermfg=235 ctermbg=232
-hi LineNr 		   guifg=#303030 guibg=#181818 gui=none ctermfg=236 ctermbg=232
-hi ErrorMsg		   guifg=#ff0000 ctermfg=196 ctermbg=232
-hi WarningMsg	   guifg=#ff0000 gui=none ctermfg=196 ctermbg=232
+hi Normal		   guifg=#f6f3e8 guibg=#181818 gui=none ctermfg=253 ctermbg=16
+hi NonText 		   guifg=#303030 guibg=#181818 gui=none ctermfg=235 ctermbg=16
+hi LineNr 		   guifg=#303030 guibg=#181818 gui=none ctermfg=236 ctermbg=16
+hi ErrorMsg		   guifg=#ff0000 ctermfg=196 ctermbg=16
+hi WarningMsg	   guifg=#ff0000 gui=none ctermfg=196 ctermbg=16
 hi StatusLine 	   guifg=#d3d3d5 guibg=#212121 gui=none ctermfg=253 ctermbg=236
 hi StatusLineNC    guifg=#939395 guibg=#212121 gui=none ctermfg=246 ctermbg=236
 hi VertSplit 	   guifg=#444444 guibg=#262626 gui=none ctermfg=238 ctermbg=238
-hi Folded 		   guifg=#666666 guibg=#262626 gui=none ctermfg=67  ctermbg=232
+hi Folded 		   guifg=#666666 guibg=#262626 gui=none ctermfg=67  ctermbg=16
 hi Title		   guifg=#f6f3e8 guibg=NONE	   gui=none ctermfg=254 cterm=bold
 hi Visual		   guifg=#f92672 guibg=#212121 gui=none ctermfg=161 ctermbg=NONE
-hi SpecialKey	   guifg=#303030 guibg=#181818 gui=none ctermfg=235 ctermbg=232
+hi SpecialKey	   guifg=#303030 guibg=#181818 gui=none ctermfg=235 ctermbg=16
 hi TabLine	       ctermfg=242 ctermbg=234 cterm=none
 hi TabLineFill	   ctermfg=234
-hi TabLineSel	   ctermfg=190 ctermbg=232
+hi TabLineSel	   ctermfg=190 ctermbg=16
 
 " Syntax highlighting
-hi Error		   guifg=#ff0000 gui=none ctermfg=196 ctermbg=232
+hi Error		   guifg=#ff0000 gui=none ctermfg=196 ctermbg=16
 if hlexists('SpellBad') 
-	hi SpellBad	   guifg=#ff0000 gui=none ctermfg=196 ctermbg=232
+	hi SpellBad	   guifg=#ff0000 gui=none ctermfg=196 ctermbg=16
 endif
 hi Search		   guifg=#ffff00 gui=none ctermbg=190
 hi Comment 		   guifg=#444444 gui=italic ctermfg=238
@@ -118,8 +118,8 @@ hi pythonBuiltinFunction guifg=#009000 gui=none ctermfg=200
 hi pythonExClass   guifg=#009000 gui=none ctermfg=200
 hi pythonDot       guifg=#009000 gui=none ctermfg=187
 hi pythonError     guifg=#009000 gui=none ctermfg=18
-hi NonText         guifg=#000000 guibg=#181818 gui=none ctermfg=232 ctermbg=232
-hi ColorColumn     guifg=#000000 guibg=#181818 gui=none ctermfg=1 ctermbg=232
+hi NonText         guifg=#000000 guibg=#181818 gui=none ctermfg=16 ctermbg=16
+hi ColorColumn     guifg=#000000 guibg=#181818 gui=none ctermfg=1 ctermbg=16
 
 " Colors for Indent Guides plugin (not required, will choose other template
 " defaults if not defined)

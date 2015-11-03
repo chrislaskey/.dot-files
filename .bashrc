@@ -491,6 +491,7 @@ dsh(){ docker exec -i -t "${1}_${1}_1" /bin/bash; }
 
 if [[ `docker-machine status default` == "Running" ]]; then
     eval $(docker-machine env default)
+    export DOCKER_IP=`docker-machine ip default`
 fi
 
 # === Ruby RVM ===
