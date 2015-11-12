@@ -8,9 +8,5 @@ windows:
       panes:
         - vim
         - # bash
-  - console:
-      layout: main-horizontal
-      panes:
-        - bundle exec rails console
-        - gulp
+  - console: bundle exec rails console
   - server: bundle exec rails server -p 3100
