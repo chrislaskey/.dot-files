@@ -1,0 +1,12 @@
+name: elixir_deploy
+root: ~/BlueBox/deploy
+socket_name: elixir_deploy
+
+windows:
+  - editor:
+      layout: main-horizontal
+      panes:
+        - vim
+        - # bash
+  - build: MIX_ENV=prod mix escript.build
+  - execute: ./deploy /Users/claskey/BlueBox/deploy/hello_world.sh master 
