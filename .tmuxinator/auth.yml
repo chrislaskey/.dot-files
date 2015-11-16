@@ -9,4 +9,4 @@ windows:
         - vim
         - # bash
   - console: bundle exec rails console
-  - server: bundle exec rails server -p 3100
+  - server: bundle exec rails server -p 3101
