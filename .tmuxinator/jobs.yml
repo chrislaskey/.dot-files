@@ -8,7 +8,7 @@ windows:
       panes:
         - vim
         - # bash
-  - server: iex -S mix phoenix.server
+  - server: mix deps.get && mix ecto.migrate && iex -S mix phoenix.server
   - postgresql: postgres -D /usr/local/var/postgres
   - rabbit: rabbitmq-server
   - bpw: sleep 5 && bpworker -d -c config/bpworker.json

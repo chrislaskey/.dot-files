@@ -145,14 +145,15 @@ set scrolloff=4 " Minimum number of lines to show around the cursor while scroll
 set sidescrolloff=4 " Minimum number of horizontal characters while scrolling horizontally
 
 " Relative line numbers on normal mode, regular numbers on insert.
-if has('autocmd')
-    set rnu
-    au InsertEnter * :set nu
-    au InsertLeave * :set rnu
-    au FocusLost * :set nu
-    au FocusGained * :set rnu
-    set numberwidth=5
-endif
+" NOTE: Disable when pairing
+" if has('autocmd')
+"     set rnu
+"     au InsertEnter * :set nu
+"     au InsertLeave * :set rnu
+"     au FocusLost * :set nu
+"     au FocusGained * :set rnu
+"     set numberwidth=5
+" endif
 
 " Run mkview on buffer leave, and reload on buffer enter.
 " Views store window settings when viewing a buffer.

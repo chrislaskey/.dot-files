@@ -51,13 +51,20 @@ alias h='history'
 
 alias ll='ls -lha'
 
+alias dirs='find . -maxdepth 1 -type d -print0 | xargs -0 du -skh'
+
+if [[ `which terminal-notifier` ]]; then
+  # Available in OS X via homebrew
+  alias notify='terminal-notifier -sound default -title Command Finished -message Finished command'
+fi
+
 # Weather
 alias weather='telnet rainmaker.wunderground.com'
 
 # Set color prompt if available
 case "$UNAME" in
-	Darwin) alias ls="ls -G";;
-	*) alias ls="ls --color=always";;
+  Darwin) alias ls="ls -G";;
+  *) alias ls="ls --color=always";;
 esac
 
 # List all files colorized in long format, including dot files
