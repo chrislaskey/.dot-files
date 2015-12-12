@@ -7,10 +7,7 @@ GIT_SYMBOLS = {
     'ahead': u'\u2B06',
     'behind': u'\u2B07',
     'staged': u'\u2714',
-    # 'notstaged': u'\u270E',
     'notstaged': u'\u2718',
-    # 'untracked': u'\u2753',
-    # 'untracked': u'\u29B8',
     'untracked': u'\u2702',
     'conflicted': u'\u273C'
 }
