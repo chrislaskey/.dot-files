@@ -63,8 +63,7 @@ def parse_git_stats(status):
 
 
 def _n_or_empty(_dict, _key):
-    return _dict[_key] if int(_dict[_key]) > 1 else u''
-
+    return u' {}'.format(_dict[_key]) if int(_dict[_key]) > 1 else u''
 
 def add_git_segment():
     p = subprocess.Popen(['git', 'status', '--porcelain', '-b'],
@@ -95,7 +94,7 @@ def add_git_segment():
 
     def _add(_dict, _key, fg, bg):
         if _dict[_key]:
-            _str = u' {1} {0} '.format(_n_or_empty(_dict, _key), GIT_SYMBOLS[_key])
+            _str = u' {1}{0} '.format(_n_or_empty(_dict, _key), GIT_SYMBOLS[_key])
             powerline.append(_str, fg, bg)
 
     if branch_info:
