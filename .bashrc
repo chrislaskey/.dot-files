@@ -13,12 +13,12 @@ set -o vi
 
 # Make VIM the default editor
 if [[ -n `which vim 2>/dev/null` ]]; then
-	export EDITOR=`which vim | head -1`
+    export EDITOR=`which vim | head -1`
 fi
 
 # Turn off ._ copy files when using tar in Mac OS X
 case "$UNAME" in
-	Darwin) export COPYFILE_DISABLE=true;;
+    Darwin) export COPYFILE_DISABLE=true;;
 esac
 
 # Turn autocompletion on when using sudo
@@ -28,7 +28,7 @@ complete -cf sudo
 
 # Use VIM whenever possible
 if [[ -n `which vim 2>/dev/null` ]]; then
-	alias vi='vim'
+    alias vi='vim'
 fi
 
 # Make sudo read aliases
@@ -93,9 +93,9 @@ alias whicht='type -a'
 
 # Flush directory service cache
 if [[ "$UNAME" == Darwin ]]; then
-	alias flush="dscacheutil -flushcache"
+    alias flush="dscacheutil -flushcache"
 elif [[ "$UNAME" == Linux && -f /etc/init.d/nscd ]]; then
-	alias flush="/etc/init.d/nscd restart"
+    alias flush="/etc/init.d/nscd restart"
 fi
 
 # URL-encode strings
@@ -103,60 +103,60 @@ alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.ar
 
 # OS X aliases
 if [[ "$UNAME" == Darwin ]]; then
-	# Show/hide hidden files in Finder
-	alias show="defaults write com.apple.Finder AppleShowAllFiles -bool true && killall Finder"
-	alias hide="defaults write com.apple.Finder AppleShowAllFiles -bool false && killall Finder"
+    # Show/hide hidden files in Finder
+    alias show="defaults write com.apple.Finder AppleShowAllFiles -bool true && killall Finder"
+    alias hide="defaults write com.apple.Finder AppleShowAllFiles -bool false && killall Finder"
 
-	# Hide/show all desktop icons (useful when presenting)
-	alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
-	alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+    # Hide/show all desktop icons (useful when presenting)
+    alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+    alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 fi
 
 # Simplified alias for grep word-counting
 grepc () {
-	echo "$(grep -lr "$1" "$2" | xargs grep -c "$1")"
+    echo "$(grep -lr "$1" "$2" | xargs grep -c "$1")"
 }
 
 # Simple command wrappers for additional safety / functionality
 # Alias + function used to prevent auto shell globbing (e.g. *).
 # See http://blog.edwards-research.com/2011/05/preventing-globbing/
 safer_rm () {
-	if [[ -f "${HOME}/.bash/command-wrappers/rm" ]]; then
-		"$HOME"/.bash/command-wrappers/rm "$@"
-		set +f
-	else
-		set +f
-		/bin/rm "$@"
-	fi
+    if [[ -f "${HOME}/.bash/command-wrappers/rm" ]]; then
+        "$HOME"/.bash/command-wrappers/rm "$@"
+        set +f
+    else
+        set +f
+        /bin/rm "$@"
+    fi
 }
 
 alias rm="set -f; safer_rm"
 
 if [[ -n `which strace 2>/dev/null` ]]; then
-	
-	# Visual copy bar utilizing strace
-	# Will slow down regular copying. Aliases to an option below
-	# http://chris-lamb.co.uk/2008/01/24/can-you-get-cp-to-give-a-progress-bar-like-wget/
-	cp_bar(){
-		strace -q -ewrite cp -- "${1}" "${2}" 2>&1 \
-			| awk '{
-				count += $NF
-					if (count % 10 == 0) {
-					percent = count / total_size * 100
-					printf "%3d%% [", percent
-					for (i=0;i<=percent;i++)
-						printf "="
-					printf ">"
-					for (i=percent;i<100;i++)
-						printf " "
-					printf "]\r"
-					}
-				}
-				END { print "" }' total_size=$(stat -c '%s' "${1}") count=0
-	}
+    
+    # Visual copy bar utilizing strace
+    # Will slow down regular copying. Aliases to an option below
+    # http://chris-lamb.co.uk/2008/01/24/can-you-get-cp-to-give-a-progress-bar-like-wget/
+    cp_bar(){
+        strace -q -ewrite cp -- "${1}" "${2}" 2>&1 \
+            | awk '{
+                count += $NF
+                    if (count % 10 == 0) {
+                    percent = count / total_size * 100
+                    printf "%3d%% [", percent
+                    for (i=0;i<=percent;i++)
+                        printf "="
+                    printf ">"
+                    for (i=percent;i<100;i++)
+                        printf " "
+                    printf "]\r"
+                    }
+                }
+                END { print "" }' total_size=$(stat -c '%s' "${1}") count=0
+    }
 
-	# Visual progress bar for copy
-	alias cpb="cp_bar"
+    # Visual progress bar for copy
+    alias cpb="cp_bar"
 
 fi
 
@@ -166,8 +166,8 @@ alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET
 
 # sshuttle port-forwarding/vpn alias
 if [[ -d ~/.bash/scripts/sshuttle/ ]]; then
-	alias sshuttle="~/.bash/scripts/sshuttle/sshuttle"
-	# Note: basic command: sshuttle -r username@sshserver 0/0 -vv
+    alias sshuttle="~/.bash/scripts/sshuttle/sshuttle"
+    # Note: basic command: sshuttle -r username@sshserver 0/0 -vv
 fi
 
 # Custom scripts set to aliases
@@ -193,71 +193,71 @@ HISTFILESIZE=5000
 # even when encapsulated with single or double quotes. Use Z jump
 # around instead.
 # if [[ -n `whereis ruby` && -d ~/.bash/scripts/fuzzycd ]]; then
-#	PATH="~/.bash/scripts/fuzzycd/:${PATH}"
-#	source ~/.bash/scripts/fuzzycd/fuzzycd_bash_wrapper.sh
+#   PATH="~/.bash/scripts/fuzzycd/:${PATH}"
+#   source ~/.bash/scripts/fuzzycd/fuzzycd_bash_wrapper.sh
 # fi
 
 # Z jump around script (https://github.com/rupa/z)
 if [[ -d ~/.bash/scripts/z ]]; then
-	_Z_CMD=j
-	_Z_DATA=~/.bash/scripts/z/z.db
-	source ~/.bash/scripts/z/z.sh
+    _Z_CMD=j
+    _Z_DATA=~/.bash/scripts/z/z.db
+    source ~/.bash/scripts/z/z.sh
 fi
 
 # Bash autocomplete scripts
 if [[ -d ~/.bash/auto-complete/ ]]; then
-	while read line; do
-		source $line
-	done < <(find ~/.bash/auto-complete -type f)
-	# For an explanation of < <() syntax see:
-	# http://stackoverflow.com/questions/7039130/bash-iterate-over-list-of-files-with-spaces
+    while read line; do
+        source $line
+    done < <(find ~/.bash/auto-complete -type f)
+    # For an explanation of < <() syntax see:
+    # http://stackoverflow.com/questions/7039130/bash-iterate-over-list-of-files-with-spaces
 fi
 
 # Bash Completion
 # Must be installed separately. Look for 'bash-completion' package
 if [ -f /etc/bash_completion ]; then
-	source /etc/bash_completion
+    source /etc/bash_completion
 elif [ -f /opt/local/etc/bash_completion ]; then
-	source /opt/local/etc/bash_completion
+    source /opt/local/etc/bash_completion
 fi
 
 # Autocompletion for Python nose testing
 # copied from newer versions of bash
 __ltrim_colon_completions() {
-	# If word-to-complete contains a colon,
-	# and bash-version < 4,
-	# or bash-version >= 4 and COMP_WORDBREAKS contains a colon
-	if [[
-		"$1" == *:* && (
-			${BASH_VERSINFO[0]} -lt 4 ||
-			(${BASH_VERSINFO[0]} -ge 4 && "$COMP_WORDBREAKS" == *:*)
-		)
-	]]; then
-		# Remove colon-word prefix from COMPREPLY items
-		local colon_word=${1%${1##*:}}
-		local i=${#COMPREPLY[*]}
-		while [ $((--i)) -ge 0 ]; do
-			COMPREPLY[$i]=${COMPREPLY[$i]#"$colon_word"}
-		done
-	fi
+    # If word-to-complete contains a colon,
+    # and bash-version < 4,
+    # or bash-version >= 4 and COMP_WORDBREAKS contains a colon
+    if [[
+        "$1" == *:* && (
+            ${BASH_VERSINFO[0]} -lt 4 ||
+            (${BASH_VERSINFO[0]} -ge 4 && "$COMP_WORDBREAKS" == *:*)
+        )
+    ]]; then
+        # Remove colon-word prefix from COMPREPLY items
+        local colon_word=${1%${1##*:}}
+        local i=${#COMPREPLY[*]}
+        while [ $((--i)) -ge 0 ]; do
+            COMPREPLY[$i]=${COMPREPLY[$i]#"$colon_word"}
+        done
+    fi
 } # __ltrim_colon_completions()
 
 _nosetests() {
-	cur=${COMP_WORDS[COMP_CWORD]}
-	if [[
-			${BASH_VERSINFO[0]} -lt 4 ||
-			(${BASH_VERSINFO[0]} -ge 4 && "$COMP_WORDBREAKS" == *:*)
-	]]; then
-		local i=$COMP_CWORD
-		while [ $i -ge 0 ]; do
-			[ ${COMP_WORDS[$((i--))]} == ":" ] && break
-		done
-		if [ $i -gt 0 ]; then
-			cur=$(printf "%s" ${COMP_WORDS[@]:$i})
-		fi
-	fi
-	COMPREPLY=(`nosecomplete ${cur} 2>/dev/null`)
-	__ltrim_colon_completions "$cur"
+    cur=${COMP_WORDS[COMP_CWORD]}
+    if [[
+            ${BASH_VERSINFO[0]} -lt 4 ||
+            (${BASH_VERSINFO[0]} -ge 4 && "$COMP_WORDBREAKS" == *:*)
+    ]]; then
+        local i=$COMP_CWORD
+        while [ $i -ge 0 ]; do
+            [ ${COMP_WORDS[$((i--))]} == ":" ] && break
+        done
+        if [ $i -gt 0 ]; then
+            cur=$(printf "%s" ${COMP_WORDS[@]:$i})
+        fi
+    fi
+    COMPREPLY=(`nosecomplete ${cur} 2>/dev/null`)
+    __ltrim_colon_completions "$cur"
 }
 complete -o nospace -F _nosetests nosetests
 
@@ -276,21 +276,21 @@ fi
 # Add colors to man pages in less
 # See: http://nion.modprobe.de/blog/archives/572-less-colors-for-man-pages.html
 man() {
-	env \
-		LESS_TERMCAP_mb=$(printf "\e[1;31m") \
-		LESS_TERMCAP_md=$(printf "\e[1;31m") \
-		LESS_TERMCAP_me=$(printf "\e[0m") \
-		LESS_TERMCAP_se=$(printf "\e[0m") \
-		LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-		LESS_TERMCAP_ue=$(printf "\e[0m") \
-		LESS_TERMCAP_us=$(printf "\e[1;32m") \
-			man "$@"
+    env \
+        LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+        LESS_TERMCAP_md=$(printf "\e[1;31m") \
+        LESS_TERMCAP_me=$(printf "\e[0m") \
+        LESS_TERMCAP_se=$(printf "\e[0m") \
+        LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+        LESS_TERMCAP_ue=$(printf "\e[0m") \
+        LESS_TERMCAP_us=$(printf "\e[1;32m") \
+            man "$@"
 }
 
 # === Tmux ===
 
 if [[ -f ~/.bin/tmuxinator.bash ]]; then
-	source ~/.bin/tmuxinator.bash
+    source ~/.bin/tmuxinator.bash
 fi
 
 # Alias tmux commands
