@@ -85,7 +85,7 @@ class Powerline:
         return ''.join((
             self.fgcolor(segment[1]),
             self.bgcolor(segment[2]),
-            segment[0],
+            segment[0].lstrip(),
             self.bgcolor(next_segment[2]) if next_segment else self.reset,
             self.fgcolor(segment[4]),
             segment[3]))
