@@ -6,7 +6,7 @@ class Color:
     HOSTNAME_FG = 208
     HOSTNAME_BG = 0
 
-    TIME_FG = 117 # 242
+    TIME_FG = 134
     TIME_BG = 0
 
     HOME_SPECIAL_DISPLAY = False
@@ -42,7 +42,7 @@ class Color:
     GIT_AHEAD_BG = 0
     GIT_AHEAD_FG = 117
     GIT_BEHIND_BG = 0
-    GIT_BEHIND_FG = 45
+    GIT_BEHIND_FG = 117
     GIT_STAGED_BG = 0
     GIT_STAGED_FG = 2
     GIT_NOTSTAGED_BG = 0
