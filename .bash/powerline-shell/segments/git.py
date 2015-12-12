@@ -2,12 +2,16 @@ import re
 import subprocess
 
 GIT_SYMBOLS = {
+    # http://csbruce.com/software/utf-8.html
     'detached': u'\u2693',
     'ahead': u'\u2B06',
     'behind': u'\u2B07',
     'staged': u'\u2714',
-    'notstaged': u'\u270E',
-    'untracked': u'\u2753',
+    # 'notstaged': u'\u270E',
+    'notstaged': u'\u2718',
+    # 'untracked': u'\u2753',
+    # 'untracked': u'\u29B8',
+    'untracked': u'\u2702',
     'conflicted': u'\u273C'
 }
 
@@ -91,7 +95,7 @@ def add_git_segment():
 
     def _add(_dict, _key, fg, bg):
         if _dict[_key]:
-            _str = u' {}{} '.format(_n_or_empty(_dict, _key), GIT_SYMBOLS[_key])
+            _str = u' {1} {0} '.format(_n_or_empty(_dict, _key), GIT_SYMBOLS[_key])
             powerline.append(_str, fg, bg)
 
     if branch_info:

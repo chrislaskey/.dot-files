@@ -6,6 +6,9 @@ class Color:
     HOSTNAME_FG = 208
     HOSTNAME_BG = 0
 
+    TIME_FG = 242
+    TIME_BG = 0
+
     HOME_SPECIAL_DISPLAY = False
     HOME_BG = 31  # blueish
     HOME_FG = 15  # white
@@ -45,7 +48,7 @@ class Color:
     GIT_NOTSTAGED_BG = 0
     GIT_NOTSTAGED_FG = 160
     GIT_UNTRACKED_BG = 0
-    GIT_UNTRACKED_FG = 237
+    GIT_UNTRACKED_FG = 161
     GIT_CONFLICTED_BG = 0
     GIT_CONFLICTED_FG = 9
 
