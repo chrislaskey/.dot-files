@@ -136,6 +136,8 @@ if __name__ == "__main__":
     arg_parser.add_argument('--mode', action='store', default='patched',
             help='The characters used to make separators between segments',
             choices=['patched', 'compatible', 'flat'])
+    arg_parser.add_argument('--remote-hostname', action='store_true',
+            help='Display the hostname only if on a remote machine')
     arg_parser.add_argument('--shell', action='store', default='bash',
             help='Set this to your shell type', choices=['bash', 'zsh', 'bare'])
     arg_parser.add_argument('prev_error', nargs='?', type=int, default=0,
