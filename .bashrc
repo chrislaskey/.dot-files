@@ -1,15 +1,17 @@
 # === Variables ===
 
-# May be used in multiple places, call once and cache it
 UNAME=`uname`
-
-# Prevent "You have mail in /var/mail/$USER/" message
-unset MAILCHECK
 
 # === General behavior ===
 
 # Turn on VI command line mode (as opposed to emacs default key bindings)
 set -o vi
+
+# Turn autocompletion on when using sudo
+complete -cf sudo
+
+# Prevent "You have mail in /var/mail/$USER/" message
+unset MAILCHECK
 
 # Make VIM the default editor
 if [[ -n `which vim 2>/dev/null` ]]; then
@@ -20,9 +22,6 @@ fi
 case "$UNAME" in
     Darwin) export COPYFILE_DISABLE=true;;
 esac
-
-# Turn autocompletion on when using sudo
-complete -cf sudo
 
 # === Aliases ===
 
@@ -46,10 +45,9 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
 
 alias h='history'
-
-alias ll='ls -lha'
 
 alias dirs='find . -maxdepth 1 -type d -print0 | xargs -0 du -skh'
 
@@ -61,14 +59,19 @@ fi
 # Weather
 alias weather='telnet rainmaker.wunderground.com'
 
-# Set color prompt if available
+# Use color on grep output
+alias grep='grep --color=always'
+alias fgrep='fgrep --color=always'
+alias egrep='egrep --color=always'
+
+# Use color on ls output
 case "$UNAME" in
   Darwin) alias ls="ls -G";;
   *) alias ls="ls --color=always";;
 esac
 
 # List all files colorized in long format, including dot files
-alias lsa="ls -lha"
+alias ll="ls -lha"
 
 # List only files
 alias lsf='ls -lha | grep "^\-"'
@@ -78,11 +81,6 @@ alias lsl='ls -lha | grep "^l"'
 
 # List only directories
 alias lsd='ls -lha | grep "^d"'
-
-# Grep colors
-alias grep='grep --color=always'
-alias fgrep='fgrep --color=always'
-alias egrep='egrep --color=always'
 
 # Make the more user readable flags default
 alias du='du -kh'
@@ -117,24 +115,9 @@ grepc () {
     echo "$(grep -lr "$1" "$2" | xargs grep -c "$1")"
 }
 
-# Simple command wrappers for additional safety / functionality
-# Alias + function used to prevent auto shell globbing (e.g. *).
-# See http://blog.edwards-research.com/2011/05/preventing-globbing/
-safer_rm () {
-    if [[ -f "${HOME}/.bash/command-wrappers/rm" ]]; then
-        "$HOME"/.bash/command-wrappers/rm "$@"
-        set +f
-    else
-        set +f
-        /bin/rm "$@"
-    fi
-}
-
-alias rm="set -f; safer_rm"
-
 if [[ -n `which strace 2>/dev/null` ]]; then
     
-    # Visual copy bar utilizing strace
+    # Visual copy bar using strace
     # Will slow down regular copying. Aliases to an option below
     # http://chris-lamb.co.uk/2008/01/24/can-you-get-cp-to-give-a-progress-bar-like-wget/
     cp_bar(){
@@ -170,9 +153,6 @@ if [[ -d ~/.bash/scripts/sshuttle/ ]]; then
     # Note: basic command: sshuttle -r username@sshserver 0/0 -vv
 fi
 
-# Custom scripts set to aliases
-alias internet='sudo ~/.dot-files/.bash/scripts/internet.py/internet.py'
-
 # Debugging puppet calls
 alias puppetprofile='puppet agent --{summarize,test,debug,evaltrace} | perl -pe "s/^/localtime().\": \"/e"'
 # Note: to sort results add in a grep + awk + sort chain:
@@ -183,19 +163,10 @@ alias puppetprofile='puppet agent --{summarize,test,debug,evaltrace} | perl -pe 
 # Don't put duplicate lines in the history. See bash(1) for more options
 # For setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTCONTROL=ignoredups:ignorespace
-HISTSIZE=2000
-HISTFILESIZE=5000
+HISTSIZE=5000
+HISTFILESIZE=10000
 
 # === Outside files to source ===
-
-# Allows fuzzy /* */ path searching in bash
-# Disabled because it causes issues with spaces in directories
-# even when encapsulated with single or double quotes. Use Z jump
-# around instead.
-# if [[ -n `whereis ruby` && -d ~/.bash/scripts/fuzzycd ]]; then
-#   PATH="~/.bash/scripts/fuzzycd/:${PATH}"
-#   source ~/.bash/scripts/fuzzycd/fuzzycd_bash_wrapper.sh
-# fi
 
 # Z jump around script (https://github.com/rupa/z)
 if [[ -d ~/.bash/scripts/z ]]; then
@@ -240,7 +211,7 @@ __ltrim_colon_completions() {
             COMPREPLY[$i]=${COMPREPLY[$i]#"$colon_word"}
         done
     fi
-} # __ltrim_colon_completions()
+}
 
 _nosetests() {
     cur=${COMP_WORDS[COMP_CWORD]}
@@ -303,7 +274,6 @@ alias tmuxk='tmux kill-session -t'
 
 alias d='docker'
 alias drma='docker rm $(docker ps -a -q)'
-alias authcode="docker exec auth_auth_1 awk '/access code/ {print \$5}' log/development.log | tail -n 1 | pbcopy"
 dsh(){ docker exec -i -t "${1}_${1}_1" /bin/bash; }
 
 if [[ `docker-machine status default` == "Running" ]]; then
@@ -311,32 +281,31 @@ if [[ `docker-machine status default` == "Running" ]]; then
     export DOCKER_IP=`docker-machine ip default`
 fi
 
-# === Ruby RVM ===
+# === Git ===
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-PATH="${PATH}:${HOME}/.rvm/bin" # Add RVM to PATH for scripting
+alias co='git checkout'
+alias ga='git add -p'
+alias gc='git commit'
+alias gb='git bisect'
+alias gu='git checkout master && git fetch upstream && git rebase upstream/master && git push origin master'
+alias gs='git status'
 
-# === Ruby rbenv ===
+# === VIM ===
+
+alias tag='ctags -R --languages=ruby,elixir --exclude=.git --exclude=log --exclude=deps .'
+alias tagall='ctags -R --languages=ruby,elixir --exclude=.git --exclude=log . $(bundle list --paths)'
+
+# === Ruby ===
+
+alias be='bundle exec'
 
 if [[ `which rbenv` ]]; then
     eval "$(rbenv init -)"
 fi
 
-# === Ruby ===
-
-alias tag='ctags -R --languages=ruby --exclude=.git --exclude=log .'
-alias gtag='ctags -R --languages=ruby --exclude=.git --exclude=log . $(bundle list --paths)'
-alias be='bundle exec'
-
 # === NodeJS ===
 
 PATH="${PATH}:/usr/local/share/npm/bin"
-
-# === Git ===
-
-alias gb='git bisect'
-alias gs='git status'
-alias co='git checkout'
 
 # === RabbitMQ ===
 

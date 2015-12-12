@@ -1,5 +1,7 @@
 # Custom bash prompt
 
+UNAME=`uname`
+
 # Set color prompt if available
 case "$TERM" in
 	xterm-color) COLOR_PROMPT=yes;;
