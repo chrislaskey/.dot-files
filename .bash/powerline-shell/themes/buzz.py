@@ -29,7 +29,7 @@ class Color:
     JOBS_BG = 238
 
     CMD_PASSED_BG = 0
-    CMD_PASSED_FG = 15
+    CMD_PASSED_FG = 252
     CMD_FAILED_BG = 160
     CMD_FAILED_FG = 15
 
@@ -37,9 +37,9 @@ class Color:
     SVN_CHANGES_FG = 22
 
     GIT_AHEAD_BG = 0
-    GIT_AHEAD_FG = 250
+    GIT_AHEAD_FG = 252
     GIT_BEHIND_BG = 0
-    GIT_BEHIND_FG = 250
+    GIT_BEHIND_FG = 252
     GIT_STAGED_BG = 0
     GIT_STAGED_FG = 2
     GIT_NOTSTAGED_BG = 0
