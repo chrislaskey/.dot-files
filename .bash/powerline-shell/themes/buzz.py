@@ -1,0 +1,53 @@
+class Color:
+    USERNAME_FG = 198
+    USERNAME_BG = 0
+    USERNAME_ROOT_BG = 0
+
+    HOSTNAME_FG = 208
+    HOSTNAME_BG = 0
+
+    HOME_SPECIAL_DISPLAY = False
+    HOME_BG = 31  # blueish
+    HOME_FG = 15  # white
+    PATH_BG = 0
+    PATH_FG = 154
+    CWD_FG = 254
+    SEPARATOR_FG = 244
+
+    READONLY_BG = 124
+    READONLY_FG = 254
+
+    SSH_BG = 166 # medium orange
+    SSH_FG = 254
+
+    REPO_CLEAN_BG = 0
+    REPO_CLEAN_FG = 2
+    REPO_DIRTY_BG = 0
+    REPO_DIRTY_FG = 226
+
+    JOBS_FG = 39
+    JOBS_BG = 238
+
+    CMD_PASSED_BG = 0
+    CMD_PASSED_FG = 15
+    CMD_FAILED_BG = 160
+    CMD_FAILED_FG = 15
+
+    SVN_CHANGES_BG = 148
+    SVN_CHANGES_FG = 22
+
+    GIT_AHEAD_BG = 0
+    GIT_AHEAD_FG = 250
+    GIT_BEHIND_BG = 0
+    GIT_BEHIND_FG = 250
+    GIT_STAGED_BG = 0
+    GIT_STAGED_FG = 2
+    GIT_NOTSTAGED_BG = 0
+    GIT_NOTSTAGED_FG = 160
+    GIT_UNTRACKED_BG = 0
+    GIT_UNTRACKED_FG = 237
+    GIT_CONFLICTED_BG = 0
+    GIT_CONFLICTED_FG = 9
+
+    VIRTUAL_ENV_BG = 35  # a mid-tone green
+    VIRTUAL_ENV_FG = 00
