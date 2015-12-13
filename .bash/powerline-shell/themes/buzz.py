@@ -33,8 +33,8 @@ class Color:
 
     CMD_PASSED_BG = 0
     CMD_PASSED_FG = 252
-    CMD_FAILED_BG = 160
-    CMD_FAILED_FG = 15
+    CMD_FAILED_BG = 0
+    CMD_FAILED_FG = 160
 
     SVN_CHANGES_BG = 148
     SVN_CHANGES_FG = 22
