@@ -1,0 +1,12 @@
+name: support
+root: ~/BlueBox/support
+socket_name: support
+
+windows:
+  - editor:
+      layout: main-horizontal
+      panes:
+        - vim
+        - # bash
+  - console: bundle exec rails console
+  - server: bundle exec rails server -p 3200

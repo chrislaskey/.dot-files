@@ -285,6 +285,7 @@ fi
 
 alias co='git checkout'
 alias ga='git add -p'
+alias gaa='git add -A'
 alias gc='git commit'
 alias gb='git bisect'
 alias gu='git checkout master && git fetch upstream && git rebase upstream/master && git push origin master'
