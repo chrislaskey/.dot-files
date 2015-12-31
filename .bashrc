@@ -276,7 +276,7 @@ alias d='docker'
 alias drma='docker rm $(docker ps -a -q)'
 dsh(){ docker exec -i -t "${1}_${1}_1" /bin/bash; }
 
-if [[ `docker-machine status default` == "Running" ]]; then
+if [[ `which docker-machine` && `docker-machine status default` == "Running" ]]; then
     eval $(docker-machine env default)
     export DOCKER_IP=`docker-machine ip default`
 fi
