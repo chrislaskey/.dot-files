@@ -264,6 +264,8 @@ if [[ -f ~/.bin/tmuxinator.bash ]]; then
     source ~/.bin/tmuxinator.bash
 fi
 
+alias mux='tmuxinator'
+
 # Alias tmux commands
 alias tmuxn='tmux new-session -s'
 alias tmuxa='tmux attach-session -t'

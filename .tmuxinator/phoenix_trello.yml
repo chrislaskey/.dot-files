@@ -1,0 +1,12 @@
+name: phoenix_trello
+root: ~/Desktop/phoenix_trello
+socket_name: phoenix_trello
+
+windows:
+  - editor:
+      layout: main-horizontal
+      panes:
+        - vim
+        - # bash
+  - assets: # bash
+  - server: PORT=4001 iex -S mix phoenix.server 
