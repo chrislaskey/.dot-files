@@ -276,10 +276,10 @@ alias d='docker'
 alias drma='docker rm $(docker ps -a -q)'
 dsh(){ docker exec -i -t "${1}_${1}_1" /bin/bash; }
 
-if [[ `which docker-machine` && `docker-machine status default` == "Running" ]]; then
-    eval $(docker-machine env default)
-    export DOCKER_IP=`docker-machine ip default`
-fi
+# if [[ `which docker-machine` && `docker-machine status default` == "Running" ]]; then
+#     eval $(docker-machine env default)
+#     export DOCKER_IP=`docker-machine ip default`
+# fi
 
 # === Git ===
 
@@ -308,6 +308,11 @@ fi
 
 PATH="${PATH}:/usr/local/share/npm/bin"
 
+# === NVM ===
+
+export NVM_DIR=~/.nvm
+. $(brew --prefix nvm)/nvm.sh
+
 # === RabbitMQ ===
 
 PATH="${PATH}:/usr/local/sbin"
@@ -329,6 +334,6 @@ fi
 
 # === Path ===
 
-PATH="/opt/local/bin:/opt/local/sbin:${HOME}:${PATH}"
+PATH="/opt/local/bin:/opt/local/sbin:/usr/local/share:/usr/local/include:/usr/local/lib:${HOME}:${PATH}"
 
 export PATH

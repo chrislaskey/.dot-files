@@ -239,10 +239,9 @@ set matchpairs+=<:>
 
 set backspace=start,indent,eol " Allow backspacing over everything in insert mode
 set iskeyword+=_,$,@,%,#
-set list " Show invisible characters
-" set listchars=tab:▸\ ,eol:¬ " Show only invisible tabs and trailing whitespace
+" set list " Show invisible characters
+" set listchars=tab:¬\ ,eol:¬ " Show only invisible tabs and trailing whitespace
 set virtualedit=onemore " cursor can go one char past end of line
-set listchars=tab:¬\ ,eol:¬ " Show only invisible tabs and trailing whitespace
 set nojoinspaces " Insert a single space after punctuation with a join command.
 set showmatch
 " set virtualedit=onemore " cursor can go one char past end of line
@@ -353,7 +352,7 @@ imap <C-[> <Esc>
 vmap <C-[> <Esc>
 
 " No man page lookup
-inoremap K k
+noremap K k
 
 " Faster Esc
 inoremap jk <Esc>
@@ -411,6 +410,9 @@ vmap <D-[> <gv
 vmap <D-]> >gv
 vnoremap < <gv
 vnoremap > >gv
+
+" Select pasted content
+nnoremap gp `[v`]]
 
 " piece-wise copying of the line above the current one
 imap <C-L> @@@<ESC>hhkywjl?@@@<CR>P/@@@<CR>3s

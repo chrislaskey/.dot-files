@@ -13,3 +13,4 @@ windows:
       panes:
         - bundle exec rails console
         - gulp
+  - server: bundle exec rails server -p 3000
