@@ -41,6 +41,17 @@ filetype on
 filetype plugin on
 filetype indent on
 
+if has('autocmd')
+    au BufNewFile,BufRead *.es6 set filetype=javascript
+    au BufNewFile,BufRead *.less set filetype=less
+    au BufNewFile,BufRead /etc/nginx/conf/* set filetype=nginx
+    au BufNewFile,BufRead *.json set filetype=javascript
+    au BufNewFile,BufRead *.proto set filetype=proto
+    au BufNewFile,BufRead *.notes set filetype=mkd
+    au BufNewFile,BufRead *.ex set filetype=elixir
+    au BufNewFile,BufRead *.exs set filetype=elixir
+endif
+
 " set wildmenu " More advanced listing when using tab auto complete
 " set wildmode=list,full " Determines the way the advanced listing is displayed
 set wildignore+=.svn/*,.git/*,.hg/*,*.gif,*.jpg,*.jpeg,*.png,*.pdf
