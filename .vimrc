@@ -42,14 +42,16 @@ filetype plugin on
 filetype indent on
 
 if has('autocmd')
+    au BufNewFile,BufRead *.eex set filetype=eelixir
     au BufNewFile,BufRead *.es6 set filetype=javascript
-    au BufNewFile,BufRead *.less set filetype=less
-    au BufNewFile,BufRead /etc/nginx/conf/* set filetype=nginx
-    au BufNewFile,BufRead *.json set filetype=javascript
-    au BufNewFile,BufRead *.proto set filetype=proto
-    au BufNewFile,BufRead *.notes set filetype=mkd
     au BufNewFile,BufRead *.ex set filetype=elixir
     au BufNewFile,BufRead *.exs set filetype=elixir
+    au BufNewFile,BufRead *.json set filetype=javascript
+    au BufNewFile,BufRead *.less set filetype=less
+    au BufNewFile,BufRead *.notes set filetype=mkd
+    au BufNewFile,BufRead *.pp set filetype=puppet
+    au BufNewFile,BufRead *.proto set filetype=proto
+    au BufNewFile,BufRead /etc/nginx/conf/* set filetype=nginx
 endif
 
 " set wildmenu " More advanced listing when using tab auto complete
@@ -322,17 +324,7 @@ endif
 if has('autocmd')
     " Filetype specific settings
     autocmd filetype text,markdown,html setlocal wrap linebreak nolist " Enable soft-wrapping for text files
-    autocmd filetype ruby,eruby,scss,javascript,html,css,yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
-endif
-
-if has('autocmd')
-    " Set missing filetypes
-    au BufNewFile,BufRead *.es6 set filetype=javascript
-    au BufNewFile,BufRead *.less set filetype=less
-    au BufNewFile,BufRead /etc/nginx/conf/* set filetype=nginx
-    au BufNewFile,BufRead *.json set filetype=javascript
-    au BufNewFile,BufRead *.proto set filetype=proto
-    au BufNewFile,BufRead *.notes set filetype=mkd
+    autocmd filetype ruby,eruby,scss,javascript,html,css,yaml,puppet,elixir,eelixir setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 
     " Set php commands
     let php_sql_query=1 " Highlight embedded SQL Syntax
@@ -343,9 +335,6 @@ if has('autocmd')
     au BufNewFile,BufRead *.php filetype indent plugin on
     
     " Puppet files
-    au BufNewFile,BufRead *.pp set filetype=puppet
-    au BufNewFile,BufRead *.pp set tabstop=2
-    au BufNewFile,BufRead *.pp set expandtab
     au BufNewFile,BufRead *.pp set nocompatible
     au BufNewFile,BufRead *.pp filetype indent plugin on
 endif
