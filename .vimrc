@@ -230,7 +230,7 @@ function! <SID>SynStack()
     endif
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
-nmap <leader>sy :call <SID>SynStack()<CR>
+nnoremap <leader>sy :call <SID>SynStack()<CR>
 
 " Buffer settings
 " ------------------------------------------------------------------------------
