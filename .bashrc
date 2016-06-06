@@ -278,10 +278,16 @@ alias d='docker'
 alias drma='docker rm $(docker ps -a -q)'
 dsh(){ docker exec -i -t "${1}_${1}_1" /bin/bash; }
 
-# if [[ `which docker-machine` && `docker-machine status default` == "Running" ]]; then
-#     eval $(docker-machine env default)
-#     export DOCKER_IP=`docker-machine ip default`
-# fi
+docker_init() {
+  eval $(docker-machine env default)
+  export DOCKER_IP=`docker-machine ip default`
+}
+
+# Create a container based on an image and get a bash prompt in it
+#   docker run -ti boxpanel /bin/bash
+
+# Remove unused images:
+#   docker rmi -f $(docker images | grep "<none>" | awk "{print \$3}")"
 
 # === Git ===
 
@@ -292,6 +298,12 @@ alias gc='git commit'
 alias gb='git bisect'
 alias gu='git checkout master && git fetch upstream && git rebase upstream/master && git push origin master'
 alias gs='git status'
+
+# Find commit on date
+# git-date master "Jan 20 2017"
+git-date() {
+  git rev-list -1 --before="$2" $1 --format=medium
+}
 
 # === VIM ===
 
