@@ -107,33 +107,6 @@ hi phpStringDouble cterm=none ctermfg=245 ctermbg=none
 hi phpOperator     cterm=none ctermfg=245 ctermbg=none
 hi phpNumber       cterm=none ctermfg=190 ctermbg=none
 
-" Code-specific colors Javascript
-hi javascript           cterm=none ctermfg=none ctermbg=none
-hi javascriptIdentifier cterm=none ctermfg=190 ctermbg=none
-hi javascriptMember     cterm=none ctermfg=172 ctermbg=none
-hi javascriptFunction   cterm=none ctermfg=172 ctermbg=none
-hi javascriptBraces     cterm=none ctermfg=172 ctermbg=none
-" Code-specific colors for JavavScript using `vim-javascript`
-hi jsStorageClass       cterm=none ctermfg=133 ctermbg=none
-hi jsModules            cterm=none ctermfg=152 ctermbg=none
-hi jsModuleWords        cterm=none ctermfg=152 ctermbg=none
-hi jsStringD            cterm=none ctermfg=154 ctermbg=none
-hi jsBraces             cterm=none ctermfg=172 ctermbg=none
-hi jsFuncBraces         cterm=none ctermfg=172 ctermbg=none
-hi jsBrackets           cterm=none ctermfg=172 ctermbg=none
-hi jsNumber             cterm=none ctermfg=154 ctermbg=none
-hi jsThis               cterm=none ctermfg=152 ctermbg=none
-hi jsTemplateVar        cterm=none ctermfg=none ctermbg=none
-hi jsTemplateBraces     cterm=none ctermfg=none ctermbg=none
-" Code-specific colors for JavavScript using `vim-jsx`
-" hi xmlTag               cterm=none ctermfg=154 ctermbg=none
-" hi xmlTagName           cterm=none ctermfg=154 ctermbg=none
-" hi xmlEndTag            cterm=none ctermfg=154 ctermbg=none
-hi xmlString            cterm=none ctermfg=154 ctermbg=none
-" hi xmlAttrib            cterm=none ctermfg=154 ctermbg=none
-" hi xmlEqual             cterm=none ctermfg=154 ctermbg=none
-hi jsxRegion            cterm=none ctermfg=154 ctermbg=none
-
 " Code-specific colors Python
 hi pythonFunction  guifg=#009000 gui=none ctermfg=190
 hi pythonString    guifg=#009000 gui=none ctermfg=153
@@ -163,3 +136,32 @@ hi treePartFile     ctermfg=0
 hi treeOpenable     ctermfg=0
 hi treeClosable     ctermfg=0
 hi treeHelp         ctermfg=0
+
+" Code-specific colors Javascript
+hi javascript           cterm=none ctermfg=none ctermbg=none
+hi javascriptIdentifier cterm=none ctermfg=190 ctermbg=none
+hi javascriptMember     cterm=none ctermfg=172 ctermbg=none
+hi javascriptFunction   cterm=none ctermfg=172 ctermbg=none
+hi javascriptBraces     cterm=none ctermfg=172 ctermbg=none
+
+" Code-specific colors for JavavScript using `vim-javascript`
+hi jsStorageClass       cterm=none ctermfg=133 ctermbg=none
+hi jsModules            cterm=none ctermfg=152 ctermbg=none
+hi jsModuleWords        cterm=none ctermfg=152 ctermbg=none
+hi jsStringD            cterm=none ctermfg=154 ctermbg=none
+hi jsBraces             cterm=none ctermfg=172 ctermbg=none
+hi jsFuncBraces         cterm=none ctermfg=172 ctermbg=none
+hi jsBrackets           cterm=none ctermfg=172 ctermbg=none
+hi jsNumber             cterm=none ctermfg=154 ctermbg=none
+hi jsThis               cterm=none ctermfg=152 ctermbg=none
+hi jsTemplateVar        cterm=none ctermfg=none ctermbg=none
+hi jsTemplateBraces     cterm=none ctermfg=none ctermbg=none
+
+" Code-specific colors for JavavScript using `vim-jsx`
+" hi xmlTag               cterm=none ctermfg=154 ctermbg=none
+" hi xmlTagName           cterm=none ctermfg=154 ctermbg=none
+hi xmlString            cterm=none ctermfg=154 ctermbg=none
+hi jsxRegion            cterm=none ctermfg=154 ctermbg=none
+hi xmlAttrib            cterm=none ctermfg=none ctermbg=none
+hi xmlEndTag            cterm=none ctermfg=none ctermbg=none
+hi xmlEqual             cterm=none ctermfg=none ctermbg=none
