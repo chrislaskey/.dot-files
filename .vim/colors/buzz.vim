@@ -7,6 +7,12 @@
 "       Used primarily on the command line, GUI based colors have not been updates since
 "       the 2012-04-13 update.
 
+" Common Colors:
+"   Gold 178
+"   Light blue 152
+"   Bright orange 172
+"   Bright green 154
+
 " Settings
 set background=dark
 
@@ -66,7 +72,7 @@ hi Keyword         guifg=#c2d6e3 gui=none ctermfg=152
 hi Identifier      guifg=#c2d6e3 gui=none ctermfg=148
 hi Special         guifg=#c2d6e3 gui=none ctermfg=208
 
-" Code-specific colors
+" Code-specific colors:
 hi htmlItalic      cterm=none ctermfg=none ctermbg=none
 hi htmlLink        cterm=underline ctermfg=242 ctermbg=none
 hi htmlString      cterm=none ctermfg=253 ctermbg=none
@@ -107,6 +113,26 @@ hi javascriptIdentifier cterm=none ctermfg=190 ctermbg=none
 hi javascriptMember     cterm=none ctermfg=172 ctermbg=none
 hi javascriptFunction   cterm=none ctermfg=172 ctermbg=none
 hi javascriptBraces     cterm=none ctermfg=172 ctermbg=none
+" Code-specific colors for JavavScript using `vim-javascript`
+hi jsStorageClass       cterm=none ctermfg=133 ctermbg=none
+hi jsModules            cterm=none ctermfg=152 ctermbg=none
+hi jsModuleWords        cterm=none ctermfg=152 ctermbg=none
+hi jsStringD            cterm=none ctermfg=154 ctermbg=none
+hi jsBraces             cterm=none ctermfg=172 ctermbg=none
+hi jsFuncBraces         cterm=none ctermfg=172 ctermbg=none
+hi jsBrackets           cterm=none ctermfg=172 ctermbg=none
+hi jsNumber             cterm=none ctermfg=154 ctermbg=none
+hi jsThis               cterm=none ctermfg=152 ctermbg=none
+hi jsTemplateVar        cterm=none ctermfg=none ctermbg=none
+hi jsTemplateBraces     cterm=none ctermfg=none ctermbg=none
+" Code-specific colors for JavavScript using `vim-jsx`
+hi xmlTag               cterm=none ctermfg=154 ctermbg=none
+hi xmlTagName           cterm=none ctermfg=154 ctermbg=none
+hi xmlEndTag            cterm=none ctermfg=154 ctermbg=none
+hi xmlString            cterm=none ctermfg=154 ctermbg=none
+hi xmlAttrib            cterm=none ctermfg=154 ctermbg=none
+hi xmlEqual             cterm=none ctermfg=154 ctermbg=none
+hi jsxRegion            cterm=none ctermfg=154 ctermbg=none
 
 " Code-specific colors Python
 hi pythonFunction  guifg=#009000 gui=none ctermfg=190
