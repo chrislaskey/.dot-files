@@ -156,6 +156,10 @@ hi jsNumber             cterm=none ctermfg=154 ctermbg=none
 hi jsThis               cterm=none ctermfg=152 ctermbg=none
 hi jsTemplateVar        cterm=none ctermfg=none ctermbg=none
 hi jsTemplateBraces     cterm=none ctermfg=none ctermbg=none
+hi jsReturn             cterm=none ctermfg=074 ctermbg=none
+hi jsArrowFunction      cterm=none ctermfg=068 ctermbg=none
+hi jsFunction           cterm=none ctermfg=none ctermbg=none
+hi jsObjectKey          cterm=none ctermfg=none ctermbg=none
 
 " Code-specific colors for JavavScript using `vim-jsx`
 " hi xmlTag               cterm=none ctermfg=154 ctermbg=none
