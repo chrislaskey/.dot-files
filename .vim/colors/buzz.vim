@@ -126,12 +126,12 @@ hi jsThis               cterm=none ctermfg=152 ctermbg=none
 hi jsTemplateVar        cterm=none ctermfg=none ctermbg=none
 hi jsTemplateBraces     cterm=none ctermfg=none ctermbg=none
 " Code-specific colors for JavavScript using `vim-jsx`
-hi xmlTag               cterm=none ctermfg=154 ctermbg=none
-hi xmlTagName           cterm=none ctermfg=154 ctermbg=none
-hi xmlEndTag            cterm=none ctermfg=154 ctermbg=none
+" hi xmlTag               cterm=none ctermfg=154 ctermbg=none
+" hi xmlTagName           cterm=none ctermfg=154 ctermbg=none
+" hi xmlEndTag            cterm=none ctermfg=154 ctermbg=none
 hi xmlString            cterm=none ctermfg=154 ctermbg=none
-hi xmlAttrib            cterm=none ctermfg=154 ctermbg=none
-hi xmlEqual             cterm=none ctermfg=154 ctermbg=none
+" hi xmlAttrib            cterm=none ctermfg=154 ctermbg=none
+" hi xmlEqual             cterm=none ctermfg=154 ctermbg=none
 hi jsxRegion            cterm=none ctermfg=154 ctermbg=none
 
 " Code-specific colors Python
