@@ -233,6 +233,7 @@ function! <SID>SynStack()
 endfunc
 " To turn on source this file using `:so ~/.vimrc`
 nnoremap <leader>sy :call <SID>SynStack()<CR>
+" Bug in vim-javascript package. To fix remove all mentions of `jsTemplateString`
 
 " Buffer settings
 " ------------------------------------------------------------------------------

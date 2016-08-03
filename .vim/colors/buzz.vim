@@ -160,6 +160,8 @@ hi jsReturn             cterm=none ctermfg=074 ctermbg=none
 hi jsArrowFunction      cterm=none ctermfg=068 ctermbg=none
 hi jsFunction           cterm=none ctermfg=none ctermbg=none
 hi jsObjectKey          cterm=none ctermfg=none ctermbg=none
+hi jsParensError        cterm=none ctermfg=none ctermbg=none
+" hi jsNoise              cterm=none ctermfg=074 ctermbg=none
 
 " Code-specific colors for JavavScript using `vim-jsx`
 " hi xmlTag               cterm=none ctermfg=154 ctermbg=none
