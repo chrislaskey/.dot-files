@@ -298,6 +298,7 @@ alias gc='git commit'
 alias gb='git bisect'
 alias gu='git checkout master && git fetch upstream && git rebase upstream/master && git push origin master'
 alias gs='git status'
+alias gss='git status -sb'
 
 # Find commit on date
 # git-date master "Jan 20 2017"

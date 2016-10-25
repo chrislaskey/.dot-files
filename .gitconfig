@@ -29,6 +29,7 @@
 	diffword = diff --word-diff 
 	;
 	up = '!git remote update -p; git merge --ff-only @{u}'
+	put = push origin HEAD
 
 [merge]
 	tool = kdiff3
