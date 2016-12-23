@@ -1,0 +1,11 @@
+name: phoenix-redux
+root: ~/Desktop/phoenix-redux
+socket_name: phoenix-redux
+
+windows:
+  - editor:
+      layout: main-horizontal
+      panes:
+        - vim
+        - # bash
+  - server: PORT=4002 iex -S mix phoenix.server 
