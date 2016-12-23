@@ -1,14 +1,14 @@
 " Maintainer:   Chris Laskey
 " Version:   1.4.0
 " Created:  2011-10-08
-" Updated:  2013-01-16
+" Updated:  2016-06-16
 
 " Note: colorscheme is updated for terminal colors.
 "       Used primarily on the command line, GUI based colors have not been updates since
 "       the 2012-04-13 update.
 
 " Common Colors:
-"   Gold 178
+"   Gold 156
 "   Light blue 152
 "   Bright orange 172
 "   Bright green 154
@@ -22,7 +22,7 @@ if exists("syntax_on")
   syntax reset
 endif
 
-let colors_name = "buzz"
+let colors_name = "breeze"
 
 " Vim >= 7.0 specific colors
 if version >= 700
@@ -58,17 +58,17 @@ if hlexists('SpellBad')
 endif
 hi Search          guifg=#ffff00 gui=none ctermbg=190
 hi Comment         guifg=#444444 gui=italic ctermfg=238
-hi Boolean         guifg=#b1d631 gui=none ctermfg=154
-hi String          guifg=#808080 gui=none ctermfg=154
+hi Boolean         guifg=#b1d631 gui=none ctermfg=152
+hi String          guifg=#808080 gui=none ctermfg=152
 hi Function        guifg=#ffff00 gui=none ctermfg=255
-hi Constant        guifg=#b1d631 gui=none ctermfg=172
-hi Number          guifg=#b1d631 gui=none ctermfg=172
+hi Constant        guifg=#b1d631 gui=none ctermfg=154
+hi Number          guifg=#b1d631 gui=none ctermfg=154
 hi PreProc         guifg=#faf4c6 gui=none ctermfg=230
 hi Todo            guifg=#ff9f00 guibg=#181818 gui=none ctermfg=161 ctermbg=NONE
 " If/elses
 hi Type            guifg=#7e8aa2 gui=none ctermfg=103
 hi Statement       guifg=#7e8aa2 gui=none ctermfg=103
-hi Keyword         guifg=#c2d6e3 gui=none ctermfg=152
+hi Keyword         guifg=#c2d6e3 gui=none ctermfg=227
 hi Identifier      guifg=#c2d6e3 gui=none ctermfg=148
 hi Special         guifg=#c2d6e3 gui=none ctermfg=208
 
@@ -90,7 +90,7 @@ hi htmlH3          cterm=none ctermfg=none ctermbg=none
 hi htmlH4          cterm=none ctermfg=none ctermbg=none
 hi htmlH5          cterm=none ctermfg=none ctermbg=none
 " HTML Brackets
-hi htmlKeyword     guifg=#c2d6e3 gui=none ctermfg=152
+hi htmlKeyword     guifg=#c2d6e3 gui=none ctermfg=227
 
 " Code-specific colors PHP
 hi Delimiter       cterm=none ctermfg=190 ctermbg=none
@@ -107,12 +107,39 @@ hi phpStringDouble cterm=none ctermfg=245 ctermbg=none
 hi phpOperator     cterm=none ctermfg=245 ctermbg=none
 hi phpNumber       cterm=none ctermfg=190 ctermbg=none
 
+" Code-specific colors Javascript
+hi javascript           cterm=none ctermfg=none ctermbg=none
+hi javascriptIdentifier cterm=none ctermfg=190 ctermbg=none
+hi javascriptMember     cterm=none ctermfg=154 ctermbg=none
+hi javascriptFunction   cterm=none ctermfg=154 ctermbg=none
+hi javascriptBraces     cterm=none ctermfg=154 ctermbg=none
+" Code-specific colors for JavavScript using `vim-javascript`
+hi jsStorageClass       cterm=none ctermfg=133 ctermbg=none
+hi jsModules            cterm=none ctermfg=227 ctermbg=none
+hi jsModuleWords        cterm=none ctermfg=227 ctermbg=none
+hi jsStringD            cterm=none ctermfg=152 ctermbg=none
+hi jsBraces             cterm=none ctermfg=154 ctermbg=none
+hi jsFuncBraces         cterm=none ctermfg=154 ctermbg=none
+hi jsBrackets           cterm=none ctermfg=154 ctermbg=none
+hi jsNumber             cterm=none ctermfg=152 ctermbg=none
+hi jsThis               cterm=none ctermfg=220 ctermbg=none
+hi jsTemplateVar        cterm=none ctermfg=none ctermbg=none
+hi jsTemplateBraces     cterm=none ctermfg=none ctermbg=none
+" Code-specific colors for JavavScript using `vim-jsx`
+hi xmlTag               cterm=none ctermfg=152 ctermbg=none
+hi xmlTagName           cterm=none ctermfg=152 ctermbg=none
+hi xmlEndTag            cterm=none ctermfg=152 ctermbg=none
+hi xmlString            cterm=none ctermfg=152 ctermbg=none
+hi xmlAttrib            cterm=none ctermfg=152 ctermbg=none
+hi xmlEqual             cterm=none ctermfg=152 ctermbg=none
+hi jsxRegion            cterm=none ctermfg=152 ctermbg=none
+
 " Code-specific colors Python
 hi pythonFunction  guifg=#009000 gui=none ctermfg=190
 hi pythonString    guifg=#009000 gui=none ctermfg=153
 hi pythonImport    guifg=#009000 gui=none ctermfg=255
 hi pythonException guifg=#f00000 gui=none ctermfg=200
-hi pythonOperator  guifg=#7e8aa2 gui=none ctermfg=172
+hi pythonOperator  guifg=#7e8aa2 gui=none ctermfg=154
 hi pythonBuiltinFunction guifg=#009000 gui=none ctermfg=200
 hi pythonExClass   guifg=#009000 gui=none ctermfg=200
 hi pythonDot       guifg=#009000 gui=none ctermfg=187
@@ -136,38 +163,3 @@ hi treePartFile     ctermfg=0
 hi treeOpenable     ctermfg=0
 hi treeClosable     ctermfg=0
 hi treeHelp         ctermfg=0
-
-" Code-specific colors Javascript
-hi javascript           cterm=none ctermfg=none ctermbg=none
-hi javascriptIdentifier cterm=none ctermfg=190 ctermbg=none
-hi javascriptMember     cterm=none ctermfg=172 ctermbg=none
-hi javascriptFunction   cterm=none ctermfg=172 ctermbg=none
-hi javascriptBraces     cterm=none ctermfg=172 ctermbg=none
-
-" Code-specific colors for JavavScript using `vim-javascript`
-hi jsStorageClass       cterm=none ctermfg=133 ctermbg=none
-hi jsModules            cterm=none ctermfg=152 ctermbg=none
-hi jsModuleWords        cterm=none ctermfg=152 ctermbg=none
-hi jsStringD            cterm=none ctermfg=154 ctermbg=none
-hi jsBraces             cterm=none ctermfg=172 ctermbg=none
-hi jsFuncBraces         cterm=none ctermfg=172 ctermbg=none
-hi jsBrackets           cterm=none ctermfg=172 ctermbg=none
-hi jsNumber             cterm=none ctermfg=154 ctermbg=none
-hi jsThis               cterm=none ctermfg=152 ctermbg=none
-hi jsTemplateVar        cterm=none ctermfg=none ctermbg=none
-hi jsTemplateBraces     cterm=none ctermfg=none ctermbg=none
-hi jsReturn             cterm=none ctermfg=074 ctermbg=none
-hi jsArrowFunction      cterm=none ctermfg=068 ctermbg=none
-hi jsFunction           cterm=none ctermfg=none ctermbg=none
-hi jsObjectKey          cterm=none ctermfg=none ctermbg=none
-hi jsParensError        cterm=none ctermfg=none ctermbg=none
-" hi jsNoise              cterm=none ctermfg=074 ctermbg=none
-
-" Code-specific colors for JavavScript using `vim-jsx`
-" hi xmlTag               cterm=none ctermfg=154 ctermbg=none
-" hi xmlTagName           cterm=none ctermfg=154 ctermbg=none
-hi xmlString            cterm=none ctermfg=154 ctermbg=none
-hi jsxRegion            cterm=none ctermfg=154 ctermbg=none
-hi xmlAttrib            cterm=none ctermfg=none ctermbg=none
-hi xmlEndTag            cterm=none ctermfg=none ctermbg=none
-hi xmlEqual             cterm=none ctermfg=none ctermbg=none

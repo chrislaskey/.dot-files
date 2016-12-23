@@ -52,6 +52,7 @@ if has('autocmd')
     au BufNewFile,BufRead *.pp set filetype=puppet
     au BufNewFile,BufRead *.proto set filetype=proto
     au BufNewFile,BufRead /etc/nginx/conf/* set filetype=nginx
+    autocmd filetype lisp,scheme setlocal lisp
 endif
 
 " set wildmenu " More advanced listing when using tab auto complete
@@ -230,7 +231,9 @@ function! <SID>SynStack()
     endif
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+" To turn on source this file using `:so ~/.vimrc`
 nnoremap <leader>sy :call <SID>SynStack()<CR>
+" Bug in vim-javascript package. To fix remove all mentions of `jsTemplateString`
 
 " Buffer settings
 " ------------------------------------------------------------------------------
@@ -285,11 +288,6 @@ set expandtab " Expandtab translates tabs to spaces. No prefix turns this off
 " (assuming noexpandtab is set).
 " In this scenario backspace works the same as softtabstop in reverse.
 set softtabstop=4
-
-" Lisp
-if has('autocmd')
-    autocmd filetype lisp,scheme setlocal lisp
-endif
 
 " Search
 set gdefault " By default add g flag to search/replace. Add g to toggle.
@@ -613,6 +611,9 @@ endif
 " ------------------------------------------------------------------------------
 let g:tlTokenList=['//*', 'future', 'todo']
 
+" vim-jsx plugin
+" ------------------------------------------------------------------------------
+let g:jsx_ext_required = 0
 
 " vim-slime plugin
 " ------------------------------------------------------------------------------
