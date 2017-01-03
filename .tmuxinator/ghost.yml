@@ -1,0 +1,7 @@
+name: ghost
+root: ~/projects/ghost
+socket_name: ghost
+
+windows:
+  - dir: # bash
+  - ios: react-native run-ios
