@@ -593,6 +593,14 @@ let g:NERDTreeBookmarksFile='$HOME/.vim/history/NERDTreeBookmarks.history'
 map <leader>nt :NERDTreeToggle<CR>
 map <leader>ntf :NERDTreeFind<CR>
 
+" elm.vim plugin
+" ------------------------------------------------------------------------------
+nnoremap <leader>el :ElmEvalLine<CR>
+vnoremap <leader>es :<C-u>ElmEvalSelection<CR>
+nnoremap <leader>em :ElmMakeCurrentFile<CR>>
+if has('autocmd')
+    au BufWritePost *.elm ElmMakeFile("Main.elm")
+endif
 
 " snipMate plugin
 " ------------------------------------------------------------------------------
