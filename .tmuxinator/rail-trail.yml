@@ -1,0 +1,16 @@
+name: rail-trail
+root: ~/projects/rail-trail
+socket_name: rail-trail
+
+windows:
+  - editor:
+      layout: main-horizontal
+      panes:
+        - vim
+        - # bash
+  - console:
+      layout: main-horizontal
+      panes:
+        - bundle exec rails console
+        - pg_ctl -D /usr/local/var/postgres start
+  - server: bundle exec rails server -p 3000
