@@ -19,6 +19,8 @@
 	; Note: all shell commands are executed from repository root, even if called via alias in a subdirectory
 	; 
 	merge-theirs = merge -s recursive -X theirs
+	; Graphical log
+	glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 	; Log one line
 	lg = log --color --oneline --abbrev-commit --pretty=format:'%C(yellow)%h%C(reset)%C(red)%d%C(reset) %s %C(green)%an%C(reset) %C(cyan)%cr%C(reset)'
 	; Log list files
@@ -30,6 +32,7 @@
 	;
 	up = '!git remote update -p; git merge --ff-only @{u}'
 	put = push origin HEAD
+	stash-all = stash save --include-untracked
 
 [merge]
 	tool = kdiff3

@@ -442,7 +442,7 @@ nmap <leader>pa :set invpaste paste?<CR>
 nmap <leader>[ :noh<Return><Esc>
 
 " Run git blame on highlighted section
-vmap <Leader>b :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
+vmap <Leader>bl :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
 
 " Use ,d (or ,dd or ,dj or 20,dd) to delete a line without adding it to the
 " yanked stack (also, in visual mode)
@@ -454,12 +454,26 @@ nnoremap <leader>pf  p'[v']=
 nnoremap <leader>Pf  P'[v']=
 
 " Markdown helpers
-nnoremap <leader>1 yypVr=
-nnoremap <leader>2 yypVr-
-nnoremap <leader>3 I### <Esc>A ###<Esc>
-nnoremap <leader>4 I#### <Esc>A ####<Esc>
-nnoremap <leader>5 I##### <Esc>A #####<Esc>
-nnoremap <leader>6 I###### <Esc>A ######<Esc>
+" nnoremap <leader>1 yypVr=
+" nnoremap <leader>2 yypVr-
+" nnoremap <leader>3 I### <Esc>A ###<Esc>
+" nnoremap <leader>4 I#### <Esc>A ####<Esc>
+" nnoremap <leader>5 I##### <Esc>A #####<Esc>
+" nnoremap <leader>6 I###### <Esc>A ######<Esc>
+
+" Buffer navigation helpers
+nnoremap <Leader>bp :bp<CR>
+nnoremap <Leader>bn :bn<CR>
+nnoremap <Leader>b :e#<CR>
+nnoremap <Leader>1 :1b<CR>
+nnoremap <Leader>2 :2b<CR>
+nnoremap <Leader>3 :3b<CR>
+nnoremap <Leader>4 :4b<CR>
+nnoremap <Leader>5 :5b<CR>
+nnoremap <Leader>6 :6b<CR>
+nnoremap <Leader>7 :7b<CR>
+nnoremap <Leader>8 :8b<CR>
+nnoremap <Leader>9 :9b<CR>
 
 " CD to directory of current file
 nnoremap <leader>cd :lcd %:p:h<cr>:pwd<cr>
