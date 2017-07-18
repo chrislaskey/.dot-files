@@ -1,0 +1,16 @@
+name: ink
+root: ~/projects/ink
+socket_name: ink
+
+windows:
+  - editor:
+      layout: main-horizontal
+      panes:
+        - vim
+        - # bash
+  - services:
+      layout: main-horizontal
+      panes:
+        - # bash
+        - pg_ctl -D /usr/local/var/postgres start 
+  - server: source .env && iex -S mix phoenix.server
