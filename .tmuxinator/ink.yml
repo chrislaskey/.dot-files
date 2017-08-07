@@ -11,6 +11,6 @@ windows:
   - services:
       layout: main-horizontal
       panes:
-        - # bash
+        - cd ink-frontend && yarn start
         - pg_ctl -D /usr/local/var/postgres start 
-  - server: source .env && iex -S mix phoenix.server
+  - server: cd ink-api && source .env && iex -S mix phoenix.server

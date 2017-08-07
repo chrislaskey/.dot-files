@@ -311,6 +311,10 @@ git-date() {
 alias tag='ctags -R --languages=ruby,elixir --exclude=.git --exclude=log --exclude=deps .'
 alias tagall='ctags -R --languages=ruby,elixir --exclude=.git --exclude=log . $(bundle list --paths)'
 
+# === Elixir ===
+
+export ERL_AFLAGS="-kernel shell_history enabled"
+
 # === Ruby ===
 
 alias be='bundle exec'
