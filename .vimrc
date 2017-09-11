@@ -421,6 +421,21 @@ imap <C-L> @@@<ESC>hhkywjl?@@@<CR>P/@@@<CR>3s
 " nnoremap / /\v
 " vnoremap / /\v
 
+" Add various language specific debug commands
+if has('autocmd')
+	autocmd FileType javascript imap <buffer> cll console.log()<Esc>==F(a
+	" output console.log("$1", $1)
+	autocmd FileType javascript vmap <buffer> cll yocll'<Esc>pa', <Esc>p
+	" output console.log("$1", $1) where $1 is the next word
+	autocmd FileType javascript nmap <buffer> cll yiwocll'<Esc>pa', <Esc>p
+
+	autocmd FileType elixir imap <buffer> cll IO.inspect()<Esc>==F(a
+	" output IO.puts "---$1"\nIO.inspect($1)
+	autocmd FileType elixir vmap <buffer> cll yoIO.puts "---<Esc>pa"<Esc>ocll<Esc>p
+	" output IO.puts "---$1"\nIO.inspect($1) where $1 is the next word
+	autocmd FileType elixir nmap <buffer> cll yiwoIO.puts "---<Esc>pa"<Esc>ocll<Esc>p
+endif
+
 " Leader bindings
 " ------------------------------------------------------------------------------
 let mapleader=','

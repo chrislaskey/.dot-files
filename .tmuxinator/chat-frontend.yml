@@ -1,0 +1,11 @@
+name: chat-frontend
+root: ~/Dropbox/code/github/chat-frontend
+socket_name: chat_frontend
+
+windows:
+  - editor:
+      layout: main-horizontal
+      panes:
+        - vim
+        - # bash
+  - server: yarn start

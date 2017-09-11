@@ -1,0 +1,14 @@
+name: chat-server
+root: ~/Dropbox/code/github/chat-server
+socket_name: chat_server
+
+windows:
+  - editor:
+      layout: main-horizontal
+      panes:
+        - vim
+        - # bash
+  - server: bin/start
+  # - server: source .envrc && mix deps.get && mix ecto.migrate && iex -S mix phx.server
+  # - postgres: pg_ctl -D /usr/local/var/postgres start
+
