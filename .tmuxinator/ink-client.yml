@@ -1,0 +1,11 @@
+name: ink-client
+root: ~/Dropbox/code/github/ink-client
+socket_name: ink_client
+
+windows:
+  - editor:
+      layout: main-horizontal
+      panes:
+        - vim
+        - # bash
+  - server: yarn start
