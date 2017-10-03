@@ -1,10 +1,10 @@
 ; User specific options
 
 [user]
-	name = Chris Laskey
-	email = claskey@bluebox.net
 	; name = Chris Laskey
-	; email = contact@chrislaskey.com
+	; email = claskey@bluebox.net
+	name = Chris Laskey
+	email = contact@chrislaskey.com
 
 ; General behavior options
 ; Note: git default configuration options are fantastic. Unless there's a compelling reason (or personal preference) let sleeping dogs lie.
