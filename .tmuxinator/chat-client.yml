@@ -1,0 +1,16 @@
+name: chat-client
+root: ~/Dropbox/code/github/chat-client
+socket_name: chat_client
+
+windows:
+  - editor:
+      layout: main-horizontal
+      panes:
+        - vim
+        - # bash
+  - server: yarn start
+  - clients:
+      layout: main-horizontal
+      panes:
+        - yarn electron
+        - yarn portable
