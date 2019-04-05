@@ -60,7 +60,7 @@ fi
 alias weather='telnet rainmaker.wunderground.com'
 
 # Use color on grep output
-alias grep='grep --color=always'
+# alias grep='grep --color=always' # Disabled: can cause issues with scripts
 alias fgrep='fgrep --color=always'
 alias egrep='egrep --color=always'
 
@@ -315,6 +315,8 @@ alias tagall='ctags -R --languages=ruby,elixir --exclude=.git --exclude=log . $(
 
 export ERL_AFLAGS="-kernel shell_history enabled"
 
+test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
+
 # === Ruby ===
 
 alias be='bundle exec'
@@ -336,10 +338,9 @@ export NVM_DIR=~/.nvm
 
 PATH="${PATH}:/usr/local/sbin"
 
-# === BBSH ===
-# Note: must have installed yama_rsa
+# === pyenv ===
 
-bbsh='ssh -t -p 26943 -i ~/.ssh/yama_rsa claskey@yama.blueboxgrid.com /usr/local/bin/bbsh $1'
+eval "$(pyenv init -)"
 
 # === direnv ===
 
