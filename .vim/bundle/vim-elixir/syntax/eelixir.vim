@@ -2,6 +2,9 @@ if exists("b:current_syntax")
   finish
 endif
 
+let s:cpo_save = &cpo
+set cpo&vim
+
 if !exists("main_syntax")
   let main_syntax = 'eelixir'
 endif
@@ -17,7 +20,10 @@ if !exists("b:eelixir_subtype")
     let b:eelixir_subtype = matchstr(&filetype,'^eex\.\zs\w\+')
   endif
   if b:eelixir_subtype == ''
-    let b:eelixir_subtype = matchstr(substitute(expand("%:t"),'\c\%(\.eex\|\.eelixir\)\+$','',''),'\.\zs\w\+$')
+    let b:eelixir_subtype = matchstr(&filetype,'^leex\.\zs\w\+')
+  endif
+  if b:eelixir_subtype == ''
+    let b:eelixir_subtype = matchstr(substitute(expand("%:t"),'\c\%(\.eex\|\.leex\|\.eelixir\)\+$','',''),'\.\zs\w\+$')
   endif
   if b:eelixir_subtype == 'ex'
     let b:eelixir_subtype = 'elixir'
@@ -59,3 +65,6 @@ let b:current_syntax = 'eelixir'
 if main_syntax == 'eelixir'
   unlet main_syntax
 endif
+
+let &cpo = s:cpo_save
+unlet s:cpo_save

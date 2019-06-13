@@ -1,29 +1,17 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
-describe "Guard syntax" do
-  it "guard in function" do
-    <<-EOF
-    def fun(a) when is_atom(a) do
-    end
+describe 'defguard syntax' do
+  it 'defines `defguard` keyword as elixirGuard' do
+    expect(<<~EOF).to include_elixir_syntax('elixirGuard', 'defguard')
+      defguard some_guard(x) when is_integer(x)
     EOF
-      .should include_elixir_syntax('elixirKeyword', 'is_atom')
   end
 
-  it "guard in case" do
-    <<-EOF
-    case
-      a when is_atom(a) -> {:ok, a}
-    end
+  it 'defines `defguardp` keyword as elixirPrivateGuard' do
+    expect(<<~EOF).to include_elixir_syntax('elixirPrivateGuard', 'defguardp')
+      defguardp some_private_guard(x) when is_integer(x)
     EOF
-      .should include_elixir_syntax('elixirKeyword', 'is_atom')
-  end
-
-  it "does not highlight outside guards" do
-    <<-EOF
-      if is_atom(a) do
-        {:ok, a}
-      end
-    EOF
-      .should_not include_elixir_syntax('elixirKeyword', 'is_atom')
   end
 end

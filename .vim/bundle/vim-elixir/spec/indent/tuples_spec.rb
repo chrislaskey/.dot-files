@@ -1,26 +1,29 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
-describe "Indenting" do
-  specify "multiline tuple" do
-    <<-EOF
-    def xpto do
-      { :a,
-        :b,
-        :c }
-    end
-    EOF
-    .should be_elixir_indentation
+describe 'Indenting tuples' do
+  i <<~EOF
+  def xpto do
+    { :a,
+      :b,
+      :c }
   end
+  EOF
 
-  specify "tuples with break line after square brackets" do
-    <<-EOF
-    def method do
-      {
-        :bar,
-        path: "deps/umbrella/apps/bar"
-      }
-    end
-    EOF
-    .should be_elixir_indentation
+  i <<~EOF
+  def method do
+    {
+      :bar,
+      path: "deps/umbrella/apps/bar"
+    }
   end
+  EOF
+
+  i <<~EOF
+  x = [
+    {:text, "asd {"},
+    {:text, "qwe"},
+  ]
+  EOF
 end

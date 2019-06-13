@@ -8,5 +8,5 @@ windows:
       panes:
         - vim
         - # bash
-  - server: source .env && iex -S mix phoenix.server
+  - server: bin/start
   - database: pg_ctl -D /usr/local/var/postgres start 

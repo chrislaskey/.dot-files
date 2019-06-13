@@ -1,0 +1,11 @@
+name: artemis
+root: ~/Dropbox/code/github/artemis
+socket_name: artemis
+
+windows:
+  - editor:
+      layout: main-horizontal
+      panes:
+        - source .env && vim
+        - source .env
+  - server: bin/local/start

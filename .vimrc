@@ -157,6 +157,7 @@ set ruler " Displays the linenumber, column number in the status line (default i
 set showcmd
 set scrolloff=4 " Minimum number of lines to show around the cursor while scrolling
 set sidescrolloff=4 " Minimum number of horizontal characters while scrolling horizontally
+set undofile " Persisted undo across vim sessions
 
 " Relative line numbers on normal mode, regular numbers on insert.
 " NOTE: Disable when pairing

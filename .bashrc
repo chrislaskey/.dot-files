@@ -315,6 +315,8 @@ alias tagall='ctags -R --languages=ruby,elixir --exclude=.git --exclude=log . $(
 
 export ERL_AFLAGS="-kernel shell_history enabled"
 
+test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
+
 # === Ruby ===
 
 alias be='bundle exec'
@@ -356,3 +358,4 @@ fi
 PATH="/opt/local/bin:/opt/local/sbin:/usr/local/share:/usr/local/include:/usr/local/lib:${HOME}:${PATH}"
 
 export PATH
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

@@ -1,0 +1,11 @@
+name: atlas
+root: ~/Dropbox/code/github/atlas
+socket_name: atlas
+
+windows:
+  - editor:
+      layout: main-horizontal
+      panes:
+        - source .env && vim
+        - source .env
+  - server: bin/start

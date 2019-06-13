@@ -1,16 +1,13 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
-describe "Indenting" do
-  context "documentation" do
-    it "with end keyword" do
-      <<-EOF
-        defmodule Test do
-          @doc """
-          end
-          """
-        end
-      EOF
-      .should be_elixir_indentation
+describe 'Indenting documentation' do
+  i <<~EOF
+  defmodule Test do
+    @doc """
     end
+    """
   end
+  EOF
 end
