@@ -272,10 +272,10 @@ set copyindent " use existing indents for new indents
 set preserveindent " save as much indent structure as possible
 set shiftround " always round indents to multiple of shiftwidth
 " Sets how many spaces for each step of (auto)indent in normal mode (<, >, =)
-set shiftwidth=4
+set shiftwidth=2
 set smartindent
 set smarttab
-set tabstop=4 " Sets the width of a tab character
+set tabstop=2 " Sets the width of a tab character
 set expandtab " Expandtab translates tabs to spaces. No prefix turns this off
 " softabstop fine tunes the amount of whitespace to be inserted.
 " The default (0) turns this off
@@ -288,7 +288,7 @@ set expandtab " Expandtab translates tabs to spaces. No prefix turns this off
 " tabstop width, the spaces are converted to a tab character
 " (assuming noexpandtab is set).
 " In this scenario backspace works the same as softtabstop in reverse.
-set softtabstop=4
+set softtabstop=2
 
 " Search
 set gdefault " By default add g flag to search/replace. Add g to toggle.
@@ -540,14 +540,15 @@ nmap <leader>= :call Preserve("normal gg=G")<CR>
 
 " CtrlP
 " ------------------------------------------------------------------------------
-let g:ctrlp_max_files = 5000
+let g:ctrlp_max_files = 50000
 let g:ctrlp_working_path_mode = 2
+map <leader>pr :CtrlPClearAllCaches<cr>
 
 " Optimize file searching
 if has("unix")
     let g:ctrlp_user_command = {
         \   'types': {
-        \       1: ['.git/', 'cd %s && git ls-files']
+        \       1: ['.git/', 'cd %s && { git ls-files; git ls-files --exclude-standard --others; }']
         \   },
         \   'fallback': 'find %s -type f | head -' . g:ctrlp_max_files
         \ }
