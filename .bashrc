@@ -332,7 +332,8 @@ PATH="${PATH}:/usr/local/share/npm/bin"
 # === NVM ===
 
 export NVM_DIR=~/.nvm
-. $(brew --prefix nvm)/nvm.sh
+
+. ${NVM_DIR}/nvm.sh
 
 # === RabbitMQ ===
 
