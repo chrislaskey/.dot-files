@@ -1,5 +1,5 @@
 ### General packages
-brew install ack ctags diff-so-fancy ffmpeg fpp gettext gnu-sed imagemagick puma/puma/puma-dev rename ssh-copy-id vim wget xz
+brew install ack ctags diff-so-fancy gpg ffmpeg fpp gettext gnu-sed imagemagick puma/puma/puma-dev rename ssh-copy-id vim wget xz
 
 ### Package managers
 

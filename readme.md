@@ -41,6 +41,15 @@ Install puma-dev as a launchd agent (required for port 80 usage):
   puma-dev -install
 ```
 
+asdf language runtime manager
+--------------------------------------------------------------------------------
+
+To install asdf language plugins and versions:
+
+```bash
+$ ~/.dot-files/asdf-install.sh
+```
+
 ruby gems
 --------------------------------------------------------------------------------
 
