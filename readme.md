@@ -59,6 +59,15 @@ To install ruby gems:
 $ ~/.dot-files/gem-install.sh
 ```
 
+npm packages
+--------------------------------------------------------------------------------
+
+To install npm packages:
+
+```bash
+$ ~/.dot-files/npm-install.sh
+```
+
 License
 ================================================================================
 
