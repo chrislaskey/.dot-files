@@ -21,6 +21,35 @@ $ cd ~/.dot-files/.bash/powerline-shell
 $ ./install.py
 ```
 
+brew packages
+--------------------------------------------------------------------------------
+
+To install brew packages use:
+
+```bash
+$ ~/.dot-files/brew-install.sh
+```
+
+Review the log and do any follow up installation. For example, these steps are
+required for configuring `puma-dev`:
+
+```
+Setup dev domains:
+  sudo puma-dev -setup
+
+Install puma-dev as a launchd agent (required for port 80 usage):
+  puma-dev -install
+```
+
+ruby gems
+--------------------------------------------------------------------------------
+
+To install ruby gems:
+
+```bash
+$ ~/.dot-files/gem-install.sh
+```
+
 License
 ================================================================================
 
