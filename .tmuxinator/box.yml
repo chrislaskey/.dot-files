@@ -1,0 +1,6 @@
+name: box
+root: ~/code/box
+socket_name: box
+
+windows:
+  - box: bin/build && bin/run
