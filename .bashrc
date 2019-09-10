@@ -235,6 +235,9 @@ complete -o nospace -F _nosetests nosetests
 # === Prompt ===
 
 function _update_ps1() {
+    ### Basic bash:
+    # source ~/.bash/prompt.sh
+    ### Python powerline:
     PS1="$(~/.bash/powerline-shell/powerline-shell.py --mode flat $? 2> /dev/null)"
 }
 

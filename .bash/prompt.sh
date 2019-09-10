@@ -138,7 +138,7 @@ if [[ "$COLOR_PROMPT" = yes || "$FORCE_COLOR_PROMPT" = yes ]]; then
 	PS1=''
 
 	# Add the rest of prompt elements
-	PS1=$PS1'\[\e[38;05;198m\]\u \[\e[37;40m\]at \[\e[38;05;208m\]\h \[\e[37;40m\]in \[\e[38;05;154m\]\w\[\e[37;40m\]$(git_branch_on)\[\e[32;40m\]$(git_branch_clean)\[\e[38;05;226m\]$(git_branch_stage_dirty)\[\e[31;40m\]$(git_branch_working_tree_dirty)\[\e[37;40m\]\$ '
+	PS1=$PS1'\[\e[38;05;198m\]\u \[\e[37;40m\]\[\e[38;05;208m\]\h \[\e[37;40m\]\[\e[38;05;154m\]\w\[\e[37;40m\] \[\e[32;40m\]$(git_branch_clean)\[\e[38;05;226m\]$(git_branch_stage_dirty)\[\e[31;40m\]$(git_branch_working_tree_dirty)\[\e[37;40m\]\$ '
 
 	if [[ "$UNAME" == Darwin ]]; then
 
