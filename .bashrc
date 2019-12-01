@@ -13,6 +13,9 @@ complete -cf sudo
 # Prevent "You have mail in /var/mail/$USER/" message
 unset MAILCHECK
 
+# Prevent "zsh is the new default shell" message on OS X
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 # Make VIM the default editor
 if [[ -n `which vim 2>/dev/null` ]]; then
     export EDITOR=`which vim | head -1`
@@ -369,6 +372,10 @@ PATH="${PATH}:/usr/local/sbin"
 # === Local bash settings ===
 
 [[ -s "$HOME/.bashrc.local" ]] && source "$HOME/.bashrc.local"
+
+# === gnu sed ===
+
+PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:${PATH}"
 
 # === Path ===
 
