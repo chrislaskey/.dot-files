@@ -1,5 +1,6 @@
 tags
 !tags/
 gems.tags
-*.un~
 .DS_Store
+.DS_Store?
+*.un~

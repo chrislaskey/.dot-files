@@ -6,6 +6,20 @@ windows:
   - editor:
       layout: main-horizontal
       panes:
-        - source .env && vim
-        - source .env
-  - server: bin/local/start
+        - set -a && source .env && set +a && vim
+        - set -a && source .env && set +a
+  - server:
+      layout: main-horizontal
+      panes:
+        - set -a && source .env && set +a && bin/local/start
+        - set -a && source .env && set +a && chromedriver --headless
+  - build-ci:
+      layout: main-horizontal
+      panes:
+        - cd ~/code/ic4v-build-ci/ && vim
+        - cd ~/code/ic4v-build-ci/
+  - secrets:
+      layout: main-horizontal
+      panes:
+        - cd ~/code/ic4v-secrets-cli/ && vim
+        - cd ~/code/ic4v-secrets-cli/

@@ -87,9 +87,9 @@ set guioptions-=L " Disable left scroll-bar
 
 " Path settings
 " ------------------------------------------------------------------------------
-if has('autochdir')
-    set autochdir " Automatically set pwd/cwd to file's parent directory
-endif
+" if has('autochdir')
+"     set autochdir " Automatically set pwd/cwd to file's parent directory
+" endif
 
 " If current path is part of a git or mercurial repository it will
 " change the directory root to the repository root

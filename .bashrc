@@ -13,6 +13,9 @@ complete -cf sudo
 # Prevent "You have mail in /var/mail/$USER/" message
 unset MAILCHECK
 
+# Prevent "zsh is the new default shell" message on OS X
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 # Make VIM the default editor
 if [[ -n `which vim 2>/dev/null` ]]; then
     export EDITOR=`which vim | head -1`
@@ -235,6 +238,9 @@ complete -o nospace -F _nosetests nosetests
 # === Prompt ===
 
 function _update_ps1() {
+    ### Basic bash:
+    # source ~/.bash/prompt.sh
+    ### Python powerline:
     PS1="$(~/.bash/powerline-shell/powerline-shell.py --mode flat $? 2> /dev/null)"
 }
 
@@ -311,36 +317,21 @@ git-date() {
 alias tag='ctags -R --languages=ruby,elixir --exclude=.git --exclude=log --exclude=deps .'
 alias tagall='ctags -R --languages=ruby,elixir --exclude=.git --exclude=log . $(bundle list --paths)'
 
-# === Elixir ===
+# === ASDF ===
 
-export ERL_AFLAGS="-kernel shell_history enabled"
+ASDF_HOME=$HOME && [[ $(brew --prefix asdf) ]] && ASDF_HOME=$(brew --prefix asdf)
 
-test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
+if [[ -f ${ASDF_HOME}/asdf.sh ]]; then
+    . ${ASDF_HOME}/asdf.sh
+fi
+
+if [[ -f ${ASDF_HOME}/etc/bash_completion.d/asdf.bash ]]; then
+    . ${ASDF_HOME}/etc/bash_completion.d/asdf.bash
+fi
 
 # === Ruby ===
 
 alias be='bundle exec'
-
-if [[ `which rbenv` ]]; then
-    eval "$(rbenv init -)"
-fi
-
-# === NodeJS ===
-
-PATH="${PATH}:/usr/local/share/npm/bin"
-
-# === NVM ===
-
-export NVM_DIR=~/.nvm
-. $(brew --prefix nvm)/nvm.sh
-
-# === RabbitMQ ===
-
-PATH="${PATH}:/usr/local/sbin"
-
-# === pyenv ===
-
-eval "$(pyenv init -)"
 
 # === direnv ===
 
@@ -348,13 +339,46 @@ if [[ `which direnv` ]]; then
     eval "$(direnv hook bash)"
 fi
 
+# === RabbitMQ ===
+
+PATH="${PATH}:/usr/local/sbin"
+
+# if [[ `which rbenv` ]]; then
+#     eval "$(rbenv init -)"
+# fi
+
+# === Elixir ===
+
+# export ERL_AFLAGS="-kernel shell_history enabled"
+
+# test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
+
+# === NodeJS ===
+#
+# PATH="${PATH}:/usr/local/share/npm/bin"
+
+# === NVM ===
+
+# export NVM_DIR=~/.nvm
+#
+# . ${NVM_DIR}/nvm.sh
+#
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# === pyenv ===
+
+# eval "$(pyenv init -)"
+
 # === Local bash settings ===
 
 [[ -s "$HOME/.bashrc.local" ]] && source "$HOME/.bashrc.local"
+
+# === gnu sed ===
+
+PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:${PATH}"
 
 # === Path ===
 
 PATH="/opt/local/bin:/opt/local/sbin:/usr/local/share:/usr/local/include:/usr/local/lib:${HOME}:${PATH}"
 
 export PATH
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
