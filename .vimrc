@@ -332,7 +332,7 @@ if has('autocmd')
     au BufNewFile,BufRead *.php set expandtab
     au BufNewFile,BufRead *.php set nocompatible
     au BufNewFile,BufRead *.php filetype indent plugin on
-    
+
     " Puppet files
     au BufNewFile,BufRead *.pp set nocompatible
     au BufNewFile,BufRead *.pp filetype indent plugin on
@@ -424,17 +424,17 @@ imap <C-L> @@@<ESC>hhkywjl?@@@<CR>P/@@@<CR>3s
 
 " Add various language specific debug commands
 if has('autocmd')
-	autocmd FileType javascript imap <buffer> cll console.log()<Esc>==F(a
-	" output console.log("$1", $1)
-	autocmd FileType javascript vmap <buffer> cll yocll'<Esc>pa', <Esc>p
-	" output console.log("$1", $1) where $1 is the next word
-	autocmd FileType javascript nmap <buffer> cll yiwocll'<Esc>pa', <Esc>p
+  autocmd FileType javascript imap <buffer> cll console.log()<Esc>==F(a
+  " output console.log("$1", $1)
+  autocmd FileType javascript vmap <buffer> cll yocll'<Esc>pa', <Esc>p
+  " output console.log("$1", $1) where $1 is the next word
+  autocmd FileType javascript nmap <buffer> cll yiwocll'<Esc>pa', <Esc>p
 
-	autocmd FileType elixir imap <buffer> cll IO.inspect()<Esc>==F(a
-	" output IO.puts "---$1"\nIO.inspect($1)
-	autocmd FileType elixir vmap <buffer> cll yoIO.puts "---<Esc>pa"<Esc>ocll<Esc>p
-	" output IO.puts "---$1"\nIO.inspect($1) where $1 is the next word
-	autocmd FileType elixir nmap <buffer> cll yiwoIO.puts "---<Esc>pa"<Esc>ocll<Esc>p
+  autocmd FileType elixir imap <buffer> cll IO.inspect()<Esc>==F(a
+  " output IO.puts "---$1"\nIO.inspect($1)
+  autocmd FileType elixir vmap <buffer> cll yoIO.puts "---<Esc>pa"<Esc>ocll<Esc>p
+  " output IO.puts "---$1"\nIO.inspect($1) where $1 is the next word
+  autocmd FileType elixir nmap <buffer> cll yiwoIO.puts "---<Esc>pa"<Esc>ocll<Esc>p
 endif
 
 " Leader bindings
@@ -462,8 +462,8 @@ vmap <Leader>bl :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("
 
 " Use ,d (or ,dd or ,dj or 20,dd) to delete a line without adding it to the
 " yanked stack (also, in visual mode)
-nmap <silent> <leader>d "_d
-vmap <silent> <leader>d "_d
+" nmap <silent> <leader>d "_d
+" vmap <silent> <leader>d "_d
 
 " Smart paste, includes formatting like indentation
 nnoremap <leader>pf  p'[v']=
@@ -480,6 +480,7 @@ nnoremap <leader>Pf  P'[v']=
 " Buffer navigation helpers
 nnoremap <Leader>bp :bp<CR>
 nnoremap <Leader>bn :bn<CR>
+nnoremap <Leader>bd :bd<CR>
 nnoremap <Leader>b :e#<CR>
 nnoremap <Leader>1 :1b<CR>
 nnoremap <Leader>2 :2b<CR>
@@ -491,6 +492,10 @@ nnoremap <Leader>7 :7b<CR>
 nnoremap <Leader>8 :8b<CR>
 nnoremap <Leader>9 :9b<CR>
 
+nnoremap <Leader>d :bd<CR>
+nnoremap <Leader>f :bp<CR>
+nnoremap <Leader>g :bn<CR>
+
 " CD to directory of current file
 nnoremap <leader>cd :lcd %:p:h<cr>:pwd<cr>
 
@@ -498,7 +503,7 @@ nnoremap <leader>cd :lcd %:p:h<cr>:pwd<cr>
 nnoremap <leader>fi [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>]"
 
 " Tabular plugin alignment
-nnoremap <leader>f :Tabular block<cr>
+" nnoremap <leader>f :Tabular block<cr>
 
 " Whitespace functions and bindings
 
@@ -650,9 +655,32 @@ endif
 " ------------------------------------------------------------------------------
 let g:tlTokenList=['//*', 'future', 'todo']
 
+
+" vim-airline status line plugin
+" ------------------------------------------------------------------------------
+let g:airline_theme='powerlineish'
+let g:airline#extensions#tabline#buffer_nr_show=1
+let g:airline#extensions#tabline#enabled=0
+let g:airline_powerline_fonts=0
+let g:airline_powerline_fonts=0
+let g:airline_statusline_ontop=0
+
+function! InitAirline()
+  let spc = g:airline_symbols.space
+
+  " Custom sections
+	" For defaults see file `./bundle/vim-airline/autoload/airline/init.vim`
+  let g:airline_section_b = airline#section#create(['Buf #[%n] '])
+  let g:airline_section_z = airline#section#create(['linenr', ':%v'])
+endfunction
+
+autocmd VimEnter * call InitAirline()
+
+
 " vim-jsx plugin
 " ------------------------------------------------------------------------------
 let g:jsx_ext_required = 0
+
 
 " vim-slime plugin
 " ------------------------------------------------------------------------------
