@@ -5,7 +5,17 @@ Originally written for Ubuntu Budgie 20.10.
 ## Packages Installed
 
 ```
-sudo apt install ack git python
+sudo apt install ack git python tmux tmuxinator
+```
+
+### Install alternative terminal
+
+By default Budgie comes with Tilix, which is great!
+
+Unfortunately, some of the default functionality conflicts with .bashrc and tmux flows. So instead, install a simple xterm inspired terminal:
+
+```
+sudo apt install sakura
 ```
 
 ### Rebind caps lock to control key
