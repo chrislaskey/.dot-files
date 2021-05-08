@@ -1,3 +1,11 @@
+# === Startup ===
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
 # === Variables ===
 
 UNAME=`uname`
@@ -133,7 +141,7 @@ grepc () {
 }
 
 if [[ -n `which strace 2>/dev/null` ]]; then
-    
+
     # Visual copy bar using strace
     # Will slow down regular copying. Aliases to an option below
     # http://chris-lamb.co.uk/2008/01/24/can-you-get-cp-to-give-a-progress-bar-like-wget/
@@ -182,6 +190,15 @@ alias puppetprofile='puppet agent --{summarize,test,debug,evaltrace} | perl -pe 
 HISTCONTROL=ignoredups:ignorespace
 HISTSIZE=5000
 HISTFILESIZE=10000
+
+if package_exists shopt; then
+  # append to the history file, don't overwrite it
+  shopt -s histappend
+
+  # check the window size after each command and, if necessary,
+  # update the values of LINES and COLUMNS.
+  shopt -s checkwinsize
+fi
 
 # === Outside files to source ===
 
@@ -258,6 +275,25 @@ function _update_ps1() {
     PS1="$(~/.bash/powerline-shell/powerline-shell.py --mode flat $? 2> /dev/null)"
 }
 
+case "$TERM" in
+    xterm-color|*-256color) color_prompt=yes;;
+esac
+
+if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+    # We have color support; assume it's compliant with Ecma-48
+    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+    # a case would tend to support setf rather than setaf.)
+    color_prompt=yes
+else
+    color_prompt=
+fi
+
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+
 if [ "$TERM" != "linux" ]; then
     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
@@ -333,7 +369,9 @@ alias tagall='ctags -R --languages=ruby,elixir --exclude=.git --exclude=log . $(
 
 # === ASDF ===
 
-ASDF_HOME=$HOME && [[ $(brew --prefix asdf) ]] && ASDF_HOME=$(brew --prefix asdf)
+if package_exists brew; then
+  ASDF_HOME=$HOME && [[ $(brew --prefix asdf) ]] && ASDF_HOME=$(brew --prefix asdf)
+fi
 
 if [[ -f ${ASDF_HOME}/asdf.sh ]]; then
     . ${ASDF_HOME}/asdf.sh
@@ -389,7 +427,13 @@ PATH="${PATH}:/usr/local/sbin"
 
 # === gnu sed ===
 
-PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:${PATH}"
+if package_exists brew; then
+  PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:${PATH}"
+fi
+
+# === Ubuntu Budgie ===
+
+if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then source /etc/profile.d/vte.sh; fi
 
 # === Path ===
 
