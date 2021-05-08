@@ -24,7 +24,14 @@ The configuration can be manually loaded from bash:
 xmodmap ~/.Xmodmap
 ```
 
-To ensure this gets called automatically on login, the `/.xinitrc` file includes a call to the same command.
+To ensure this gets called automatically on login, register it as a startup application:
+
+```
+cp ~/.dot-files/config-autostart-xmodmap.desktop ~/.config/autostart/xmodmap.desktop
+chmod +x ~/.config/autostart/xmodmap.desktop
+```
+
+From: https://askubuntu.com/a/967527
 
 ### Configure xclip to work like pbcopy
 
