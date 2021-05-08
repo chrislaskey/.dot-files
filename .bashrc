@@ -2,6 +2,12 @@
 
 UNAME=`uname`
 
+# === Helper Functions ===
+
+function package_exists() {
+    return dpkg -l "$1" &> /dev/null
+}
+
 # === General behavior ===
 
 # Turn on VI command line mode (as opposed to emacs default key bindings)
@@ -101,6 +107,14 @@ fi
 
 # URL-encode strings
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
+
+# Linux aliases
+if [[ "$UNAME" != Darwin ]]; then
+    if ! package_exists xclip; then
+        alias pbcopy='xclip -selection clipboard'
+        alias pbpaste='xclip -selection clipboard -o'
+    fi
+fi
 
 # OS X aliases
 if [[ "$UNAME" == Darwin ]]; then
