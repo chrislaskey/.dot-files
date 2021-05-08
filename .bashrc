@@ -371,6 +371,8 @@ alias tagall='ctags -R --languages=ruby,elixir --exclude=.git --exclude=log . $(
 
 if package_exists brew; then
   ASDF_HOME=$HOME && [[ $(brew --prefix asdf) ]] && ASDF_HOME=$(brew --prefix asdf)
+else
+  ASDF_HOME=$HOME/.asdf
 fi
 
 if [[ -f ${ASDF_HOME}/asdf.sh ]]; then
@@ -379,6 +381,10 @@ fi
 
 if [[ -f ${ASDF_HOME}/etc/bash_completion.d/asdf.bash ]]; then
     . ${ASDF_HOME}/etc/bash_completion.d/asdf.bash
+fi
+
+if [[ -f ${ASDF_HOME}/completions/asdf.bash ]]; then
+    . ${ASDF_HOME}/completions/asdf.bash
 fi
 
 # === Ruby ===

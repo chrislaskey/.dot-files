@@ -53,3 +53,11 @@ sudo apt install xclip
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 ```
+
+### Install asdf language runtime manager
+
+Follow latest installation steps from project documentation.
+
+### Install docker
+
+Follow latest installation steps from project documentation.
