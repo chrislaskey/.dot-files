@@ -1,6 +1,20 @@
+# === Startup ===
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
 # === Variables ===
 
 UNAME=`uname`
+
+# === Helper Functions ===
+
+function package_exists() {
+    return dpkg -l "$1" &> /dev/null
+}
 
 # === General behavior ===
 
@@ -102,6 +116,14 @@ fi
 # URL-encode strings
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
 
+# Linux aliases
+if [[ "$UNAME" != Darwin ]]; then
+    if ! package_exists xclip; then
+        alias pbcopy='xclip -selection clipboard'
+        alias pbpaste='xclip -selection clipboard -o'
+    fi
+fi
+
 # OS X aliases
 if [[ "$UNAME" == Darwin ]]; then
     # Show/hide hidden files in Finder
@@ -168,6 +190,15 @@ alias puppetprofile='puppet agent --{summarize,test,debug,evaltrace} | perl -pe 
 HISTCONTROL=ignoredups:ignorespace
 HISTSIZE=5000
 HISTFILESIZE=10000
+
+if package_exists shopt; then
+  # append to the history file, don't overwrite it
+  shopt -s histappend
+
+  # check the window size after each command and, if necessary,
+  # update the values of LINES and COLUMNS.
+  shopt -s checkwinsize
+fi
 
 # === Outside files to source ===
 
@@ -243,6 +274,25 @@ function _update_ps1() {
     ### Python powerline:
     PS1="$(~/.bash/powerline-shell/powerline-shell.py --mode flat $? 2> /dev/null)"
 }
+
+case "$TERM" in
+    xterm-color|*-256color) color_prompt=yes;;
+esac
+
+if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+    # We have color support; assume it's compliant with Ecma-48
+    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+    # a case would tend to support setf rather than setaf.)
+    color_prompt=yes
+else
+    color_prompt=
+fi
+
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
 
 if [ "$TERM" != "linux" ]; then
     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
@@ -321,7 +371,11 @@ alias tagall='ctags -R --languages=ruby,elixir --exclude=.git --exclude=log . $(
 
 # === ASDF ===
 
-ASDF_HOME=$HOME && [[ $(brew --prefix asdf) ]] && ASDF_HOME=$(brew --prefix asdf)
+if package_exists brew; then
+  ASDF_HOME=$HOME && [[ $(brew --prefix asdf) ]] && ASDF_HOME=$(brew --prefix asdf)
+else
+  ASDF_HOME=$HOME/.asdf
+fi
 
 if [[ -f ${ASDF_HOME}/asdf.sh ]]; then
     . ${ASDF_HOME}/asdf.sh
@@ -329,6 +383,10 @@ fi
 
 if [[ -f ${ASDF_HOME}/etc/bash_completion.d/asdf.bash ]]; then
     . ${ASDF_HOME}/etc/bash_completion.d/asdf.bash
+fi
+
+if [[ -f ${ASDF_HOME}/completions/asdf.bash ]]; then
+    . ${ASDF_HOME}/completions/asdf.bash
 fi
 
 # === Ruby ===
@@ -377,7 +435,13 @@ PATH="${PATH}:/usr/local/sbin"
 
 # === gnu sed ===
 
-PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:${PATH}"
+if package_exists brew; then
+  PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:${PATH}"
+fi
+
+# === Ubuntu Budgie ===
+
+if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then source /etc/profile.d/vte.sh; fi
 
 # === IBM Cloud ===
 

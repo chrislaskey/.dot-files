@@ -1,5 +1,5 @@
-erlang 21.3
-elixir 1.8.2
+erlang 23.3
+elixir 1.10.3
 python 3.7.4 system
-nodejs 10.16.3
+nodejs 12.16.1
 ruby 2.6.4 system
