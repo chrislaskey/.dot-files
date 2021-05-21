@@ -4,3 +4,4 @@ gems.tags
 .DS_Store
 .DS_Store?
 *.un~
+.vim/vim-plug-files/*

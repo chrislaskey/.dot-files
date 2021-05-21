@@ -1,7 +1,7 @@
 About
 ================================================================================
 
-My collection of dot files, including configurations for bash shell, tmux, 
+My collection of dot files, including configurations for bash shell, tmux,
 and vim.
 
 create-dotfile-symlinks.py
@@ -71,6 +71,10 @@ To install npm packages:
 ```bash
 $ ~/.dot-files/npm-install.sh
 ```
+
+vim installation
+--------------------------------------------------------------------------------
+To install plugins managed by vim-plug, open vim and execute `:PlugInstall`.
 
 License
 ================================================================================
