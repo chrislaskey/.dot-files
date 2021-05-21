@@ -60,6 +60,9 @@ endif
 set wildignore+=.svn/*,.git/*,.hg/*,*.gif,*.jpg,*.jpeg,*.png,*.pdf
 set wildignore+=*.docx,*.doc,*.ppt,*.pptx,*.psd,*.pyc,*.DS_Store
 
+" Shorten message length
+" set shortmess=aoOtI
+
 " Program settings
 " ------------------------------------------------------------------------------
 
@@ -545,11 +548,12 @@ nmap <leader>= :call Preserve("normal gg=G")<CR>
 
 " CtrlP
 " ------------------------------------------------------------------------------
-let g:ctrlp_max_files = 50000
+let g:ctrlp_max_files = 500000
 let g:ctrlp_working_path_mode = 2
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 map <leader>pr :CtrlPClearAllCaches<cr>
 
-" Optimize file searching
 if has("unix")
     let g:ctrlp_user_command = {
         \   'types': {
@@ -559,6 +563,17 @@ if has("unix")
         \ }
 endif
 
+" Support `ag`
+" if executable("ag")
+"   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+" endif
+
+" Support `ripgrep`
+" if executable("rg")
+"   set grepprg=rg\ --color=never
+"   let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+"   let g:ctrlp_use_caching = 0
+" endif
 
 " Colorizer plugin
 " ------------------------------------------------------------------------------

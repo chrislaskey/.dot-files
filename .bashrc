@@ -119,7 +119,7 @@ grepc () {
 }
 
 if [[ -n `which strace 2>/dev/null` ]]; then
-    
+
     # Visual copy bar using strace
     # Will slow down regular copying. Aliases to an option below
     # http://chris-lamb.co.uk/2008/01/24/can-you-get-cp-to-give-a-progress-bar-like-wget/
@@ -297,10 +297,12 @@ docker_init() {
 
 # === Git ===
 
-alias co='git checkout'
+alias gco='git checkout'
 alias ga='git add -p'
 alias gaa='git add -A'
 alias gc='git commit'
+alias gd='git diff'
+alias gdc='git diff --cached'
 alias gb='git bisect'
 alias gu='git checkout master && git fetch upstream && git rebase upstream/master && git push origin master'
 alias gs='git status'
@@ -376,6 +378,10 @@ PATH="${PATH}:/usr/local/sbin"
 # === gnu sed ===
 
 PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:${PATH}"
+
+# === IBM Cloud ===
+
+alias ic='ibmcloud'
 
 # === Path ===
 
