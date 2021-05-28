@@ -372,8 +372,10 @@ alias tagall='ctags -R --languages=ruby,elixir --exclude=.git --exclude=log . $(
 # === ASDF ===
 
 if package_exists brew; then
+  ASDF_DIR=$HOME && [[ $(brew --prefix asdf) ]] && ASDF_HOME=$(brew --prefix asdf)
   ASDF_HOME=$HOME && [[ $(brew --prefix asdf) ]] && ASDF_HOME=$(brew --prefix asdf)
 else
+  ASDF_DIR=$HOME/.asdf
   ASDF_HOME=$HOME/.asdf
 fi
 
@@ -387,6 +389,12 @@ fi
 
 if [[ -f ${ASDF_HOME}/completions/asdf.bash ]]; then
     . ${ASDF_HOME}/completions/asdf.bash
+fi
+
+# See `asdf` compatibility issue thread when installed with brew
+# https://github.com/asdf-vm/asdf/issues/785#issuecomment-800631331
+if [ -d ${ASDF_HOME}/shims ]; then
+  PATH="${PATH}:${ASDF_HOME}/shims"
 fi
 
 # === Ruby ===
