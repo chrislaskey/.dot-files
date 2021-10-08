@@ -13,3 +13,4 @@
 .vim/undo/*~*
 tmux-client-*.log
 tmux-server-*.log
+asdf

@@ -349,10 +349,12 @@ docker_init() {
 
 PATH="${PATH}:/home/chrislaskey/.asdf/installs/nodejs/16.7.0/.npm/lib/node_modules/diff-so-fancy"
 
-alias co='git checkout'
+alias gco='git checkout'
 alias ga='git add -p'
 alias gaa='git add -A'
 alias gc='git commit'
+alias gd='git diff'
+alias gdc='git diff --cached'
 alias gb='git bisect'
 alias gu='git checkout master && git fetch upstream && git rebase upstream/master && git push origin master'
 alias gs='git status'
@@ -372,8 +374,10 @@ alias tagall='ctags -R --languages=ruby,elixir --exclude=.git --exclude=log . $(
 # === ASDF ===
 
 if package_exists brew; then
+  ASDF_DIR=$HOME && [[ $(brew --prefix asdf) ]] && ASDF_HOME=$(brew --prefix asdf)
   ASDF_HOME=$HOME && [[ $(brew --prefix asdf) ]] && ASDF_HOME=$(brew --prefix asdf)
 else
+  ASDF_DIR=$HOME/.asdf
   ASDF_HOME=$HOME/.asdf
 fi
 
@@ -387,6 +391,12 @@ fi
 
 if [[ -f ${ASDF_HOME}/completions/asdf.bash ]]; then
     . ${ASDF_HOME}/completions/asdf.bash
+fi
+
+# See `asdf` compatibility issue thread when installed with brew
+# https://github.com/asdf-vm/asdf/issues/785#issuecomment-800631331
+if [ -d ${ASDF_HOME}/shims ]; then
+  PATH="${PATH}:${ASDF_HOME}/shims"
 fi
 
 # === Ruby ===
@@ -442,6 +452,10 @@ fi
 # === Ubuntu Budgie ===
 
 if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then source /etc/profile.d/vte.sh; fi
+
+# === IBM Cloud ===
+
+alias ic='ibmcloud'
 
 # === Path ===
 
