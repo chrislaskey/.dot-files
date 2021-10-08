@@ -1,0 +1,14 @@
+name: arc
+root: ~/code/arc
+socket_name: arc
+
+windows:
+  - editor:
+      layout: main-horizontal
+      panes:
+        - set -a && source .env && set +a && vim
+        - set -a && source .env && set +a
+  - server:
+      layout: main-horizontal
+      panes:
+        - set -a && source .env && set +a && bin/start

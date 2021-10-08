@@ -347,6 +347,8 @@ docker_init() {
 
 # === Git ===
 
+PATH="${PATH}:/home/chrislaskey/.asdf/installs/nodejs/16.7.0/.npm/lib/node_modules/diff-so-fancy"
+
 alias co='git checkout'
 alias ga='git add -p'
 alias gaa='git add -A'

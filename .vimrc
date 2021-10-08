@@ -43,6 +43,7 @@ filetype indent on
 
 if has('autocmd')
     au BufNewFile,BufRead *.eex set filetype=eelixir
+    au BufNewFile,BufRead *.heex set filetype=eelixir
     au BufNewFile,BufRead *.es6 set filetype=javascript
     au BufNewFile,BufRead *.ex set filetype=elixir
     au BufNewFile,BufRead *.exs set filetype=elixir
