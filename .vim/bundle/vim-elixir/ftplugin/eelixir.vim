@@ -20,10 +20,16 @@ if !exists("b:eelixir_subtype")
     let b:eelixir_subtype = matchstr(&filetype,'^eex\.\zs\w\+')
   endif
   if b:eelixir_subtype == ''
+    let b:eelixir_subtype = matchstr(&filetype,'^heex\.\zs\w\+')
+  endif
+  if b:eelixir_subtype == ''
     let b:eelixir_subtype = matchstr(&filetype,'^leex\.\zs\w\+')
   endif
   if b:eelixir_subtype == ''
-    let b:eelixir_subtype = matchstr(substitute(expand("%:t"),'\c\%(\.eex\|\.leex\|\.eelixir\)\+$','',''),'\.\zs\w\+$')
+    let b:eelixir_subtype = matchstr(&filetype,'^sface\.\zs\w\+')
+  endif
+  if b:eelixir_subtype == ''
+    let b:eelixir_subtype = matchstr(substitute(expand("%:t"),'\c\%(\.eex\|\.heex\|\.leex\|\.sface\|\.eelixir\)\+$','',''),'\.\zs\w\+$')
   endif
   if b:eelixir_subtype == 'ex'
     let b:eelixir_subtype = 'elixir'
@@ -92,6 +98,10 @@ endif
 if !exists('b:surround_35')
   " When using surround `#` (ASCII 35) would provide `<%# selection %>`
   let b:surround_35 = "<%# \r %>"
+endif
+if !exists('b:surround_123')
+  " When using surround `{` (ASCII 123) would provide `{{ selection }}`
+  let b:surround_123 = "{{ \r }}"
 endif
 if !exists('b:surround_5')
   " When using surround `<C-e>` (ASCII 5 `ENQ`) would provide `<% selection %>\n<% end %>`

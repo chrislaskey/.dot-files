@@ -20,7 +20,9 @@ function! elixir#indent#indent(lnum)
   call cursor(lnum, 0)
 
   let handlers = [
+        \'inside_embedded_view',
         \'top_of_file',
+        \'starts_with_string_continuation',
         \'following_trailing_binary_operator',
         \'starts_with_pipe',
         \'starts_with_binary_operator',
@@ -31,9 +33,14 @@ function! elixir#indent#indent(lnum)
         \]
   for handler in handlers
     call s:debug('testing handler elixir#indent#handle_'.handler)
-    let context = {'lnum': lnum, 'text': text, 'prev_nb_lnum': prev_nb_lnum, 'prev_nb_text': prev_nb_text}
+    let context = {'lnum': lnum, 'text': text, 'first_nb_char_idx': match(text, '\w'), 'prev_nb_lnum': prev_nb_lnum, 'prev_nb_text': prev_nb_text}
     let indent = function('elixir#indent#handle_'.handler)(context)
-    if indent != -1
+    if indent == -2
+      " Keep indent the same
+      call s:debug('line '.lnum.': elixir#indent#handle_'.handler.' returned -2; returning indent of -1')
+      call cursor(curs_lnum, curs_col)
+      return -1
+    elseif indent != -1
       call s:debug('line '.lnum.': elixir#indent#handle_'.handler.' returned '.indent)
       call cursor(curs_lnum, curs_col)
       return indent
@@ -57,6 +64,17 @@ endfunction
 
 function! s:prev_starts_with(context, expr)
   return s:_starts_with(a:context.prev_nb_text, a:expr, a:context.prev_nb_lnum)
+endfunction
+
+function! s:in_embedded_view()
+  let groups = map(synstack(line('.'), col('.')), "synIDattr(v:val, 'name')")
+  for group in ['elixirPhoenixESigil', 'elixirLiveViewSigil', 'elixirSurfaceSigil']
+    if index(groups, group) >= 0
+      return 1
+    endif
+  endfor
+
+  return 0
 endfunction
 
 " Returns 0 or 1 based on whether or not the text starts with the given
@@ -98,7 +116,11 @@ endfunction
 " Returns 0 or 1 based on whether or not the given line number and column
 " number pair is a string or comment
 function! s:is_string_or_comment(line, col)
-  return synIDattr(synID(a:line, a:col, 1), "name") =~ '\%(String\|Comment\)'
+  return s:syntax_name(a:line, a:col) =~ '\%(String\|Comment\|CharList\)'
+endfunction
+
+function! s:syntax_name(line, col)
+  return synIDattr(synID(a:line, a:col, 1), "name")
 endfunction
 
 " Skip expression for searchpair. Returns 0 or 1 based on whether the value
@@ -135,7 +157,7 @@ function! s:find_last_pos(lnum, text, match)
       let peek_match = match(peek, a:match)
       if peek_match == ss_match + 1
         let syng = synIDattr(synID(a:lnum, c + ss_match, 1), 'name')
-        if syng !~ '\%(String\|Comment\)'
+        if syng !~ '\%(String\|Comment\|CharList\)'
           return c + ss_match
         end
       end
@@ -146,9 +168,115 @@ function! s:find_last_pos(lnum, text, match)
   return -1
 endfunction
 
+function! elixir#indent#handle_inside_embedded_view(context)
+  if !s:in_embedded_view()
+    return -1
+  endif
+
+  " Multi-line Surface data delimiters
+  let pair_lnum = searchpair('{{', '', '}}', 'bW', "line('.') == ".a:context.lnum." || s:is_string_or_comment(line('.'), col('.'))", max([0, a:context.lnum - g:elixir_indent_max_lookbehind]))
+  if pair_lnum
+    if a:context.text =~ '}}$'
+      return indent(pair_lnum)
+    elseif a:context.text =~ '}}*>$'
+      return -1
+    elseif s:prev_ends_with(a:context, '[\|%{')
+      return indent(a:context.prev_nb_lnum) + s:sw()
+    elseif a:context.prev_nb_text =~ ',$'
+      return indent(a:context.prev_nb_lnum)
+    else
+      return indent(pair_lnum) + s:sw()
+    endif
+  endif
+
+  " Multi-line opening tag -- >, />, or %> are on a different line that their opening <
+  let pair_lnum = searchpair('^\s\+<.*[^>]$', '', '^[^<]*[/%}]\?>$', 'bW', "line('.') == ".a:context.lnum." || s:is_string_or_comment(line('.'), col('.'))", max([0, a:context.lnum - g:elixir_indent_max_lookbehind]))
+  if pair_lnum
+    if a:context.text =~ '^\s\+\%\(>\|\/>\|%>\|}}>\)$'
+      call s:debug("current line is a lone >, />, or %>")
+      return indent(pair_lnum)
+    elseif a:context.text =~ '\%\(>\|\/>\|%>\|}}>\)$'
+      call s:debug("current line ends in >, />, or %>")
+      if s:prev_ends_with(a:context, ',')
+        return indent(a:context.prev_nb_lnum)
+      else
+        return -1
+      endif
+    else
+      call s:debug("in the body of a multi-line opening tag")
+      return indent(pair_lnum) + s:sw()
+    endif
+  endif
+
+  " Special cases
+  if s:prev_ends_with(a:context, '^[^<]*do\s%>')
+    call s:debug("prev line closes a multi-line do block")
+    return indent(a:context.prev_nb_lnum)
+  elseif a:context.prev_nb_text =~ 'do\s*%>$'
+    call s:debug("prev line opens a do block")
+    return indent(a:context.prev_nb_lnum) + s:sw()
+  elseif a:context.text =~ '^\s\+<\/[a-zA-Z0-9\.\-_]\+>\|<% end %>'
+    call s:debug("a single closing tag")
+    if a:context.prev_nb_text =~ '^\s\+<[^%\/]*[^/]>.*<\/[a-zA-Z0-9\.\-_]\+>$'
+      call s:debug("opening and closing tags are on the same line")
+      return indent(a:context.prev_nb_lnum) - s:sw()
+    elseif a:context.prev_nb_text =~ '^\s\+<[^%\/]*[^/]>\|\s\+>' 
+      call s:debug("prev line is opening html tag or single >")
+      return indent(a:context.prev_nb_lnum)
+    elseif s:prev_ends_with(a:context, '^[^<]*\%\(do\s\)\@<!%>')
+      call s:debug("prev line closes a multi-line eex tag")
+      return indent(a:context.prev_nb_lnum) - 2 * s:sw()
+    else
+      return indent(a:context.prev_nb_lnum) - s:sw()
+    endif
+  elseif a:context.text =~ '^\s*<%\s*\%(end\|else\|catch\|rescue\)\>.*%>'
+    call s:debug("eex middle or closing eex tag")
+    return indent(a:context.prev_nb_lnum) - s:sw()
+  elseif a:context.prev_nb_text =~ '\s*<\/\|<% end %>$'
+    call s:debug("prev is closing tag")
+    return indent(a:context.prev_nb_lnum)
+  elseif a:context.prev_nb_text =~ '^\s\+<[^%\/]*[^/]>.*<\/[a-zA-Z0-9\.\-_]\+>$'
+    call s:debug("opening and closing tags are on the same line")
+    return indent(a:context.prev_nb_lnum)
+  elseif s:prev_ends_with(a:context, '\s\+\/>')
+    call s:debug("prev ends with a single \>")
+    return indent(a:context.prev_nb_lnum)
+  elseif s:prev_ends_with(a:context, '^[^<]*\/>')
+    call s:debug("prev line is closing a multi-line self-closing tag")
+    return indent(a:context.prev_nb_lnum) - s:sw()
+  elseif s:prev_ends_with(a:context, '^\s\+<.*\/>')
+    call s:debug("prev line is closing self-closing tag")
+    return indent(a:context.prev_nb_lnum)
+  elseif a:context.prev_nb_text =~ '^\s\+%\?>$'
+    call s:debug("prev line is a single > or %>")
+    return indent(a:context.prev_nb_lnum) + s:sw()
+  endif
+
+  " Simple HTML (ie, opening tag is not split across lines)
+  let pair_lnum = searchpair('^\s\+<[^%\/].*[^\/>]>$', '', '^\s\+<\/\w\+>$', 'bW', "line('.') == ".a:context.lnum." || s:is_string_or_comment(line('.'), col('.'))", max([0, a:context.lnum - g:elixir_indent_max_lookbehind]))
+  if pair_lnum
+    call s:debug("simple HTML")
+    if a:context.text =~ '^\s\+<\/\w\+>$'
+      return indent(pair_lnum)
+    else
+      return indent(pair_lnum) + s:sw()
+    endif
+  endif
+
+  return -1
+endfunction
+
 function! elixir#indent#handle_top_of_file(context)
   if a:context.prev_nb_lnum == 0
     return 0
+  else
+    return -1
+  end
+endfunction
+
+function! elixir#indent#handle_starts_with_string_continuation(context)
+  if s:syntax_name(a:context.lnum, a:context.first_nb_char_idx) =~ '\(String\|Comment\|CharList\)$'
+    return -2
   else
     return -1
   end
@@ -256,12 +384,14 @@ function! elixir#indent#handle_inside_block(context)
   " hack - handle do: better
   let block_info = searchpairpos(start_pattern, '', end_pattern, 'bnW', "line('.') == " . line('.') . " || elixir#indent#searchpair_back_skip() || getline(line('.')) =~ 'do:'", max([0, a:context.lnum - g:elixir_indent_max_lookbehind]))
   let block_start_lnum = block_info[0]
+  call s:debug("block_start_lnum=" . block_start_lnum)
   let block_start_col = block_info[1]
   if block_start_lnum != 0 || block_start_col != 0
     let block_text = getline(block_start_lnum)
     let block_start_char = block_text[block_start_col - 1]
+    call s:debug("block_start_char=" . block_start_char)
 
-    let never_match = '\(a\)\@=b'
+    let never_match = ''
     let config = {
           \'f': {'aligned_clauses': s:keyword('end'), 'pattern_match_clauses': never_match},
           \'c': {'aligned_clauses': s:keyword('end'), 'pattern_match_clauses': never_match},
@@ -273,17 +403,25 @@ function! elixir#indent#handle_inside_block(context)
           \'(': {'aligned_clauses': ')', 'pattern_match_clauses': never_match}
           \}
 
+    " if `with` clause...
     if block_start_char == 'w'
       call s:debug("testing s:handle_with")
       return s:handle_with(block_start_lnum, block_start_col, a:context)
     else
       let block_config = config[block_start_char]
+      " if aligned clause (closing tag/`else` clause/etc...) then indent this
+      " at the same level as the block open tag (e.g. `if`/`case`/etc...)
       if s:starts_with(a:context, block_config.aligned_clauses)
         call s:debug("clause")
         return indent(block_start_lnum)
       else
-        let clause_lnum = searchpair(block_config.pattern_match_clauses, '', '*', 'bnW', "line('.') == " . line('.') . " || elixir#indent#searchpair_back_skip()", block_start_lnum)
-        let relative_lnum = max([clause_lnum, block_start_lnum])
+        if block_config.pattern_match_clauses == never_match
+          let relative_lnum = block_start_lnum
+        else
+          let clause_lnum = searchpair(block_config.pattern_match_clauses, '', '*', 'bnW', "line('.') == " . line('.') . " || elixir#indent#searchpair_back_skip()", block_start_lnum)
+          call s:debug("clause_lum=" . clause_lnum)
+          let relative_lnum = max([clause_lnum, block_start_lnum])
+        end
         call s:debug("pattern matching relative to lnum " . relative_lnum)
         return s:do_handle_pattern_match_block(relative_lnum, a:context)
       endif
