@@ -1,5 +1,6 @@
-erlang 24.0.5
 elixir 1.12.2
-python 3.7.4 system
+erlang 24.0.5
+golang 1.17.3
 nodejs 16.7.0
-ruby 2.7.4
+python 3.7.4 system
+ruby 3.0.2
