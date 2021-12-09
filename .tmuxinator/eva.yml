@@ -1,0 +1,14 @@
+name: eva
+root: ~/code/evelion-accounts
+socket_name: evelion-accounts
+
+windows:
+  - editor:
+      layout: main-horizontal
+      panes:
+        - set -a && source .env && set +a && vim
+        - set -a && source .env && set +a
+  - server:
+      layout: main-horizontal
+      panes:
+        - set -a && source .env && set +a && bin/start

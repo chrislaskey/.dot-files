@@ -459,6 +459,6 @@ alias ic='ibmcloud'
 
 # === Path ===
 
-PATH="/opt/local/bin:/opt/local/sbin:/usr/local/share:/usr/local/include:/usr/local/lib:${HOME}:${PATH}"
+PATH="/opt/local/bin:/opt/local/sbin:/usr/local/share:/usr/local/include:/usr/local/lib:${HOME}/.dot-files/bin:${HOME}:${PATH}"
 
 export PATH
