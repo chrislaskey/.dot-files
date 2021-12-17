@@ -453,6 +453,10 @@ fi
 
 if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then source /etc/profile.d/vte.sh; fi
 
+if [[ "$UNAME" == Linux && -f ~/.dot-files/bin/reset-keyboard ]]; then
+  ~/.dot-files/bin/reset-keyboard
+fi
+
 # === IBM Cloud ===
 
 alias ic='ibmcloud'
