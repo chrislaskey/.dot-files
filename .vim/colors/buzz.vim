@@ -37,7 +37,7 @@ endif
 hi Cursor          guifg=NONE    guibg=#626262 gui=none ctermbg=236
 hi Normal          guifg=#f6f3e8 guibg=#181818 gui=none ctermfg=253 ctermbg=16
 hi NonText         guifg=#303030 guibg=#181818 gui=none ctermfg=235 ctermbg=16
-hi LineNr          guifg=#303030 guibg=#181818 gui=none ctermfg=236 ctermbg=16
+hi LineNr          guifg=#303030 guibg=#181818 gui=none ctermfg=242 ctermbg=16
 hi ErrorMsg        guifg=#ff0000 ctermfg=196 ctermbg=16
 hi WarningMsg      guifg=#ff0000 gui=none ctermfg=196 ctermbg=16
 hi StatusLine      guifg=#d3d3d5 guibg=#212121 gui=none ctermfg=253 ctermbg=236
@@ -57,7 +57,7 @@ if hlexists('SpellBad')
     hi SpellBad    guifg=#ff0000 gui=none ctermfg=196 ctermbg=16
 endif
 hi Search          guifg=#ffff00 gui=none ctermbg=190
-hi Comment         guifg=#444444 gui=italic ctermfg=238
+hi Comment         guifg=#444444 gui=italic ctermfg=243
 hi Boolean         guifg=#b1d631 gui=none ctermfg=154
 hi String          guifg=#808080 gui=none ctermfg=154
 hi Function        guifg=#ffff00 gui=none ctermfg=255

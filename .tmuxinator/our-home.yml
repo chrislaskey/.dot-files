@@ -1,0 +1,13 @@
+name: our-home
+root: ~/code/our.home
+socket_name: our-home
+
+windows:
+  - editor:
+      # For custom tmux layouts, see:
+      # https://stackoverflow.com/questions/9812000/specify-pane-percentage-in-tmuxinator-project/9976282#9976282
+      layout: 1ea5,191x47,0,0{130x47,0,0[130x38,0,0,0,130x8,0,39,2],60x47,131,0,1}
+      panes:
+        - vim
+        - /usr/bin/env bash
+        - bin/start
