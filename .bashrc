@@ -396,7 +396,7 @@ fi
 # See `asdf` compatibility issue thread when installed with brew
 # https://github.com/asdf-vm/asdf/issues/785#issuecomment-800631331
 if [ -d ${ASDF_HOME}/shims ]; then
-  PATH="${PATH}:${ASDF_HOME}/shims"
+  PATH="${ASDF_HOME}/shims:${PATH}"
 fi
 
 # === Brew ===
