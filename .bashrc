@@ -399,6 +399,10 @@ if [ -d ${ASDF_HOME}/shims ]; then
   PATH="${PATH}:${ASDF_HOME}/shims"
 fi
 
+# === Brew ===
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # === Ruby ===
 
 alias be='bundle exec'
