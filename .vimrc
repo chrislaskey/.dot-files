@@ -57,6 +57,13 @@ if has('autocmd')
     autocmd filetype lisp,scheme setlocal lisp
 endif
 
+if has('autocmd')
+  " Fix issues with syntax highlighting getting out of sync.
+  " NOTE: this has a performance hit!
+  autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+  autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+endif
+
 " set wildmenu " More advanced listing when using tab auto complete
 " set wildmode=list,full " Determines the way the advanced listing is displayed
 set wildignore+=.svn/*,.git/*,.hg/*,*.gif,*.jpg,*.jpeg,*.png,*.pdf
@@ -367,6 +374,16 @@ call plug#begin('~/.vim/vim-plug-files')
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
+
+let g:coc_global_extensions = ['coc-tsserver']
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+  let g:coc_global_extensions += ['coc-prettier']
+endif
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+  let g:coc_global_extensions += ['coc-eslint']
+endif
 
 call plug#end()
 
@@ -764,7 +781,7 @@ endif
 " Easy Motion plugin
 " ------------------------------------------------------------------------------
 "   Keep it from conflicting with other modules
-let g:EasyMotion_leader_key = '<Leader>m'
+" let g:EasyMotion_leader_key = '<Leader>m'
 
 
 " Fuzzy Finder plugin
