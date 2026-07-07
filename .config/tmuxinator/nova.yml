@@ -1,0 +1,21 @@
+# /Users/chrislaskey/.config/tmuxinator/example.yml
+
+name: example
+root: ~/code/example
+socket_name: example
+
+windows:
+  - editor:
+      layout: main-horizontal
+      panes:
+        - nvim
+        - set -a && source env/dev.env && set +a
+  - console:
+      layout: main-horizontal
+      panes:
+        - set -a && source env/dev.env && set +a && docker compose up -d
+        - set -a && source env/dev.env && set +a
+  - server:
+      layout: main-horizontal
+      panes:
+        - set -a && source env/dev.env && set +a && iex -S mix phx.server

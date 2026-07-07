@@ -1,0 +1,33 @@
+{
+    "IO.inspect with label": {
+        "prefix": "i",
+        "body": "IO.inspect(${TM_SELECTED_TEXT}${1}, label: \"${TM_SELECTED_TEXT}${1}$0\")",
+        "description": "An even shorter snippet for inspecting with a label"
+    },
+    "Pipe IO.inspect with label": {
+        "prefix": "pi",
+        "body": ["\n", "|> IO.inspect(label: \"$0\")"],
+        "description": "An even shorter snippet for inspecting with a label"
+    },
+    "Public function with @spec and @doc": {
+        "prefix": "def",
+        "body": [
+          "\r",
+          "@doc \"\"\"",
+          "Docstring for ${1}",
+          "",
+          "## Example",
+          "",
+          "  ${1}(\"${2}\")",
+          "  =>",
+          "",
+          "\"\"\"",
+          "@spec ${1}(nil) :: nil",
+          "def ${1:name}(${2:args}) do",
+          "  $0",
+          "end",
+          "\r"
+        ],
+        "description": "An even shorter snippet for inspecting with a label"
+    }
+}

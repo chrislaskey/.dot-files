@@ -1,0 +1,59 @@
+[colors]
+ansi = [
+  '#282c34',
+  '#ef596f',
+  '#89ca78',
+  '#e5c07b',
+  '#61afef',
+  '#d55fde',
+  '#2bbac5',
+  '#abb2bf',
+]
+background = '#282c34'
+brights = [
+  '#5c6370',
+  '#f38897',
+  '#a9d89d',
+  '#edd4a6',
+  '#8fc6f4',
+  '#e089e7',
+  '#4bced8',
+  '#c8cdd5',
+]
+cursor_bg = '#d55fde'
+cursor_fg = '#282c34'
+foreground = '#abb2bf'
+selection_bg = '#d55fde'
+selection_fg = '#abb2bf'
+
+[colors.indexed]
+
+[metadata]
+name = 'onedarkpro_onedark_vivid'
+origin_url = 'https://github.com/olimorris/onedarkpro.nvim'
+
+[colors.tab_bar]
+inactive_tab_edge = "#16161e"
+background = "#1a1b26"
+
+[colors.tab_bar.active_tab]
+fg_color = "#16161e"
+bg_color = "#7aa2f7"
+
+[colors.tab_bar.inactive_tab]
+fg_color = "#545c7e"
+bg_color = "#292e42"
+
+[colors.tab_bar.inactive_tab_hover]
+fg_color = "#7aa2f7"
+bg_color = "#292e42"
+# intensity = "Bold"
+
+[colors.tab_bar.new_tab_hover]
+fg_color = "#7aa2f7"
+bg_color = "#1a1b26"
+intensity = "Bold"
+
+[colors.tab_bar.new_tab]
+fg_color = "#7aa2f7"
+bg_color = "#1a1b26"
