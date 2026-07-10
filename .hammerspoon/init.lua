@@ -19,6 +19,7 @@ local apps = {
 	wezterm = { name = "WezTerm", path = "/Applications/WezTerm.app" },
 	tableplus = { name = "TablePlus", path = "/Applications/TablePlus.app" },
 	firefox = { name = "Firefox", path = "/Applications/Firefox.app" },
+	firefox_developer_edition = { name = "Firefox", path = "/Applications/Firefox Developer Edition.app" },
 	obsidian = { name = "Obsidian", path = "/Applications/Obsidian.app" },
 	discord = { name = "Discord", path = "/Applications/Discord.app" },
 	slack = { name = "Slack", path = "/Applications/Slack.app" },
@@ -27,7 +28,7 @@ local apps = {
 	zoom = { name = "Zoom", path = "/Applications/zoom.us.app" },
 }
 
-local browsers = { apps.firefox }
+local browsers = { apps.firefox, apps.firefox_developer_edition }
 local editors = { apps.cursor }
 local terminals = { apps.ghostty }
 local db_tools = { apps.tableplus }
@@ -68,7 +69,8 @@ hs.hotkey.bind(modifierKeysForApps, "k", function()
 end)
 
 hs.hotkey.bind(modifierKeysForApps, "j", function()
-	launchOrFocus(apps.firefox)
+	-- launchOrFocus(apps.firefox)
+	launchOrFocus(apps.firefox_developer_edition)
 end)
 
 hs.hotkey.bind(modifierKeysForApps, "i", function()
