@@ -139,6 +139,8 @@ alias vim='command -v nvim >/dev/null && nvim || vim'
 # Functions
 # ---------
 
+source "$(dirname "${BASH_SOURCE[0]}")/.bash/gw.bash"
+
 gco() {
     git checkout $(git branch | fzf | tr -d '[:space:]*')
 }
@@ -254,12 +256,4 @@ bind '"\e[B": history-search-forward'
 # See installation notes at the top of this file.
 if [ -f "$HOME/.secrets" ]; then
     source "$HOME/.secrets"
-fi
-
-# ---------
-# Worktrunk (worktrunk.dev)
-# ---------
-
-if command -v wt >/dev/null 2>&1; then
-    eval "$(command wt config shell init bash)"
 fi

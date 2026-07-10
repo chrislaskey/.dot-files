@@ -10,6 +10,14 @@ Unpin applications from Dock. Move to the right. Set autohide.
 defaults write com.apple.dock autohide -bool true
 ```
 
+### Display
+
+Turn off "Automatically adjust brightness"
+
+### Lock screen
+
+Change durations
+
 ### Keyboard
 
 Go to settings and change:
