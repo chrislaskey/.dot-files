@@ -38,7 +38,6 @@ brew "tmuxinator"
 # Cloud / infra
 brew "flyctl"          # Fly.io CLI
 brew "ollama"          # Local LLM runner
-brew "worktrunk"
 
 # TUIs
 brew "derailed/k9s/k9s"

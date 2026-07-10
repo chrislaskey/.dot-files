@@ -58,6 +58,9 @@ Start and Configure:
 - Orbstack
   - Choose `docker`
   - Enable extensions via password
+- Claude code
+  - Log in
+  - Set vim mode by using `/config` and then searching for vim
 
 ### GitHub
 
