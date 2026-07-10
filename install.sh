@@ -16,15 +16,6 @@ echo '/opt/homebrew/bin/bash' | sudo tee -a /etc/shells
 
 chsh -s /opt/homebrew/bin/bash
 
-# Symlink these dotfiles into place
-
-ln -sf ./.bash_profile ~/.bash_profile
-ln -sf ./.bashrc ~/.bashrc
-ln -sf ./.config ~/.config
-ln -sf ./.hammerspoon ~/.hammerspoon
-ln -sf ./.tmux.conf ~/.tmux.conf
-ln -sf ./.zshrc ~/.zshrc
-
 # Create ~/.secrets for secret values in env vars (ex: API keys)
 
 touch ~/.secrets
@@ -36,7 +27,7 @@ chmod 600 ~/.secrets
 
 # Install the rest of the brew packages
 
-brew bundle --file=./Brewfile
+brew trust derailed/k9s && brew bundle --file=~/.dot-files-main/Brewfile
 
 # Install asdf plugins
 
