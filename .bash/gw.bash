@@ -273,14 +273,25 @@ _gw_delete() {
     echo "gw: deleted '$name'"
 }
 
+_gw_help() {
+    cat <<'EOF'
+gw - git worktree + tmux session manager
+
+Usage: gw <command> [args]
+
+Commands:
+  checkout <name> [git_branch]   Find or create a worktree + tmux session (default git_branch: origin/main)
+  list                           Show all tmux sessions and this repo's worktrees
+  delete <name> [--force]        Remove a worktree's tmux session and worktree (refuses if dirty or unpushed)
+  help                           Show this help
+EOF
+}
+
 gw() {
     local cmd="$1"
     shift
 
     case "$cmd" in
-        hello)
-            echo "hello world"
-            ;;
         checkout)
             _gw_checkout "$@"
             ;;
@@ -290,8 +301,13 @@ gw() {
         delete)
             _gw_delete "$@"
             ;;
+        help)
+            _gw_help
+            ;;
         *)
             echo "gw: unknown command '$cmd'" >&2
+            echo >&2
+            _gw_help >&2
             return 1
             ;;
     esac
