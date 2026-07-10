@@ -24,6 +24,7 @@ brew "fzf"             # Fuzzy finder
 brew "gh"              # GitHub CLI
 brew "gnu-sed"         # GNU sed (replaces BSD sed)
 brew "gnupg"           # GPG
+brew "jq"              # JSON
 brew "neovim"
 brew "ripgrep"         # Fast grep (rg)
 brew "rsync"
@@ -37,10 +38,19 @@ brew "tmuxinator"
 # Cloud / infra
 brew "flyctl"          # Fly.io CLI
 brew "ollama"          # Local LLM runner
-brew "worktrunk"
 
-# Third-party taps
+# TUIs
 brew "derailed/k9s/k9s"
+brew "pi-coding-agent"
 
 # Bash completions (new for bash switch)
 brew "bash-completion@2"
+
+# Apps
+cask "ghostty"
+cask "firefox@developer-edition"
+cask "hammerspoon"
+cask "orbstack"
+cask "claude-code"
+cask "cursor"
+cask "obsidian"
