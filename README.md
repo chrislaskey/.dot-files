@@ -46,6 +46,8 @@ cd ~/dot-files-main && ./install.sh
 ### Apps
 
 Start and Configure:
+- Ghostty
+  - Install `ghostty.txt` config file
 - Hammerspoon
   - Enable accessibility, start on login
   - Open ~/.hammerspoon/init.lua and update config as needed
