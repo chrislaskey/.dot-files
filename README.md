@@ -1,4 +1,4 @@
-# Dot files
+# `.dot-files`
 
 ## Installation
 
