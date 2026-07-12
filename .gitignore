@@ -14,4 +14,4 @@
 tmux-client-*.log
 tmux-server-*.log
 asdf
-.worktrees/
+.git_worktrees/
