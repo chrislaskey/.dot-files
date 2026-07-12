@@ -62,11 +62,11 @@ _gw_ensure_worktree() {
 }
 
 _gw_open_session() {
-    local session_name="$1" path="$2"
+    local session_name="$1" repo_root="$2"
 
     if ! tmux has-session -t "$session_name" 2>/dev/null; then
-        tmux new-session -d -s "$session_name" -n agent -c "$path"
-        tmux new-window -t "$session_name" -n code -c "$path"
+        tmux new-session -d -s "$session_name" -n agent -c "$repo_root"
+        tmux new-window -t "$session_name" -n code -c "$repo_root"
         tmux select-window -t "$session_name:agent"
     fi
 
@@ -213,7 +213,7 @@ _gw_checkout() {
     _gw_ensure_gitignore "$repo_root" || return 1
     _gw_ensure_fetched "$git_branch"
     _gw_ensure_worktree "$repo_root" "$name" "$git_branch" || return 1
-    _gw_open_session "$session_name" "$repo_root/.worktrees/$name"
+    _gw_open_session "$session_name" "$repo_root"
 }
 
 _gw_delete() {

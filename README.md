@@ -69,6 +69,9 @@ Start and Configure:
 - Claude code
   - Log in
   - Set vim mode by using `/config` and then searching for vim
+- Obsidian
+  - Set vault
+  - Turn on vim mode
 
 ### GitHub
 

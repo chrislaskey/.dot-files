@@ -19,6 +19,7 @@ brew "bash"            # Modern bash (5.x) — macOS ships 3.2
 brew "asdf"            # Version manager for runtimes (node, ruby, etc.)
 brew "ctags"
 brew "diff-so-fancy"   # Better git diffs
+brew "ffmpeg"
 brew "fpp"             # Facebook PathPicker
 brew "fzf"             # Fuzzy finder
 brew "gh"              # GitHub CLI
