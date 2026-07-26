@@ -10,18 +10,18 @@ _gw_repo_root() {
 _gw_ensure_worktrees_dir() {
     local repo_root="$1"
 
-    mkdir -p "$repo_root/.worktrees"
+    mkdir -p "$repo_root/.git_worktrees"
 }
 
 _gw_ensure_gitignore() {
     local repo_root="$1"
     local gitignore="$repo_root/.gitignore"
 
-    if [[ -f "$gitignore" ]] && grep -qxF '.worktrees/' "$gitignore"; then
+    if [[ -f "$gitignore" ]] && grep -qxF '.git_worktrees/' "$gitignore"; then
         return
     fi
 
-    echo '.worktrees/' >> "$gitignore"
+    echo '.git_worktrees/' >> "$gitignore"
 }
 
 _gw_ensure_fetched() {
@@ -37,7 +37,7 @@ _gw_ensure_fetched() {
 _gw_worktree_exists() {
     local repo_root="$1" name="$2"
 
-    git -C "$repo_root" worktree list --porcelain | grep -qxF "worktree $repo_root/.worktrees/$name"
+    git -C "$repo_root" worktree list --porcelain | grep -qxF "worktree $repo_root/.git_worktrees/$name"
 }
 
 _gw_branch_exists() {
@@ -48,7 +48,7 @@ _gw_branch_exists() {
 
 _gw_ensure_worktree() {
     local repo_root="$1" name="$2" git_branch="$3"
-    local path="$repo_root/.worktrees/$name"
+    local path="$repo_root/.git_worktrees/$name"
 
     if _gw_worktree_exists "$repo_root" "$name"; then
         return
@@ -171,7 +171,7 @@ _gw_list() {
     echo
     echo "Worktrees in repo: $repo_name"
 
-    local worktrees_dir="$repo_root/.worktrees"
+    local worktrees_dir="$repo_root/.git_worktrees"
     if [[ ! -d "$worktrees_dir" ]] || [[ -z "$(ls -A "$worktrees_dir" 2>/dev/null)" ]]; then
         echo "  (none)"
         return
@@ -213,7 +213,7 @@ _gw_checkout() {
     _gw_ensure_gitignore "$repo_root" || return 1
     _gw_ensure_fetched "$git_branch"
     _gw_ensure_worktree "$repo_root" "$name" "$git_branch" || return 1
-    _gw_open_session "$session_name" "$repo_root"
+    _gw_open_session "$session_name" "$repo_root/.git_worktrees/$name"
 }
 
 _gw_delete() {
@@ -231,7 +231,7 @@ _gw_delete() {
     local repo_root
     repo_root="$(_gw_repo_root)" || return 1
 
-    local path="$repo_root/.worktrees/$name"
+    local path="$repo_root/.git_worktrees/$name"
     local session_name="$(basename "$repo_root")-$name"
 
     if [[ ! -d "$path" ]] && ! tmux has-session -t "$session_name" 2>/dev/null; then
@@ -267,6 +267,14 @@ _gw_delete() {
             git -C "$repo_root" worktree remove --force "$path"
         else
             git -C "$repo_root" worktree remove "$path"
+        fi
+    fi
+
+    if _gw_branch_exists "$repo_root" "$name"; then
+        if [[ "$force" -eq 1 ]]; then
+            git -C "$repo_root" branch -D "$name" 2>/dev/null
+        else
+            git -C "$repo_root" branch -d "$name" 2>/dev/null
         fi
     fi
 
