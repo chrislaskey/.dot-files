@@ -51,6 +51,17 @@ xcode-select --install
 cd ~/dot-files-main && ./install.sh
 ```
 
+### Python
+
+Installing python `pip` packages:
+
+```bash
+pipx ensurepath
+python -m pip install --upgrade pip
+pip install --user pipx
+pipx install --upgrade 'name[default]'
+```
+
 ### Apps
 
 Start and Configure:

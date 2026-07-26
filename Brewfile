@@ -47,6 +47,9 @@ brew "pi-coding-agent"
 # Bash completions (new for bash switch)
 brew "bash-completion@2"
 
+# Python
+brew "pipx"
+
 # Apps
 cask "ghostty"
 cask "firefox@developer-edition"
