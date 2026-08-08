@@ -70,6 +70,9 @@ Start and Configure:
 - Hammerspoon
   - Enable accessibility, start on login
   - Open ~/.hammerspoon/init.lua and update config as needed
+- Raycast
+  - Disable macOS Spotlight keyboard shortcut in `System Settings > Keyboard > Keyboard Shortcuts > Spotlight`
+  - Enable Raycast shortcut to Command + Space.
 - Firefox Developer Edition
   - Set new tab behaviour to blank page (use edit button in lower right)
   - Set always private browser window
