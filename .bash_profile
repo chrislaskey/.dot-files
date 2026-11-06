@@ -9,3 +9,10 @@ if [ -f ~/.bashrc ]; then
 fi
 
 if [ -e /Users/claskey/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/claskey/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+# Added by OrbStack: command-line tools and integration
+# This won't be added again if you remove it.
+source ~/.orbstack/shell/init.bash 2>/dev/null || :
+
+# uv
+export PATH="/Users/chrislaskey/.local/bin:$PATH"
