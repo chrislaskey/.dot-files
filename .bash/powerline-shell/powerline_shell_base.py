@@ -63,6 +63,8 @@ class Powerline:
         return self.color('38', code)
 
     def bgcolor(self, code):
+        if code is None:
+            return self.color_template % '[49m'  # terminal default background
         return self.color('48', code)
 
     def append(self, content, fg, bg, separator=None, separator_fg=None):

@@ -1,18 +1,18 @@
 class Color:
     USERNAME_FG = 198
-    USERNAME_BG = 0
-    USERNAME_ROOT_BG = 0
+    USERNAME_BG = None
+    USERNAME_ROOT_BG = None
 
     HOSTNAME_FG = 208
-    HOSTNAME_BG = 0
+    HOSTNAME_BG = None
 
     TIME_FG = 134
-    TIME_BG = 0
+    TIME_BG = None
 
     HOME_SPECIAL_DISPLAY = False
     HOME_BG = 31  # blueish
     HOME_FG = 15  # white
-    PATH_BG = 0
+    PATH_BG = None
     PATH_FG = 154
     CWD_FG = 254
     SEPARATOR_FG = 244
@@ -23,33 +23,33 @@ class Color:
     SSH_BG = 166 # medium orange
     SSH_FG = 254
 
-    REPO_CLEAN_BG = 0
+    REPO_CLEAN_BG = None
     REPO_CLEAN_FG = 2
-    REPO_DIRTY_BG = 0
+    REPO_DIRTY_BG = None
     REPO_DIRTY_FG = 226
 
     JOBS_FG = 39
     JOBS_BG = 238
 
-    CMD_PASSED_BG = 0
+    CMD_PASSED_BG = None
     CMD_PASSED_FG = 252
-    CMD_FAILED_BG = 0
+    CMD_FAILED_BG = None
     CMD_FAILED_FG = 160
 
     SVN_CHANGES_BG = 148
     SVN_CHANGES_FG = 22
 
-    GIT_AHEAD_BG = 0
+    GIT_AHEAD_BG = None
     GIT_AHEAD_FG = 117
-    GIT_BEHIND_BG = 0
+    GIT_BEHIND_BG = None
     GIT_BEHIND_FG = 117
-    GIT_STAGED_BG = 0
+    GIT_STAGED_BG = None
     GIT_STAGED_FG = 2
-    GIT_NOTSTAGED_BG = 0
+    GIT_NOTSTAGED_BG = None
     GIT_NOTSTAGED_FG = 160
-    GIT_UNTRACKED_BG = 0
+    GIT_UNTRACKED_BG = None
     GIT_UNTRACKED_FG = 161
-    GIT_CONFLICTED_BG = 0
+    GIT_CONFLICTED_BG = None
     GIT_CONFLICTED_FG = 9
 
     VIRTUAL_ENV_BG = 35  # a mid-tone green
